@@ -6,7 +6,7 @@ import pickle
 import time
 from collections import defaultdict as dd
 import numpy as np
-
+import os
 
 def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResults/'):
     '''genewrate KMeans and save results to the directory specified.'''
@@ -25,7 +25,8 @@ def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResul
     print([len(i) for i in list(clustering_result.values())])
 
     # save to directory
-    pickle.dump(kmeans, open(directory + 'run' + str(run_id) + '/' + 'model', 'wb'))
+    os.mkdir(directory+'run'+str(run_id))
+    pickle.dump(kmeans, open(directory + str(run_id) + '/' + 'model', 'wb'))
 
     return clustering_result
 
@@ -33,9 +34,9 @@ def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResul
 def predict_cluster_labels(run_id, corpus, directory):
     '''predict cluster label for documents in corpus,
     then save the results as a list in to the directory specified'''
-    clustering = pickle.load(open(directory + 'run' + str(run_id) + '/' + 'model', 'rb'))
+    clustering = pickle.load(open(directory + str(run_id) + '/' + 'model', 'rb'))
     labels = clustering.labels_
-    pickle.dump(labels, open(directory + 'run' + str(run_id) + '/' + 'labels', 'wb'))
+    pickle.dump(labels, open(directory + str(run_id) + '/' + 'labels', 'wb'))
     return labels
 
 
@@ -43,7 +44,7 @@ def generate_cluster_keywords(run_id, corpus, mode='centroid', num_docs=10, num_
                               filename='keywords.txt'):
     '''modes = ['centroid','cluster']
         generate keywords for clusters with mode option and save results to directory specified.'''
-    clustering = pickle.load(open(directory + 'run' + str(run_id) + '/' + 'model', 'rb'))
+    clustering = pickle.load(open(directory + str(run_id) + '/' + 'model', 'rb'))
     clusters = dd(list)
     labels = clustering.labels_
     for i in range(len(labels)):

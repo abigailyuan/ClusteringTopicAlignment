@@ -98,6 +98,7 @@ def lemmatize_corpus(corpus, directory='ProcessedWSJ/'):
     # initialise stemmer
     lemmatizer = WordNetLemmatizer()
     stemmer = SnowballStemmer('english')
+    stopwords = nltk.corpus.stopwords.words('english')
 
     start = time.perf_counter()
     stemmed_corpus = []
