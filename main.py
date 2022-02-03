@@ -2,7 +2,10 @@
 
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
+import preprocessing
+import KMeansGenerator
+import LDAGenerator
+import Visualisation
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -10,13 +13,15 @@ def print_hi(name):
 
 
 def work_pipeline():
-    # define clustering run_id
 
-    # define topic modelling run_id
+    corpus_name = '../datasets/wsj.gz'
+    corpus = preprocessing.parse_wsj_corpus(corpus_name)
+    corpus = preprocessing.clean_corpus(corpus)
+    corpus = preprocessing.tokenize_corpus(corpus)
+    corpus = preprocessing.remove_stopwords(corpus)
+    corpus = preprocessing.lemmatize_corpus(corpus)
 
-    # define order of degree
-
-    return 0;
+    return 0
 
 
 # Press the green button in the gutter to run the script.

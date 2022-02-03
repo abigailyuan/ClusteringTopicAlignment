@@ -92,6 +92,7 @@ def remove_stopwords(corpus, directory='ProcessedWSJ/'):
 
     pickle.dump(corpus, open(directory + 'wsj_tokenized.pkl', 'wb'))
 
+    return corpus
 
 def lemmatize_corpus(corpus, directory='ProcessedWSJ/'):
     # initialise stemmer
