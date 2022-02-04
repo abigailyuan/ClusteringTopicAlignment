@@ -23,10 +23,10 @@ def create_dictionary(filename, no_below=15, no_above=0.5, keep_n=10000, directo
 
 def tfidf_vectorize(filename, dictionary, directory='ProcessedWSJ'):
     corpus = pickle.load(open(filename, 'rb'))
-    dictionary = pickle.load(open(dictionary, 'rb'))
+    dict = pickle.load(open(dictionary, 'rb'))
 
     start = time.perf_counter()
-    model = TfidfModel(corpus=corpus, dictionary=dictionary)
+    model = TfidfModel(corpus=corpus, dictionary=dict)
     tfidf_corpus = [model[i] for i in corpus]
     end = time.perf_counter()
     print('Corpus is vectorized with TFIDF.')
@@ -35,7 +35,7 @@ def tfidf_vectorize(filename, dictionary, directory='ProcessedWSJ'):
     pickle.dump(tfidf_corpus, open(directory + 'tfidf_corpus.pkl', 'wb'))
 
     start = time.perf_counter()
-    num_terms = len(dictionary)
+    num_terms = len(dict)
     corpus_size = len(tfidf_corpus)
     dense_corpus = corpus2dense(tfidf_corpus, num_terms, corpus_size)
     end = time.perf_counter()
