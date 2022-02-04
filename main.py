@@ -26,7 +26,8 @@ def work_pipeline():
 
 
     # generate K-Means clustering run
-    cid = 0
+
+
 
 
 
