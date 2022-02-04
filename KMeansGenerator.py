@@ -31,7 +31,7 @@ def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResul
     return clustering_result
 
 
-def predict_cluster_labels(run_id, corpus, directory):
+def predict_cluster_labels(run_id, directory):
     '''predict cluster label for documents in corpus,
     then save the results as a list in to the directory specified'''
     clustering = pickle.load(open(directory + str(run_id) + '/' + 'model', 'rb'))

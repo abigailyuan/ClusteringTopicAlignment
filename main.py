@@ -27,16 +27,23 @@ def work_pipeline():
 
 
     # vectorize corpus
-    corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
-    bow_corpus = 'sample1WSJ/bow.pkl'
-    directory = 'sample1WSJ/'
-    corpus_vectorizer.create_dictionary(filename=corpus, directory=directory)
-    dictionary = directory+'dictionary.pkl'
-    corpus_vectorizer.tfidf_vectorize(bow_corpus, dictionary, directory=directory)
-
-    corpus_vectorizer.doc2vec_vectorize(corpus, directory=directory)
+    # corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
+    # bow_corpus = 'sample1WSJ/bow.pkl'
+    # directory = 'sample1WSJ/'
+    # corpus_vectorizer.create_dictionary(filename=corpus, directory=directory)
+    # dictionary = directory+'dictionary.pkl'
+    # corpus_vectorizer.tfidf_vectorize(bow_corpus, dictionary, directory=directory)
+    #
+    # corpus_vectorizer.doc2vec_vectorize(corpus, directory=directory)
 
     # generate K-Means clustering run
+    cid = 0
+    directory = 'SampleResults/ClusterResults'
+    corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
+    KMeansGenerator.generate_k_means(dense_corpus='sample1WSJ/dense_corpus.pkl',run_id=cid, directory=directory)
+    KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=corpus, mode='centroid', directory=directory)
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=corpus, mode='cluster', directory=directory)
 
 
 
