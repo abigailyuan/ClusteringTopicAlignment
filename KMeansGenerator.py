@@ -13,7 +13,7 @@ def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResul
 
     # start to generate KMeans clustering
     start = time.perf_counter()
-    kmeans = KMeans(n_clusters=k, n_jobs=-1, max_iter=500, n_init=20).fit(dense_corpus)
+    kmeans = KMeans(n_clusters=k, max_iter=500, n_init=20).fit(dense_corpus)
     clustering = kmeans.predict(dense_corpus)
     clustering_result = dd(list)
     for i in range(len(clustering)):

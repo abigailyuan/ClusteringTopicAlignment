@@ -14,12 +14,21 @@ def print_hi(name):
 
 def work_pipeline():
 
-    corpus_name = '../datasets/wsj.gz'
-    corpus = preprocessing.parse_wsj_corpus(corpus_name)
-    corpus = preprocessing.clean_corpus(corpus)
-    corpus = preprocessing.tokenize_corpus(corpus)
-    corpus = preprocessing.remove_stopwords(corpus)
-    corpus = preprocessing.lemmatize_corpus(corpus)
+
+    # generate WSJ collection
+
+    # corpus_name = '../datasets/wsj.gz'
+    # corpus = preprocessing.parse_wsj_corpus(corpus_name)
+    # corpus = preprocessing.clean_corpus(corpus)
+    # corpus = preprocessing.tokenize_corpus(corpus)
+    # corpus = preprocessing.remove_stopwords(corpus)
+    # corpus = preprocessing.lemmatize_corpus(corpus)
+
+
+    # generate K-Means clustering run
+    cid = 0
+
+
 
     return 0
 
