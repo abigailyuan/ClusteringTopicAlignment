@@ -28,8 +28,9 @@ def work_pipeline():
 
     # vectorize corpus
     corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
+    bow_corpus = 'sample1WSJ/bow.pkl'
     directory = 'sample1WSJ/'
-    corpus_vectorizer.create_dictionary(filename=corpus, directory=directory)
+    corpus_vectorizer.create_dictionary(filename=bow_corpus, directory=directory)
     dictionary = directory+'dictionary.pkl'
     corpus_vectorizer.tfidf_vectorize(corpus, dictionary, directory=directory)
 
