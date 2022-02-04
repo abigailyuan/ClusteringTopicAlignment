@@ -13,7 +13,7 @@ def create_dictionary(filename, no_below=15, no_above=0.5, keep_n=10000, directo
 
     dictionary = gensim.corpora.Dictionary(corpus)
     dictionary.filter_extremes(no_below=no_below, no_above=no_above, keep_n=keep_n)
-    pickle.dump(directory, open(directory + 'dictionary.pkl', 'wb'))
+    pickle.dump(dictionary, open(directory + 'dictionary.pkl', 'wb'))
 
     bow = [dictionary.doc2bow(doc) for doc in corpus]
     pickle.dump(bow, open(directory + 'bow.pkl', 'wb'))
@@ -23,10 +23,10 @@ def create_dictionary(filename, no_below=15, no_above=0.5, keep_n=10000, directo
 
 def tfidf_vectorize(filename, dictionary, directory='ProcessedWSJ'):
     corpus = pickle.load(open(filename, 'rb'))
-    dict = pickle.load(open(dictionary, 'rb'))
+    dictionary = pickle.load(open(dictionary, 'rb'))
 
     start = time.perf_counter()
-    model = TfidfModel(corpus=corpus, dictionary=dict)
+    model = TfidfModel(corpus=corpus, dictionary=dictionary)
     tfidf_corpus = [model[i] for i in corpus]
     end = time.perf_counter()
     print('Corpus is vectorized with TFIDF.')
@@ -35,7 +35,7 @@ def tfidf_vectorize(filename, dictionary, directory='ProcessedWSJ'):
     pickle.dump(tfidf_corpus, open(directory + 'tfidf_corpus.pkl', 'wb'))
 
     start = time.perf_counter()
-    num_terms = len(dict)
+    num_terms = len(dictionary)
     corpus_size = len(tfidf_corpus)
     dense_corpus = corpus2dense(tfidf_corpus, num_terms, corpus_size)
     end = time.perf_counter()
