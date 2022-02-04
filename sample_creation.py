@@ -9,7 +9,7 @@ for file in files:
     filename = directory+file
     object = pickle.load(open(filename, 'rb'))
     sample = object[:len(object)//100]
-    pickle.dump(sample, open('sampleWSJ/sample'+file, 'wb'))
+    pickle.dump(sample, open('sample1WSJ/sample'+file, 'wb'))
     print(len(sample))
     print(len(object))
 
