@@ -6,6 +6,7 @@ import preprocessing
 import KMeansGenerator
 import LDAGenerator
 import Visualisation
+import corpus_vectorizer
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -24,6 +25,14 @@ def work_pipeline():
     # corpus = preprocessing.remove_stopwords(corpus)
     # corpus = preprocessing.lemmatize_corpus(corpus)
 
+
+    # vectorize corpus
+    corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
+    directory = 'sample1WSJ/'
+    dictionary, bow = corpus_vectorizer.create_dictionary(corpus=corpus, directory=directory)
+    corpus_vectorizer.tfidf_vectorize(corpus, dictionary, directory=directory)
+
+    corpus_vectorizer.doc2vec_vectorize(corpus, directory=directory)
 
     # generate K-Means clustering run
 
