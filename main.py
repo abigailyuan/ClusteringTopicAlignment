@@ -40,10 +40,12 @@ def work_pipeline():
     cid = 0
     directory = 'SampleResults/ClusterResults/'
     corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
+
+    bow_corpus = 'sample1WSJ/bow.pkl'
     #KMeansGenerator.generate_k_means(dense_corpus='sample1WSJ/dense_corpus.pkl',run_id=cid, directory=directory)
     #KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=corpus, mode='centroid', directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=corpus, mode='cluster', directory=directory)
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=bow_corpus, mode='centroid', directory=directory)
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=bow_corpus, mode='cluster', directory=directory)
 
 
 
