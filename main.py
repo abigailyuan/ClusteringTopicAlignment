@@ -49,6 +49,9 @@ def work_pipeline():
     bow_corpus = pickle.load(open(bow_corpus,'rb'))
     print(len(bow_corpus))
 
+    tfidf_corpus = pickle.load(open('sample1WSJ/tfidf_corpus.pkl','rb'))
+    print(len(tfidf_corpus))
+
     dense_corpus = pickle.load(open('sample1WSJ/dense_corpus.pkl','rb'))
     print(len(dense_corpus))
 
