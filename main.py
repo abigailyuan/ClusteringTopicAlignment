@@ -51,7 +51,7 @@ def work_pipeline():
     #generate topic models
     tid = 0
     directory = 'SampleResults/LDAResults/'
-    corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
+    corpus = 'sample1WSJ/tfidf_corpus.pkl'
     dictionary = 'sample1WSJ/dictionary.pkl'
     LDAGenerator.generate_lda(corpus=corpus, run_id=tid, num_topics=10, dictionary=dictionary, directory=directory)
     LDAGenerator.predict_topic_labels(run_id=tid,corpus=corpus,directory=directory)
