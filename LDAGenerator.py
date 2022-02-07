@@ -1,6 +1,7 @@
 from gensim.models import LdaModel
 import os
 import pickle
+import time
 
 
 def generate_lda(corpus, run_id, num_topics=10, dictionary=None, directory='/LDAResults/'):
@@ -8,10 +9,16 @@ def generate_lda(corpus, run_id, num_topics=10, dictionary=None, directory='/LDA
     save to directory specified.'''
 
     corpus = pickle.load(open(corpus, 'rb'))
+
+    start = time.perf_counter()
     lda_model = LdaModel(corpus, num_topics=num_topics, id2word=dictionary, alpha='auto')
 
     os.mkdir(directory + str(run_id))
     lda_model.save(directory + str(run_id) + '/model')
+
+    end = time.perf_counter()
+
+    print('time used:', int(end-start))
     return lda_model
 
 

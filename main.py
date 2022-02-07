@@ -38,18 +38,24 @@ def work_pipeline():
     # corpus_vectorizer.doc2vec_vectorize(corpus, directory=directory)
 
     # generate K-Means clustering run
-    cid = 0
-    directory = 'SampleResults/ClusterResults/'
-    corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
-
-    bow_corpus = 'sample1WSJ/bow.pkl'
-    dense_corpus = 'sample1WSJ/dense_corpus.pkl'
+    # cid = 0
+    # directory = 'SampleResults/ClusterResults/'
+    # corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
+    # bow_corpus = 'sample1WSJ/bow.pkl'
+    # dense_corpus = 'sample1WSJ/dense_corpus.pkl'
     #KMeansGenerator.generate_k_means(dense_corpus='sample1WSJ/dense_corpus.pkl',run_id=cid, directory=directory)
     #KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, mode='centroid', directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, mode='cluster', directory=directory)
+    # KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, mode='centroid', directory=directory)
+    # KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, mode='cluster', directory=directory)
 
-
+    #generate topic models
+    tid = 0
+    directory = 'SampleResults/LDAResults/'
+    corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
+    dictionary = 'sample1WSJ/dictionary.pkl'
+    LDAGenerator.generate_lda(corpus=corpus, run_id=tid, num_topics=10, dictionary=dictionary, directory=directory)
+    LDAGenerator.predict_topic_labels(run_id=tid,corpus=corpus,directory=directory)
+    LDAGenerator.generate_topic_keywords(run_id=tid, num_keywords=10, num_topics=10, directory=directory)
 
 
 
