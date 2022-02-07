@@ -7,6 +7,7 @@ import KMeansGenerator
 import LDAGenerator
 import Visualisation
 import corpus_vectorizer
+import pickle
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -42,10 +43,19 @@ def work_pipeline():
     corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
 
     bow_corpus = 'sample1WSJ/bow.pkl'
+
+    corpus = pickle.load(open(corpus,'rb'))
+    print(len(corpus))
+    bow_corpus = pickle.load(open(bow_corpus,'rb'))
+    print(len(bow_corpus))
+
+    dense_corpus = pickle.load(open('sample1WSJ/dense_corpus.pkl','rb'))
+    print(len(dense_corpus))
+
     #KMeansGenerator.generate_k_means(dense_corpus='sample1WSJ/dense_corpus.pkl',run_id=cid, directory=directory)
     #KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=bow_corpus, mode='centroid', directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=bow_corpus, mode='cluster', directory=directory)
+    #KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=bow_corpus, mode='centroid', directory=directory)
+    #KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=bow_corpus, mode='cluster', directory=directory)
 
 
 
