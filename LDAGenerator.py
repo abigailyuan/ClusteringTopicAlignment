@@ -1,10 +1,13 @@
 from gensim.models import LdaModel
 import os
+import pickle
 
 
 def generate_lda(corpus, run_id, num_topics=10, dictionary=None, directory='/LDAResults/'):
     '''generate an LDA model with the selected parameters and
     save to directory specified.'''
+
+    corpus = pickle.load(open(corpus, 'rb'))
     lda_model = LdaModel(corpus, num_topics=num_topics, id2word=dictionary, alpha='auto')
 
     os.mkdir(directory + str(run_id))
@@ -18,6 +21,7 @@ def predict_topic_labels(run_id, corpus, mode='1', directory='/LDAResults/'):
     save results to specified directory.
     '''
 
+    corpus = pickle.load(open(corpus, 'rb'))
     lda_model = LdaModel.load(directory + str(run_id) + '/model')
     documents_topics = lda_model.get_document_topics(corpus)
     print('first document:')

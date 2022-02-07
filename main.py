@@ -38,7 +38,7 @@ def work_pipeline():
 
     # generate K-Means clustering run
     cid = 0
-    directory = 'SampleResults/ClusterResults'
+    directory = 'SampleResults/ClusterResults/'
     corpus = 'sample1WSJ/samplewsj_stemmed.pkl'
     KMeansGenerator.generate_k_means(dense_corpus='sample1WSJ/dense_corpus.pkl',run_id=cid, directory=directory)
     KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
