@@ -31,8 +31,6 @@ def predict_topic_labels(run_id, corpus, mode='1', directory='/LDAResults/'):
     corpus = pickle.load(open(corpus, 'rb'))
     lda_model = LdaModel.load(directory + str(run_id) + '/model')
     documents_topics = lda_model.get_document_topics(corpus)
-    print('first document:')
-    print(documents_topics[0])
     topics_r1 = []
     if mode == '1':
         topics_r1 = [sorted(i, key=lambda x: x[1], reverse=True)[0][0] for i in
