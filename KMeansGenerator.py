@@ -46,6 +46,7 @@ def generate_cluster_keywords(run_id, corpus, mode='centroid', num_docs=10, num_
                               filename='keywords.txt'):
     '''modes = ['centroid','cluster']
         generate keywords for clusters with mode option and save results to directory specified.'''
+    corpus = pickle.load(open(corpus, 'rb'))
     clustering = pickle.load(open(directory + str(run_id) + '/' + 'model', 'rb'))
     clusters = dd(list)
     labels = clustering.labels_
