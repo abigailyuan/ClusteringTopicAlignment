@@ -54,6 +54,9 @@ def generate_cluster_keywords(run_id, corpus, mode='centroid', num_docs=10, num_
         cluster = labels[i]
         clusters[cluster].append(i)
 
+    print(len(corpus))
+    print(corpus[0])
+
     if mode == 'centroid':
         # find the central documents
         central_docs_clusters = dd(list)
