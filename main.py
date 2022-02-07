@@ -49,15 +49,22 @@ def work_pipeline():
     # KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, mode='cluster', directory=directory)
 
     #generate topic models
+    # tid = 0
+    # directory = 'SampleResults/LDAResults/'
+    # corpus = 'sample1WSJ/tfidf_corpus.pkl'
+    # dictionary = 'sample1WSJ/dictionary.pkl'
+    # LDAGenerator.generate_lda(corpus=corpus, run_id=tid, num_topics=10, dictionary=dictionary, directory=directory)
+    # LDAGenerator.predict_topic_labels(run_id=tid,corpus=corpus,directory=directory)
+    # LDAGenerator.generate_topic_keywords(run_id=tid, num_keywords=10, num_topics=10, directory=directory)
+
+
+    #generate figures
+    cid = 0
     tid = 0
-    directory = 'SampleResults/LDAResults/'
     corpus = 'sample1WSJ/tfidf_corpus.pkl'
-    dictionary = 'sample1WSJ/dictionary.pkl'
-    LDAGenerator.generate_lda(corpus=corpus, run_id=tid, num_topics=10, dictionary=dictionary, directory=directory)
-    LDAGenerator.predict_topic_labels(run_id=tid,corpus=corpus,directory=directory)
-    LDAGenerator.generate_topic_keywords(run_id=tid, num_keywords=10, num_topics=10, directory=directory)
-
-
+    directory = 'SampleResults/figures/'
+    clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(cid, tid, corpus=corpus, order=10)
+    Visualisation.topic_distribution_visualise(clusters,cluster_topic_matrix, cid=0,tid=0,order=10,directory=directory)
 
     return 0
 
