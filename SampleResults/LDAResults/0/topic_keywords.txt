@@ -1,0 +1,20 @@
+topic 0
+['mr', 'share', 'soviet', 'class', 'stock', 'exchang', 'new', 'one', 'report', 'earlier']
+topic 1
+['billion', 'trade', 'mr', 'bank', 'share', 'februari', 'quarter', 'unit', 'januari', 'stock']
+topic 2
+['mr', 'bank', 'share', 'presid', 'board', 'unit', 'execut', 'loan', 'oil', 'chairman']
+topic 3
+['share', 'mr', 'stock', 'common', 'offer', 'price', 'prefer', 'corp', 'file', 'convert']
+topic 4
+['share', 'rise', 'sale', 'januari', 'mr', 'offer', 'stock', 'common', 'plan', 'earlier']
+topic 5
+['bank', 'share', 'mr', 'contract', 'billion', 'stock', 'govern', 'unit', 'corp', 'rate']
+topic 6
+['share', 'bank', 'mr', 'stock', 'market', 'group', 'price', 'oil', 'loan', 'presid']
+topic 7
+['mr', 'share', 'presid', 'bond', 'state', 'chief', 'earlier', 'offic', 'price', 'sale']
+topic 8
+['dividend', 'mr', 'share', 'bank', 'stock', 'japan', 'fund', 'union', 'maker', 'japanes']
+topic 9
+['bank', 'mr', 'share', 'unit', 'stock', 'product', 'trade', 'plant', 'board', 'market']
