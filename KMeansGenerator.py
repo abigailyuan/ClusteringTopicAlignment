@@ -64,6 +64,7 @@ def generate_cluster_keywords(run_id, corpus, mode='centroid', num_docs=10, num_
             docs = np.asarray([corpus[i] for i in docs_id])
             print(docs.shape)
             print(centroid.shape)
+            print(len(docs[0]))
             distances = abs(cosine_similarity(docs, centroid))
             docs_pair = [(distances[i], i) for i in range(len(distances))]
             central_docs_cluster = [v for k, v in sorted(docs_pair, key=lambda x: x[0])[:num_docs]]
