@@ -61,9 +61,11 @@ def work_pipeline():
     #generate figures
     cid = 0
     tid = 0
+    clustering = 'SampleResults/ClusterResults/0/model'
+    topic_model = 'SampleResults/LDAResults/0/model'
     corpus = 'sample1WSJ/tfidf_corpus.pkl'
     directory = 'SampleResults/figures/'
-    clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(cid, tid, corpus=corpus, order=10)
+    clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus, order=10)
     Visualisation.topic_distribution_visualise(clusters,cluster_topic_matrix, cid=0,tid=0,order=10,directory=directory)
 
     return 0
