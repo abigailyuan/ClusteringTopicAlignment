@@ -9,7 +9,7 @@ def generate_lda(corpus, run_id, num_topics=10, dictionary=None, directory='/LDA
     save to directory specified.'''
 
     corpus = pickle.load(open(corpus, 'rb'))
-
+    dictionary = pickle.load(open(dictionary,'rb'))
     start = time.perf_counter()
     lda_model = LdaModel(corpus, num_topics=num_topics, id2word=dictionary, alpha='auto')
 
