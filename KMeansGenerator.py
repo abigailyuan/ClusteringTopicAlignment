@@ -53,7 +53,7 @@ def generate_cluster_keywords(run_id, corpus, mode='centroid', num_docs=10, num_
     for i in range(len(labels)):
         cluster = labels[i]
         clusters[cluster].append(i)
-
+    print(len(labels))
     print(len(corpus))
     print(corpus[0])
 
