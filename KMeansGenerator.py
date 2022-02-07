@@ -11,6 +11,8 @@ import os
 def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResults/'):
     '''genewrate KMeans and save results to the directory specified.'''
 
+
+    dense_corpus = pickle.load(open(dense_corpus, 'rb'))
     # start to generate KMeans clustering
     start = time.perf_counter()
     kmeans = KMeans(n_clusters=k, max_iter=500, n_init=20).fit(dense_corpus)
