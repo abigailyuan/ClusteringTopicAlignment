@@ -53,7 +53,7 @@ def work_pipeline():
     print(len(tfidf_corpus))
 
     dense_corpus = pickle.load(open('sample1WSJ/dense_corpus.pkl','rb'))
-    print(len(dense_corpus))
+    print(len(dense_corpus[0]))
 
     #KMeansGenerator.generate_k_means(dense_corpus='sample1WSJ/dense_corpus.pkl',run_id=cid, directory=directory)
     #KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
