@@ -27,7 +27,7 @@ def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResul
     print([len(i) for i in list(clustering_result.values())])
 
     # save to directory
-    os.mkdir(directory+'run'+str(run_id))
+    os.mkdir(directory+str(run_id))
     pickle.dump(kmeans, open(directory + str(run_id) + '/' + 'model', 'wb'))
 
     return clustering_result
