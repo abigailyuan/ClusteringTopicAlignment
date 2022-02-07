@@ -42,7 +42,7 @@ def tfidf_vectorize(filename, dictionary, directory='ProcessedWSJ'):
     print('Corpus is converted to dense corpus.')
     print('time used:', int(end - start))
 
-    pickle.dump(dense_corpus, open(directory + 'dense_corpus.pkl', 'wb'))
+    pickle.dump(dense_corpus.T, open(directory + 'dense_corpus.pkl', 'wb'))
 
     return 0
 
