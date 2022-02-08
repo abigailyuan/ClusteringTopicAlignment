@@ -38,10 +38,10 @@ def work_pipeline():
     corpus_vectorizer.doc2vec_vectorize(corpus, directory=directory)
 
     # order of comparison
-    order = 20
+    order = 30
 
     # generate K-Means clustering run
-    cid = 1
+    cid = 2
     directory = 'ClusterResults/'
     corpus = 'ProcessedWSJ/samplewsj_stemmed.pkl'
     bow_corpus = 'ProcessedWSJ/bow.pkl'
@@ -52,7 +52,7 @@ def work_pipeline():
     KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, mode='cluster', directory=directory)
 
     #generate topic models
-    tid = 1
+    tid = 2
     directory = 'LDAResults/'
     corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
     dictionary = 'ProcessedWSJ/dictionary.pkl'
@@ -62,8 +62,8 @@ def work_pipeline():
 
 
     #generate figures
-    cid = 1
-    tid = 1
+    # cid = 2
+    # tid = 2
     clustering = 'ClusterResults/'+str(cid)+'/model'
     topic_model = 'LDAResults/'+str(tid)+'/model'
     corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
