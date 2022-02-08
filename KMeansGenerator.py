@@ -39,12 +39,13 @@ def predict_cluster_labels(run_id, directory):
     return labels
 
 
-def generate_cluster_keywords(run_id, corpus,bow, mode='centroid', num_docs=10, num_keywords=10, directory='/ClusterResults/',
+def generate_cluster_keywords(run_id, corpus,bow, dictionary, mode='centroid', num_docs=10, num_keywords=10, directory='/ClusterResults/',
                               filename='keywords.txt'):
     '''modes = ['centroid','cluster']
         generate keywords for clusters with mode option and save results to directory specified.'''
     corpus = pickle.load(open(corpus, 'rb'))
     bow = pickle.load(open(bow, 'rb'))
+    dictionary = pickle.load(open(dictionary,'rb'))
     clustering = pickle.load(open(directory + str(run_id) + '/' + 'model', 'rb'))
     clusters = dd(list)
     labels = clustering.labels_
@@ -86,7 +87,7 @@ def generate_cluster_keywords(run_id, corpus,bow, mode='centroid', num_docs=10, 
     keywords = []
     for c in range(len(clusters_word_dist)):
         c_id = 'cluster ' + str(c)
-        keyword = [v for k, v in clusters_word_dist[c][:num_keywords]]
+        keyword = [dictionary[v] for k, v in clusters_word_dist[c][:num_keywords]]
 
         keywords.append((c_id, keyword))
 

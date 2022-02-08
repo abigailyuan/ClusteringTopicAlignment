@@ -41,18 +41,19 @@ def work_pipeline():
     order = 30
 
     # generate K-Means clustering run
-    cid = 2
+    cid = 3
     directory = 'ClusterResults/'
     corpus = 'ProcessedWSJ/samplewsj_stemmed.pkl'
     bow_corpus = 'ProcessedWSJ/bow.pkl'
     dense_corpus = 'ProcessedWSJ/dense_corpus.pkl'
+    dictionary = 'ProcessedWSJ/dictionary.pkl'
     KMeansGenerator.generate_k_means(dense_corpus=dense_corpus,run_id=cid, directory=directory,k=order)
     KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, mode='centroid', directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, mode='cluster', directory=directory)
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary, mode='centroid', directory=directory)
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary, mode='cluster', directory=directory)
 
     #generate topic models
-    tid = 2
+    tid = 3
     directory = 'LDAResults/'
     corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
     dictionary = 'ProcessedWSJ/dictionary.pkl'
