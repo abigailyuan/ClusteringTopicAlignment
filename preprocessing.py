@@ -3,17 +3,15 @@ import pickle
 import re
 import time
 
-import nltk as nltk
-from nltk.corpus import stopwords
+import nltk
 
-nltk.download('punkt')
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer, SnowballStemmer
 
 
 def parse_wsj_corpus(filename, directory='ProcessedWSJ/'):
-    '''WSJ collection is parsed into a list of strings.
-    The result files include an index file and a pure document file.'''
+    """WSJ collection is parsed into a list of strings.
+    The result files include an index file and a pure document file."""
     f = gzip.open(filename, 'r')
     docs = f.read().decode("utf-8")
     f.close()
@@ -94,6 +92,7 @@ def remove_stopwords(corpus, directory='ProcessedWSJ/'):
 
     return corpus
 
+
 def lemmatize_corpus(corpus, directory='ProcessedWSJ/'):
     # initialise stemmer
     lemmatizer = WordNetLemmatizer()
@@ -117,7 +116,7 @@ def lemmatize_corpus(corpus, directory='ProcessedWSJ/'):
     return stemmed_corpus
 
 
-def generate_subcollections(corpus, indexes, len_threshold=100, directory='ProcessedWSJ/'):
+def generate_subcollections(corpus, len_threshold=100, directory='ProcessedWSJ/'):
     wsj_large = []
     wsj_small = []
     for i in range(len(corpus)):

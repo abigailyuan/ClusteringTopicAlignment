@@ -6,9 +6,9 @@ from collections import defaultdict as dd
 import numpy as np
 import os
 
-def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResults/'):
-    '''genewrate KMeans and save results to the directory specified.'''
 
+def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResults/'):
+    """generate KMeans and save results to the directory specified."""
 
     dense_corpus = pickle.load(open(dense_corpus, 'rb'))
     # start to generate KMeans clustering
@@ -24,28 +24,29 @@ def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResul
     print('time used:', int(end - start))
 
     # save to directory
-    os.mkdir(directory+str(run_id))
+    os.mkdir(directory + str(run_id))
     pickle.dump(kmeans, open(directory + str(run_id) + '/' + 'model', 'wb'))
 
     return clustering_result
 
 
 def predict_cluster_labels(run_id, directory):
-    '''predict cluster label for documents in corpus,
-    then save the results as a list in to the directory specified'''
+    """predict cluster label for documents in corpus,
+    then save the results as a list in to the directory specified"""
     clustering = pickle.load(open(directory + str(run_id) + '/' + 'model', 'rb'))
     labels = clustering.labels_
     pickle.dump(labels, open(directory + str(run_id) + '/' + 'labels', 'wb'))
     return labels
 
 
-def generate_cluster_keywords(run_id, corpus,bow, dictionary, mode='centroid', num_docs=10, num_keywords=10, directory='/ClusterResults/',
-                              filename='keywords.txt'):
-    '''modes = ['centroid','cluster']
-        generate keywords for clusters with mode option and save results to directory specified.'''
+# noinspection PyTypeChecker
+def generate_cluster_keywords(run_id, corpus, bow, dictionary, mode='centroid', num_docs=10, num_keywords=10,
+                              directory='/ClusterResults/'):
+    """modes = ['centroid','cluster']
+        generate keywords for clusters with mode option and save results to directory specified."""
     corpus = pickle.load(open(corpus, 'rb'))
     bow = pickle.load(open(bow, 'rb'))
-    dictionary = pickle.load(open(dictionary,'rb'))
+    dictionary = pickle.load(open(dictionary, 'rb'))
     clustering = pickle.load(open(directory + str(run_id) + '/' + 'model', 'rb'))
     clusters = dd(list)
     labels = clustering.labels_

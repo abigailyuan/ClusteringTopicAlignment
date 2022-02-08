@@ -5,11 +5,11 @@ import time
 
 
 def generate_lda(corpus, run_id, num_topics=10, dictionary=None, directory='/LDAResults/'):
-    '''generate an LDA model with the selected parameters and
-    save to directory specified.'''
+    """generate an LDA model with the selected parameters and
+    save to directory specified."""
 
     corpus = pickle.load(open(corpus, 'rb'))
-    dictionary = pickle.load(open(dictionary,'rb'))
+    dictionary = pickle.load(open(dictionary, 'rb'))
     start = time.perf_counter()
     lda_model = LdaModel(corpus, num_topics=num_topics, id2word=dictionary, alpha='auto')
 
@@ -18,15 +18,15 @@ def generate_lda(corpus, run_id, num_topics=10, dictionary=None, directory='/LDA
 
     end = time.perf_counter()
 
-    print('time used:', int(end-start))
+    print('time used:', int(end - start))
     return lda_model
 
 
 def predict_topic_labels(run_id, corpus, mode='1', directory='/LDAResults/'):
-    '''mode = ['1','2','3'] Number represents how many top topics are considered.
+    """mode = ['1','2','3'] Number represents how many top topics are considered.
     Predict the topic label based on the selected mode and
     save results to specified directory.
-    '''
+    """
 
     corpus = pickle.load(open(corpus, 'rb'))
     lda_model = LdaModel.load(directory + str(run_id) + '/model')
@@ -41,7 +41,7 @@ def predict_topic_labels(run_id, corpus, mode='1', directory='/LDAResults/'):
 
 
 def generate_topic_keywords(run_id, num_keywords=10, num_topics=10, directory='/LDAResults/'):
-    '''generate topic keywords and save to result directory'''
+    """generate topic keywords and save to result directory"""
 
     lda_model = LdaModel.load(directory + str(run_id) + '/model')
     topics = sorted(lda_model.show_topics(num_topics=num_topics, num_words=num_keywords, formatted=False))

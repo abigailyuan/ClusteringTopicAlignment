@@ -8,7 +8,7 @@ from numpy import asarray
 
 
 def create_dictionary(filename, no_below=15, no_above=0.5, keep_n=10000, directory='ProcessedWSJ/'):
-    '''create dictionary and BOW from stemmed corpus'''
+    """create dictionary and BOW from stemmed corpus"""
     corpus = pickle.load(open(filename, 'rb'))
 
     dictionary = gensim.corpora.Dictionary(corpus)
