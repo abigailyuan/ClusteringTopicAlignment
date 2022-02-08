@@ -22,7 +22,6 @@ def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResul
 
     # print results to screen
     print('time used:', int(end - start))
-    print([len(i) for i in list(clustering_result.values())])
 
     # save to directory
     os.mkdir(directory+str(run_id))
@@ -58,7 +57,6 @@ def generate_cluster_keywords(run_id, corpus,bow, mode='centroid', num_docs=10, 
         central_docs_clusters = dd(list)
         for c in range(len(clusters)):
             docs_id = clusters[c]
-            print(docs_id)
             centroid = np.asarray([clustering.cluster_centers_[c]])
             docs = np.asarray([corpus[i] for i in docs_id])
             distances = abs(cosine_similarity(docs, centroid))
