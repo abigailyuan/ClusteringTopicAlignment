@@ -1,0 +1,60 @@
+cluster 0
+['via', 'share', 'offer', 'common', 'inc', 'amp', 'co', 'initi', 'secur', 'bond']
+cluster 1
+['bank', 'thrift', 'loan', 'feder', 'save', 'mr', 'board', 'billion', 'amp', 'financi']
+cluster 2
+['fund', 'market', 'invest', 'stock', 'week', 'money', 'investor', 'nyse', 'asset', 'manag']
+cluster 3
+['share', 'stock', 'offer', 'common', 'exchang', 'hold', 'group', 'trade', 'buy', 'close']
+cluster 4
+['mr', 'court', 'case', 'judg', 'law', 'feder', 'would', 'charg', 'firm', 'lawyer']
+cluster 5
+['share', 'dividend', 'stock', 'cent', 'quarter', 'split', 'record', 'payabl', 'declar', 'increas']
+cluster 6
+['airlin', 'comput', 'mr', 'ibm', 'air', 'would', 'unit', 'plan', 'system', 'market']
+cluster 7
+['presid', 'mr', 'vice', 'execut', 'chief', 'name', 'offic', 'chairman', 'director', 'succeed']
+cluster 8
+['util', 'plant', 'power', 'electr', 'nuclear', 'would', 'cost', 'oper', 'commiss', 'state']
+cluster 9
+['rise', 'price', 'increas', 'month', 'sale', 'rate', 'earlier', 'report', 'adjust', 'depart']
+cluster 10
+['soviet', 'mr', 'would', 'gorbachev', 'offici', 'union', 'one', 'moscow', 'missil', 'make']
+cluster 11
+['oil', 'gas', 'natur', 'price', 'unit', 'energi', 'share', 'pipelin', 'would', 'product']
+cluster 12
+['mr', 'one', 'make', 'would', 'time', 'get', 'peopl', 'like', 'market', 'work']
+cluster 13
+['bank', 'loan', 'mr', 'debt', 'billion', 'first', 'would', 'market', 'share', 'interest']
+cluster 14
+['price', 'futur', 'oil', 'market', 'analyst', 'cent', 'contract', 'trade', 'opec', 'trader']
+cluster 15
+['mile', 'passeng', 'revenu', 'one', 'load', 'factor', 'traffic', 'earlier', 'billion', 'rise']
+cluster 16
+['billion', 'trade', 'deficit', 'surplus', 'export', 'rise', 'import', 'earlier', 'dollar', 'month']
+cluster 17
+['bond', 'price', 'issu', 'market', 'yield', 'treasuri', 'rate', 'point', 'note', 'due']
+cluster 18
+['japanes', 'japan', 'market', 'yen', 'trade', 'billion', 'mr', 'industri', 'offici', 'foreign']
+cluster 19
+['rat', 'rate', 'month', 'day', 'debt', 'mortgag', 'amp', 'moodi', 'bank', 'singl']
+cluster 20
+['quarter', 'share', 'cent', 'sale', 'net', 'earn', 'earlier', 'loss', 'profit', 'oper']
+cluster 21
+['mr', 'presid', 'would', 'hous', 'democrat', 'reagan', 'govern', 'senat', 'one', 'offici']
+cluster 22
+['car', 'gm', 'ford', 'sale', 'auto', 'motor', 'chrysler', 'plant', 'model', 'mr']
+cluster 23
+['contract', 'navi', 'air', 'forc', 'corp', 'aircraft', 'unit', 'receiv', 'equip', 'armi']
+cluster 24
+['drug', 'test', 'patient', 'aid', 'use', 'research', 'mr', 'one', 'fda', 'would']
+cluster 25
+['ton', 'week', 'steel', 'earlier', 'metric', 'product', 'produc', 'last', 'capabl', 'industri']
+cluster 26
+['dollar', 'trade', 'york', 'bank', 'market', 'currenc', 'yen', 'mark', 'exchang', 'trader']
+cluster 27
+['stock', 'market', 'share', 'trade', 'index', 'price', 'rise', 'investor', 'issu', 'close']
+cluster 28
+['tax', 'would', 'incom', 'ir', 'mr', 'state', 'pay', 'increas', 'deduct', 'law']
+cluster 29
+['mr', 'share', 'would', 'stock', 'amp', 'unit', 'sale', 'market', 'oper', 'group']

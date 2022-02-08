@@ -1,0 +1,60 @@
+topic 0
+['quarter', 'cent', 'share', 'net', 'earn', 'loss', 'profit', 'sale', 'revenu', 'incom']
+topic 1
+['china', 'chines', 'whitney', 'beij', 'tobacco', 'rjr', 'hong', 'kong', 'grumman', 'taiwan']
+topic 2
+['via', 'bond', 'due', 'debentur', 'offer', 'note', 'yield', 'common', 'issu', 'share']
+topic 3
+['mr', 'tax', 'would', 'state', 'govern', 'hous', 'bush', 'bill', 'feder', 'offici']
+topic 4
+['statist', 'billion', 'rise', 'earlier', 'juli', 'adjust', 'season', 'june', 'franc', 'unemploy']
+topic 5
+['kodak', 'telephon', 'bell', 'chemic', 'telecom', 'product', 'avon', 'ventur', 'disclos', 'coat']
+topic 6
+['soviet', 'communist', 'poland', 'east', 'israel', 'isra', 'iran', 'militari', 'gorbachev', 'moscow']
+topic 7
+['thrift', 'bank', 'save', 'deposit', 'loan', 'steel', 'certif', 'feder', 'fdic', 'asset']
+topic 8
+['oil', 'dow', 'nasdaq', 'stock', 'jone', 'futur', 'index', 'otc', 'price', 'barrel']
+topic 9
+['car', 'ford', 'gm', 'motor', 'chrysler', 'auto', 'campeau', 'model', 'truck', 'vehicl']
+topic 10
+['drug', 'health', 'fda', 'medic', 'patient', 'hospit', 'environment', 'test', 'research', 'cancer']
+topic 11
+['penc', 'wsj', 'edit', 'misstat', 'incorrect', 'see', 'milken', 'fluor', 'laser', 'beecham']
+topic 12
+['contract', 'aircraft', 'air', 'boe', 'navi', 'engin', 'pilot', 'airlin', 'armi', 'aerospac']
+topic 13
+['comput', 'softwar', 'ibm', 'system', 'technolog', 'machin', 'data', 'digit', 'electron', 'chip']
+topic 14
+['mortgag', 'loan', 'bank', 'rate', 'day', 'credit', 'month', 'card', 'mae', 'commerci']
+topic 15
+['presid', 'vice', 'name', 'chief', 'execut', 'succeed', 'director', 'offic', 'chairman', 'elect']
+topic 16
+['bank', 'fund', 'invest', 'firm', 'estat', 'investor', 'stock', 'amp', 'manag', 'asset']
+topic 17
+['share', 'common', 'outstand', 'seat', 'exchang', 'file', 'stock', 'stake', 'purchas', 'aug']
+topic 18
+['canadian', 'gas', 'mine', 'canada', 'toronto', 'oil', 'dollar', 'pipelin', 'montreal', 'quebec']
+topic 19
+['share', 'offer', 'sharehold', 'stock', 'tender', 'bid', 'acquir', 'common', 'holder', 'file']
+topic 20
+['airlin', 'passeng', 'ton', 'mile', 'traffic', 'steel', 'load', 'revenu', 'faa', 'northwest']
+topic 21
+['yen', 'market', 'dollar', 'bond', 'index', 'price', 'rise', 'mark', 'rate', 'rat']
+topic 22
+['jackson', 'imf', 'brazil', 'bp', 'ba', 'baa', 'africa', 'south', 'icn', 'antibodi']
+topic 23
+['moodi', 'rat', 'singl', 'debt', 'p', 'b', 'downgrad', 'amp', 'tripl', 'provision']
+topic 24
+['mr', 'get', 'one', 'peopl', 'ad', 'advertis', 'like', 'time', 'go', 'magazin']
+topic 25
+['cabl', 'broadcast', 'televis', 'network', 'tv', 'station', 'cbs', 'turner', 'abc', 'communic']
+topic 26
+['paramount', 'disney', 'cola', 'coca', 'postal', 'westinghous', 'arrow', 'newsprint', 'amax', 'drink']
+topic 27
+['mrs', 'hanson', 'davi', 'murdoch', 'pierc', 'stone', 'maxwel', 'kennedi', 'basebal', 'publish']
+topic 28
+['investig', 'alleg', 'attorney', 'charg', 'mr', 'judg', 'court', 'fraud', 'indict', 'case']
+topic 29
+['util', 'plant', 'electr', 'power', 'nuclear', 'abort', 'gas', 'pacif', 'energi', 'hampshir']

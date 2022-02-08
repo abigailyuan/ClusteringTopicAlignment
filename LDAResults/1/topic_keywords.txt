@@ -1,0 +1,40 @@
+topic 0
+['charg', 'alleg', 'indict', 'attorney', 'fraud', 'investig', 'mr', 'hooker', 'guilti', 'drexel']
+topic 1
+['airlin', 'contract', 'aircraft', 'air', 'boe', 'ual', 'navi', 'seat', 'flight', 'pilot']
+topic 2
+['share', 'offer', 'common', 'tender', 'stake', 'stock', 'file', 'outstand', 'group', 'sharehold']
+topic 3
+['share', 'dividend', 'stock', 'common', 'payabl', 'nasdaq', 'prefer', 'holder', 'cent', 'debentur']
+topic 4
+['bush', 'soviet', 'democrat', 'senat', 'hous', 'parti', 'polit', 'republican', 'leader', 'budget']
+topic 5
+['hospit', 'certif', 'virus', 'cola', 'symbol', 'kohlberg', 'coca', 'diagnost', 'infect', 'patient']
+topic 6
+['bank', 'thrift', 'loan', 'asset', 'estat', 'save', 'creditor', 'bankruptci', 'feder', 'real']
+topic 7
+['presid', 'vice', 'name', 'chief', 'execut', 'succeed', 'director', 'offic', 'chairman', 'elect']
+topic 8
+['ton', 'statist', 'rise', 'earlier', 'billion', 'export', 'juli', 'steel', 'price', 'june']
+topic 9
+['plant', 'gas', 'util', 'electr', 'energi', 'power', 'facil', 'chemic', 'oil', 'coal']
+topic 10
+['dollar', 'yen', 'mark', 'franc', 'ounc', 'gold', 'currenc', 'hong', 'kong', 'bank']
+topic 11
+['quarter', 'cent', 'net', 'share', 'earn', 'sale', 'revenu', 'loss', 'profit', 'earlier']
+topic 12
+['cabl', 'film', 'movi', 'televis', 'entertain', 'tv', 'warner', 'broadcast', 'network', 'cbs']
+topic 13
+['bond', 'yield', 'mortgag', 'treasuri', 'rate', 'day', 'due', 'note', 'auction', 'matur']
+topic 14
+['mr', 'comput', 'get', 'one', 'peopl', 'busi', 'like', 'aug', 'research', 'go']
+topic 15
+['mr', 'would', 'drug', 'state', 'court', 'govern', 'offici', 'feder', 'law', 'union']
+topic 16
+['index', 'stock', 'market', 'trader', 'price', 'trade', 'dow', 'investor', 'rise', 'share']
+topic 17
+['bank', 'fund', 'rate', 'bond', 'rat', 'billion', 'loan', 'economi', 'fed', 'inflat']
+topic 18
+['canadian', 'gas', 'oil', 'canada', 'toronto', 'pipelin', 'montreal', 'unicorp', 'dollar', 'alberta']
+topic 19
+['car', 'ford', 'gm', 'auto', 'motor', 'chrysler', 'model', 'truck', 'vehicl', 'wsj']
