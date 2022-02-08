@@ -19,23 +19,23 @@ def work_pipeline():
 
     # generate WSJ collection
 
-    corpus_name = '../datasets/wsj.gz'
-    corpus = preprocessing.parse_wsj_corpus(corpus_name)
-    corpus = preprocessing.clean_corpus(corpus)
-    corpus = preprocessing.tokenize_corpus(corpus)
-    corpus = preprocessing.remove_stopwords(corpus)
-    corpus = preprocessing.lemmatize_corpus(corpus)
+    # corpus_name = '../datasets/wsj.gz'
+    # corpus = preprocessing.parse_wsj_corpus(corpus_name)
+    # corpus = preprocessing.clean_corpus(corpus)
+    # corpus = preprocessing.tokenize_corpus(corpus)
+    # corpus = preprocessing.remove_stopwords(corpus)
+    # corpus = preprocessing.lemmatize_corpus(corpus)
 
 
     # vectorize corpus
-    corpus = 'ProcessedWSJ/wsj_stemmed.pkl'
-    bow_corpus = 'ProcessedWSJ/bow.pkl'
-    directory = 'ProcessedWSJ/'
-    corpus_vectorizer.create_dictionary(filename=corpus, directory=directory)
-    dictionary = directory+'dictionary.pkl'
-    corpus_vectorizer.tfidf_vectorize(bow_corpus, dictionary, directory=directory)
-
-    corpus_vectorizer.doc2vec_vectorize(corpus, directory=directory)
+    # corpus = 'ProcessedWSJ/wsj_stemmed.pkl'
+    # bow_corpus = 'ProcessedWSJ/bow.pkl'
+    # directory = 'ProcessedWSJ/'
+    # corpus_vectorizer.create_dictionary(filename=corpus, directory=directory)
+    # dictionary = directory+'dictionary.pkl'
+    # corpus_vectorizer.tfidf_vectorize(bow_corpus, dictionary, directory=directory)
+    #
+    # corpus_vectorizer.doc2vec_vectorize(corpus, directory=directory)
 
     # order of comparison
     order = 30
