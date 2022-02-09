@@ -33,10 +33,10 @@ def work_pipeline():
     # corpus_vectorizer.doc2vec_vectorize(corpus, directory=directory)
 
     # order of comparison
-    order = 40
+    order = 50
 
     # generate K-Means clustering run
-    cid = 4
+    cid = 5
     directory = 'ClusterResults/'
     bow_corpus = 'ProcessedWSJ/bow.pkl'
     dense_corpus = 'ProcessedWSJ/dense_corpus.pkl'
@@ -49,7 +49,7 @@ def work_pipeline():
                                               mode='cluster', directory=directory)
 
     # generate topic models
-    tid = 4
+    tid = 5
     directory = 'LDAResults/'
     corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
     dictionary = 'ProcessedWSJ/dictionary.pkl'
