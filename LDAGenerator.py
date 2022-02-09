@@ -59,3 +59,8 @@ def generate_topic_keywords(run_id, num_keywords=10, num_topics=10, directory='/
 
     fp.close()
     return topics
+
+
+def get_topic_vectors(tid, directory='LDAResults/'):
+    # TODO get normalised vector for each topic
+    return None

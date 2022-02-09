@@ -104,3 +104,8 @@ def generate_cluster_keywords(run_id, corpus, bow, dictionary, mode='centroid', 
     fp.close()
 
     return None
+
+
+def get_cluster_vectors(cid, directory='ClusterResults/'):
+    # TODO get normalised vector for each cluster
+    return None

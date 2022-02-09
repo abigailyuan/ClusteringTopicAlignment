@@ -95,3 +95,8 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, o
     plt.savefig(figname)
 
     return 0
+
+
+def vector_similarity(centroid, topic, mode='term_weight'):
+    # TODO calculate the normalised term weight vector for clusters and topics
+    return None
