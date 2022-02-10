@@ -7,7 +7,7 @@
 #SBATCH --nodes=1
 
 # The name of the job:
-#SBATCH --job-name="test vec size"
+#SBATCH --job-name="compare c6t5"
 
 # The project ID which this job should run under:
 #SBATCH --account="punim1409"
