@@ -135,11 +135,14 @@ def visualise_vecter_similarity(tid, cid, directory='figures/'):
 
     fig.tight_layout()
     figname = f'{directory}c{cid}t{tid}heatmap.pdf'
-    plt.savefig(directory+figname)
+    plt.savefig(figname)
 
 
 def jaccard_similarity(cid, tid, directory='figures/'):
     #TODO load clustering and topic keywords
+    kmeans = pickle.load(open('ClusterResults/'+str(cid)+'/model','rb'))
+    lda_model = LdaModel.load('LDAResults/'+str(tid)+'/model')
+
     #TODO create two lists for calculation
     #TODO return similarity matrix
     return None
