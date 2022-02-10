@@ -60,7 +60,7 @@ def work_pipeline():
 
     # generate figures
     cid = 6
-    tid = 5
+    tid = 1
     clustering = 'ClusterResults/' + str(cid) + '/model'
     topic_model = 'LDAResults/' + str(tid) + '/model'
     corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
