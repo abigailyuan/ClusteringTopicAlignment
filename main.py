@@ -44,9 +44,9 @@ def work_pipeline():
     dictionary = 'ProcessedWSJ/dictionary.pkl'
     KMeansGenerator.generate_k_means(dense_corpus=doc2vec_corpus, run_id=cid, directory=directory, k=order)
     KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=doc2vec_corpus, bow=bow_corpus, dictionary=dictionary,
                                               mode='centroid', directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=doc2vec_corpus, bow=bow_corpus, dictionary=dictionary,
                                               mode='cluster', directory=directory)
 
     # generate topic models

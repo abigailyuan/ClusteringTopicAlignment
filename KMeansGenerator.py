@@ -107,5 +107,8 @@ def generate_cluster_keywords(run_id, corpus, bow, dictionary, mode='centroid', 
 
 
 def get_cluster_vectors(cid, directory='ClusterResults/'):
-    # TODO get normalised vector for each cluster
-    return None
+
+    kmeans = pickle.load(open(directory+str(cid)+'/model', 'rb'))
+
+    return kmeans.cluster_centrers_
+
