@@ -36,18 +36,18 @@ def work_pipeline():
     order = 20
 
     # generate K-Means clustering run
-    cid = 7
-    directory = 'ClusterResults/'
-    bow_corpus = 'ProcessedWSJ/bow.pkl'
-    dense_corpus = 'ProcessedWSJ/dense_corpus.pkl'
-    doc2vec_corpus = 'ProcessedWSJ/wsj_doc2vec.pkl'
-    dictionary = 'ProcessedWSJ/dictionary.pkl'
-    KMeansGenerator.generate_k_means(dense_corpus=dense_corpus, run_id=cid, directory=directory, k=order)
-    KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
-                                              mode='centroid', directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
-                                              mode='cluster', directory=directory)
+    # cid = 7
+    # directory = 'ClusterResults/'
+    # bow_corpus = 'ProcessedWSJ/bow.pkl'
+    # dense_corpus = 'ProcessedWSJ/dense_corpus.pkl'
+    # doc2vec_corpus = 'ProcessedWSJ/wsj_doc2vec.pkl'
+    # dictionary = 'ProcessedWSJ/dictionary.pkl'
+    # KMeansGenerator.generate_k_means(dense_corpus=dense_corpus, run_id=cid, directory=directory, k=order)
+    # KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
+    # KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
+    #                                           mode='centroid', directory=directory)
+    # KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
+    #                                           mode='cluster', directory=directory)
 
     # generate topic models
     #tid = 5
@@ -59,16 +59,16 @@ def work_pipeline():
     # LDAGenerator.generate_topic_keywords(run_id=tid, num_keywords=10, num_topics=order, directory=directory)
 
     # generate figures
-    cid = 7
-    tid = 1
-    clustering = 'ClusterResults/' + str(cid) + '/model'
-    topic_model = 'LDAResults/' + str(tid) + '/model'
-    corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    directory = 'figures/'
-    clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
-                                                                         order=order)
-    Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
-                                               directory=directory)
+    # cid = 7
+    # tid = 1
+    # clustering = 'ClusterResults/' + str(cid) + '/model'
+    # topic_model = 'LDAResults/' + str(tid) + '/model'
+    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    # directory = 'figures/'
+    # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
+    #                                                                      order=order)
+    # Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
+    #                                            directory=directory)
 
     #vector similarity
     cid = 7
