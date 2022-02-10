@@ -70,19 +70,11 @@ def work_pipeline():
     # Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
     #                                            directory=directory)
 
-    # test on centroid vector dimensions
-    cid = 6
-    tid = 5
-    c_vecs = KMeansGenerator.get_cluster_vectors(cid=cid, directory='ClusterResults/')
-    print('doc2vec vector size is:')
-    print(len(c_vecs[0]))
-    print(c_vecs[0][:20])
-
+    #vector similarity
     cid = 1
-    c_vecs = KMeansGenerator.get_cluster_vectors(cid=cid, directory='ClusterResults/')
-    print('tfidf vector size is:')
-    print(len(c_vecs[0]))
-    print(c_vecs[0][:20])
+    tid = 1
+    Visualisation.visualise_vecter_similarity(tid,cid, directory='figures/')
+
     return 0
 
 

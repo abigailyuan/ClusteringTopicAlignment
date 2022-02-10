@@ -62,5 +62,7 @@ def generate_topic_keywords(run_id, num_keywords=10, num_topics=10, directory='/
 
 
 def get_topic_vectors(tid, directory='LDAResults/'):
-    # TODO get normalised vector for each topic
-    return None
+
+    lda_model = LdaModel.load(directory+str(tid)+'/model')
+    return lda_model.get_topics()
+

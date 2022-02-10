@@ -5,6 +5,9 @@ import pandas as pd
 import numpy as np
 from gensim.models import LdaModel
 from collections import defaultdict as dd
+from sklearn.metrics.pairwise import cosine_similarity
+import KMeansGenerator
+import LDAGenerator
 
 
 def compare_cluster_topic(clustering, topic_model, corpus, order=10):
@@ -97,6 +100,38 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, o
     return 0
 
 
-def vector_similarity(centroid, topic, mode='term_weight'):
-    # TODO calculate the normalised term weight vector for clusters and topics
-    return None
+def vector_similarity(centroids, topics):
+
+    cos_sim_matrix = cosine_similarity(centroids, topics)
+    return cos_sim_matrix
+
+def visualise_vecter_similarity(tid, cid, directory='figures/'):
+
+    centroids = KMeansGenerator.get_cluster_vectors(cid)
+    topics = LDAGenerator.get_topic_vectors(tid)
+    cos_sim_matrix = vector_similarity(centroids, topics)
+    order = cos_sim_matrix.shape[0]
+    clusters = ['c'+str(i) for i in range(order)]
+    topics = ['t'+str(i) for i in range(order)]
+
+    fig, ax = plt.subplots()
+    im = ax.imshow(cos_sim_matrix)
+
+    # Show all ticks and label them with the respective list entries
+    ax.set_xticks(np.arange(len(topics)), labels=topics)
+    ax.set_yticks(np.arange(len(clusters)), labels=clusters)
+
+    # Rotate the tick labels and set their alignment.
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+             rotation_mode="anchor")
+
+    # Loop over data dimensions and create text annotations.
+    for i in range(len(clusters)):
+        for j in range(len(topics)):
+            text = ax.text(j, i, cos_sim_matrix[i, j],
+                           ha="center", va="center", color="w")
+
+    fig.tight_layout()
+    figname = f'{directory}c{cid}t{tid}heatmap.pdf'
+    plt.savefig(directory+figname)
+
