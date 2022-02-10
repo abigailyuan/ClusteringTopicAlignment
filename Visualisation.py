@@ -119,7 +119,7 @@ def visualise_vecter_similarity(tid, cid, directory='figures/'):
 
     # Show all ticks and label them with the respective list entries
     ax.set_yticklabels(clusters)
-    ax.set_xticks(topics)
+    ax.set_xticklabels(topics)
 
 
 
@@ -137,3 +137,9 @@ def visualise_vecter_similarity(tid, cid, directory='figures/'):
     figname = f'{directory}c{cid}t{tid}heatmap.pdf'
     plt.savefig(directory+figname)
 
+
+def jaccard_similarity(cid, tid, directory='figures/'):
+    #TODO load clustering and topic keywords
+    #TODO create two lists for calculation
+    #TODO return similarity matrix
+    return None
