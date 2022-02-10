@@ -103,7 +103,7 @@ def generate_cluster_keywords(run_id, corpus, bow, dictionary, mode='centroid', 
         fp.write('\n')
     fp.close()
 
-    return None
+    return keywords
 
 
 def get_cluster_vectors(cid, directory='ClusterResults/'):

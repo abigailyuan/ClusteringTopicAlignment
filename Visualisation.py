@@ -140,8 +140,7 @@ def visualise_vecter_similarity(tid, cid, directory='figures/'):
 
 def jaccard_similarity(cid, tid, directory='figures/'):
     #TODO load clustering and topic keywords
-    kmeans = pickle.load(open('ClusterResults/'+str(cid)+'/model','rb'))
-    lda_model = LdaModel.load('LDAResults/'+str(tid)+'/model')
+
 
     #TODO create two lists for calculation
     #TODO return similarity matrix
