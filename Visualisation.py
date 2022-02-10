@@ -8,6 +8,7 @@ from collections import defaultdict as dd
 from sklearn.metrics.pairwise import cosine_similarity
 import KMeansGenerator
 import LDAGenerator
+import seaborn as sns
 
 
 def compare_cluster_topic(clustering, topic_model, corpus, order=10):
@@ -115,25 +116,9 @@ def visualise_vecter_similarity(tid, cid, directory='figures/'):
     topics = ['t'+str(i) for i in range(order)]
 
     fig, ax = plt.subplots()
-    im = ax.imshow(cos_sim_matrix)
-
-    # Show all ticks and label them with the respective list entries
-    ax.set_yticklabels(clusters)
-    ax.set_xticklabels(topics)
-
-
-
-    # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
-             rotation_mode="anchor")
-
-    # Loop over data dimensions and create text annotations.
-    for i in range(len(clusters)):
-        for j in range(len(topics)):
-            text = ax.text(j, i, cos_sim_matrix[i, j],
-                           ha="center", va="center", color="w", fontsize='x-small')
-
-    fig.tight_layout()
+    ax = sns.heatmap(cos_sim_matrix,annot=True)
+    ax.set_xlabel("Topic")
+    ax.set_ylabel("Cluster")
     figname = f'{directory}c{cid}t{tid}heatmap.pdf'
     plt.savefig(figname)
 
