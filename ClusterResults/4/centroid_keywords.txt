@@ -1,0 +1,80 @@
+cluster 0
+['mr', 'william', 'insur', 'allegi', 'trade', 'share', 'would', 'begin', 'base', 'industri']
+cluster 1
+['mr', 'ore', 'busi', 'plant', 'week', 'manag', 'make', 'plan', 'product', 'increas']
+cluster 2
+['col', 'tax', 'plan', 'mr', 'industri', 'servic', 'north', 'oper', 'secord', 'pension']
+cluster 3
+['comput', 'sell', 'mckesson', 'test', 'busi', 'system', 'sale', 'govern', 'mr', 'industri']
+cluster 4
+['share', 'servic', 'bell', 'pan', 'mr', 'amp', 'market', 'also', 'would', 'base']
+cluster 5
+['mr', 'bank', 'cbs', 'tisch', 'share', 'israel', 'isra', 'two', 'news', 'board']
+cluster 6
+['mr', 'parti', 'bank', 'mubarak', 'israel', 'isra', 'elect', 'assembl', 'opposit', 'japanes']
+cluster 7
+['sugar', 'mr', 'presid', 'cent', 'price', 'time', 'import', 'share', 'system', 'one']
+cluster 8
+['oil', 'loan', 'would', 'week', 'import', 'sen', 'presid', 'sale', 'report', 'ton']
+cluster 9
+['market', 'oil', 'price', 'stock', 'bank', 'mr', 'pennzoil', 'billion', 'texaco', 'issu']
+cluster 10
+['execut', 'work', 'chief', 'would', 'offic', 'chairman', 'fairchild', 'day', 'hour', 'time']
+cluster 11
+['mr', 'share', 'bank', 'merril', 'purchas', 'loan', 'trade', 'group', 'unit', 'investor']
+cluster 12
+['mr', 'execut', 'trade', 'bank', 'card', 'interest', 'ferruzzi', 'pound', 'american', 'would']
+cluster 13
+['industri', 'capac', 'plant', 'produc', 'demand', 'world', 'market', 'would', 'overcapac', 'product']
+cluster 14
+['mr', 'bank', 'share', 'fleet', 'norstar', 'also', 'magazin', 'german', 'execut', 'would']
+cluster 15
+['mr', 'immun', 'contra', 'network', 'grant', 'baird', 'rothman', 'share', 'committe', 'file']
+cluster 16
+['women', 'earn', 'billion', 'pennzoil', 'sale', 'car', 'note', 'texaco', 'would', 'philippin']
+cluster 17
+['mr', 'singapor', 'govern', 'cbs', 'tisch', 'stock', 'share', 'journal', 'offer', 'trade']
+cluster 18
+['mr', 'stock', 'oil', 'share', 'rebat', 'market', 'one', 'price', 'execut', 'also']
+cluster 19
+['trade', 'stock', 'german', 'vw', 'begin', 'airlin', 'gas', 'bank', 'buy', 'share']
+cluster 20
+['execut', 'mr', 'first', 'insur', 'carr', 'life', 'one', 'car', 'unit', 'junk']
+cluster 21
+['billion', 'bank', 'mr', 'last', 'york', 'general', 'unit', 'dollar', 'time', 'plan']
+cluster 22
+['mr', 'deaver', 'york', 'one', 'two', 'indict', 'favorit', 'make', 'ceo', 'tax']
+cluster 23
+['polic', 'hospit', 'short', 'interest', 'stock', 'nonprofit', 'share', 'call', 'month', 'tax']
+cluster 24
+['mr', 'presid', 'harcourt', 'reagan', 'share', 'system', 'ge', 'rca', 'whether', 'chairman']
+cluster 25
+['iran', 'test', 'islam', 'mr', 'robot', 'iranian', 'design', 'use', 'part', 'also']
+cluster 26
+['mr', 'stock', 'share', 'market', 'dividend', 'index', 'would', 'trade', 'may', 'channel']
+cluster 27
+['execut', 'chief', 'work', 'mr', 'chairman', 'offic', 'hour', 'would', 'plan', 'time']
+cluster 28
+['mr', 'taft', 'women', 'earn', 'use', 'would', 'famili', 'deaver', 'superconduct', 'power']
+cluster 29
+['mr', 'bank', 'billion', 'execut', 'gencorp', 'get', 'loan', 'group', 'stress', 'sec']
+cluster 30
+['beer', 'market', 'germani', 'trade', 'futur', 'german', 'exchang', 'energi', 'plant', 'offici']
+cluster 31
+['bank', 'loan', 'werner', 'viacom', 'billion', 'bond', 'share', 'cosbi', 'mellon', 'show']
+cluster 32
+['patient', 'drug', 'azt', 'aid', 'usair', 'share', 'piedmont', 'wellcom', 'wast', 'price']
+cluster 33
+['exchang', 'trade', 'drug', 'futur', 'price', 'pit', 'trader', 'mr', 'merc', 'rate']
+cluster 34
+['mr', 'jefferi', 'execut', 'boeski', 'chief', 'charg', 'work', 'stock', 'sec', 'chairman']
+cluster 35
+['trade', 'baird', 'canada', 'iv', 'mark', 'file', 'presid', 'would', 'stock', 'addit']
+cluster 36
+['mr', 'share', 'japanes', 'offer', 'japan', 'price', 'herald', 'time', 'yen', 'make']
+cluster 37
+['soviet', 'share', 'wheat', 'grain', 'price', 'offer', 'market', 'issu', 'index', 'purchas']
+cluster 38
+['mr', 'jefferi', 'busi', 'execut', 'trade', 'make', 'rememb', 'market', 'promot', 'corpor']
+cluster 39
+['mr', 'stock', 'partnership', 'market', 'trade', 'share', 'invest', 'close', 'may', 'offer']

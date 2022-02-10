@@ -1,0 +1,80 @@
+topic 0
+['drug', 'fda', 'patient', 'hospit', 'medic', 'dr', 'health', 'test', 'cancer', 'generic']
+topic 1
+['comput', 'ibm', 'softwar', 'environment', 'system', 'cellular', 'data', 'wast', 'machin', 'appl']
+topic 2
+['passeng', 'mile', 'hooker', 'rjr', 'load', 'traffic', 'revenu', 'tobacco', 'factor', 'asbesto']
+topic 3
+['penc', 'oil', 'barrel', 'cubic', 'opec', 'occident', 'chevron', 'feet', 'citicorp', 'coat']
+topic 4
+['wang', 'farmer', 'corn', 'crop', 'usx', 'food', 'taiwan', 'dairi', 'wheat', 'farm']
+topic 5
+['jackson', 'video', 'smithklin', 'nyse', 'incorrect', 'child', 'hungari', 'mexican', 'luca', 'teacher']
+topic 6
+['bradi', 'franklin', 'franchis', 'diagnost', 'bundesbank', 'goldberg', 'packard', 'hewlett', 'loma', 'cogener']
+topic 7
+['bank', 'thrift', 'loan', 'save', 'asset', 'insur', 'feder', 'deposit', 'fdic', 'mortgag']
+topic 8
+['cabl', 'magazin', 'publish', 'newspap', 'televis', 'tv', 'cola', 'entertain', 'coca', 'moor']
+topic 9
+['share', 'offer', 'sharehold', 'tender', 'stock', 'stake', 'common', 'bid', 'acquir', 'group']
+topic 10
+['bond', 'yield', 'rate', 'mortgag', 'fund', 'treasuri', 'rat', 'bank', 'fed', 'day']
+topic 11
+['telephon', 'seat', 'boe', 'bell', 'telecommun', 'disney', 'membership', 'turner', 'communic', 'mgm']
+topic 12
+['edit', 'wsj', 'ge', 'misstat', 'tire', 'see', 'zenith', 'fireston', 'niagara', 'rubber']
+topic 13
+['via', 'estat', 'thomson', 'shelf', 'pulp', 'symbol', 'avon', 'real', 'partnership', 'lord']
+topic 14
+['campeau', 'moodi', 'rat', 'debt', 'p', 'singl', 'downgrad', 'b', 'registr', 'amp']
+topic 15
+['dividend', 'payabl', 'split', 'cent', 'record', 'share', 'stock', 'declar', 'sun', 'quarter']
+topic 16
+['ton', 'steel', 'canadian', 'metric', 'canada', 'exxon', 'quebec', 'mill', 'steelmak', 'montreal']
+topic 17
+['ec', 'c', 'unemploy', 'treasuri', 'vaccin', 'emiss', 'week', 'adjust', 'gatt', 'reinsur']
+topic 18
+['billion', 'rise', 'statist', 'franc', 'earlier', 'june', 'juli', 'export', 'adjust', 'surplus']
+topic 19
+['gas', 'oil', 'util', 'energi', 'natur', 'pipelin', 'plant', 'electr', 'power', 'georgia']
+topic 20
+['mr', 'would', 'busi', 'market', 'one', 'make', 'time', 'manag', 'work', 'plan']
+topic 21
+['ir', 'tax', 'semiconductor', 'gte', 'natwest', 'motorola', 'deduct', 'smoke', 'scientif', 'arbitr']
+topic 22
+['bill', 'card', 'matur', 'fairfield', 'campbel', 'treasuri', 'visa', 'banc', 'ftc', 'seagram']
+topic 23
+['share', 'common', 'debentur', 'offer', 'due', 'outstand', 'convert', 'stock', 'warrant', 'note']
+topic 24
+['airlin', 'eastern', 'flight', 'air', 'carrier', 'travel', 'faa', 'continent', 'airport', 'northwest']
+topic 25
+['mine', 'gold', 'australian', 'texaco', 'dutch', 'montedison', 'australia', 'arrow', 'ltd', 'ounc']
+topic 26
+['quarter', 'cent', 'net', 'share', 'loss', 'earn', 'sale', 'profit', 'revenu', 'earlier']
+topic 27
+['court', 'judg', 'investig', 'alleg', 'attorney', 'suit', 'case', 'charg', 'file', 'bankruptci']
+topic 28
+['contract', 'navi', 'aircraft', 'air', 'armi', 'missil', 'defens', 'satellit', 'lockhe', 'forc']
+topic 29
+['yen', 'trader', 'dollar', 'index', 'trade', 'mark', 'price', 'market', 'futur', 'currenc']
+topic 30
+['china', 'hong', 'kong', 'kodak', 'beij', 'chines', 'mesa', 'nynex', 'rochest', 'schwartz']
+topic 31
+['korean', 'bristol', 'myer', 'laser', 'game', 'fluor', 'enron', 'olymp', 'korea', 'meridian']
+topic 32
+['senat', 'hous', 'bill', 'budget', 'tax', 'committe', 'congress', 'democrat', 'rep', 'abort']
+topic 33
+['store', 'retail', 'chain', 'squibb', 'supermarket', 'hudson', 'outlet', 'sale', 'sear', 'apparel']
+topic 34
+['presid', 'vice', 'name', 'chief', 'succeed', 'execut', 'director', 'offic', 'chairman', 'elect']
+topic 35
+['stock', 'index', 'dow', 'share', 'jone', 'nasdaq', 'quarter', 'rise', 'market', 'investor']
+topic 36
+['car', 'ford', 'gm', 'auto', 'motor', 'truck', 'chrysler', 'model', 'vehicl', 'plant']
+topic 37
+['soni', 'digit', 'casino', 'printer', 'disk', 'saatchi', 'pan', 'trump', 'ramada', 'palestinian']
+topic 38
+['music', 'abc', 'dukaki', 'freeman', 'nbc', 'sterl', 'robinson', 'singer', 'furnitur', 'met']
+topic 39
+['soviet', 'bush', 'parti', 'polit', 'democrat', 'east', 'leader', 'minist', 'militari', 'elect']
