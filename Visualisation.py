@@ -118,8 +118,10 @@ def visualise_vecter_similarity(tid, cid, directory='figures/'):
     im = ax.imshow(cos_sim_matrix)
 
     # Show all ticks and label them with the respective list entries
-    ax.set_xticks(np.arange(len(topics)), labels=topics)
-    ax.set_yticks(np.arange(len(clusters)), labels=clusters)
+    ax.set_yticklabels(clusters)
+    ax.set_xticks(topics)
+
+
 
     # Rotate the tick labels and set their alignment.
     plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
