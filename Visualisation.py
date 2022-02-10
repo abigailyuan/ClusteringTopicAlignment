@@ -115,7 +115,8 @@ def visualise_vecter_similarity(tid, cid, directory='figures/'):
     clusters = ['c'+str(i) for i in range(order)]
     topics = ['t'+str(i) for i in range(order)]
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(16,10))
+
     ax = sns.heatmap(cos_sim_matrix,annot=True, annot_kws={'fontsize':"xx-small"})
     ax.set_xlabel("Topic")
     ax.set_ylabel("Cluster")
