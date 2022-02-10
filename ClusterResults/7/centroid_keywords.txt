@@ -1,0 +1,40 @@
+cluster 0
+['mr', 'oil', 'billion', 'pennzoil', 'reagan', 'charg', 'last', 'texaco', 'court', 'union']
+cluster 1
+['tax', 'space', 'rep', 'rostenkowski', 'march', 'would', 'rais', 'sale', 'trade', 'est']
+cluster 2
+['bank', 'sam', 'account', 'mr', 'note', 'offer', 'philippin', 'share', 'interest', 'rothman']
+cluster 3
+['manag', 'busi', 'comput', 'mr', 'system', 'month', 'use', 'wang', 'note', 'plan']
+cluster 4
+['pizza', 'mr', 'japan', 'chicken', 'japanes', 'food', 'approv', 'famili', 'busi', 'kentucki']
+cluster 5
+['reserv', 'bank', 'account', 'celanes', 'quota', 'gas', 'share', 'hoechst', 'market', 'trade']
+cluster 6
+['mr', 'trade', 'merril', 'lynch', 'offici', 'firm', 'market', 'fund', 'manag', 'militari']
+cluster 7
+['mr', 'billion', 'aid', 'take', 'old', 'administr', 'countri', 'congress', 'stress', 'like']
+cluster 8
+['mr', 'mcfarlan', 'contra', 'col', 'north', 'judg', 'share', 'case', 'aid', 'presid']
+cluster 9
+['trade', 'bond', 'issu', 'west', 'market', 'price', 'mr', 'bank', 'treasuri', 'rockefel']
+cluster 10
+['card', 'bank', 'credit', 'arm', 'rat', 'hostag', 'interest', 'rate', 'iran', 'american']
+cluster 11
+['fund', 'bank', 'stock', 'servic', 'market', 'bell', 'mr', 'file', 'amp', 'group']
+cluster 12
+['mr', 'employe', 'caesar', 'world', 'sosnoff', 'offer', 'employ', 'stock', 'share', 'market']
+cluster 13
+['flight', 'airlin', 'delay', 'time', 'price', 'march', 'month', 'piedmont', 'arriv', 'mani']
+cluster 14
+['iran', 'mr', 'islam', 'sale', 'iranian', 'car', 'citi', 'trump', 'airlin', 'share']
+cluster 15
+['govern', 'first', 'billion', 'fund', 'life', 'citi', 'sale', 'human', 'take', 'version']
+cluster 16
+['aid', 'bank', 'govern', 'villag', 'moder', 'mani', 'offici', 'one', 'patient', 'mr']
+cluster 17
+['would', 'bank', 'mr', 'trade', 'depart', 'share', 'telephon', 'report', 'offici', 'manufactur']
+cluster 18
+['mr', 'trade', 'would', 'york', 'funaro', 'presid', 'gorbachev', 'also', 'bill', 'make']
+cluster 19
+['firm', 'polic', 'time', 'call', 'share', 'dixon', 'airlin', 'problem', 'crime', 'address']

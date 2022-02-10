@@ -1,0 +1,40 @@
+cluster 0
+['contract', 'navi', 'air', 'forc', 'corp', 'aircraft', 'unit', 'receiv', 'equip', 'armi']
+cluster 1
+['bond', 'price', 'rate', 'yield', 'market', 'issu', 'treasuri', 'month', 'rat', 'day']
+cluster 2
+['via', 'share', 'offer', 'common', 'inc', 'amp', 'co', 'initi', 'secur', 'bond']
+cluster 3
+['market', 'stock', 'trade', 'price', 'dollar', 'share', 'rise', 'index', 'exchang', 'futur']
+cluster 4
+['presid', 'vice', 'name', 'mr', 'execut', 'senior', 'former', 'offic', 'succeed', 'unit']
+cluster 5
+['tax', 'mr', 'would', 'hous', 'presid', 'democrat', 'bill', 'senat', 'state', 'budget']
+cluster 6
+['billion', 'rise', 'month', 'increas', 'sale', 'price', 'earlier', 'trade', 'rate', 'report']
+cluster 7
+['ton', 'week', 'steel', 'earlier', 'metric', 'product', 'last', 'produc', 'capabl', 'industri']
+cluster 8
+['share', 'stock', 'offer', 'common', 'exchang', 'hold', 'group', 'trade', 'close', 'mr']
+cluster 9
+['share', 'dividend', 'stock', 'cent', 'quarter', 'record', 'split', 'payabl', 'increas', 'declar']
+cluster 10
+['soviet', 'mr', 'would', 'offici', 'presid', 'iran', 'arm', 'reagan', 'one', 'govern']
+cluster 11
+['car', 'gm', 'ford', 'sale', 'auto', 'motor', 'chrysler', 'plant', 'model', 'mr']
+cluster 12
+['quarter', 'share', 'cent', 'sale', 'net', 'earn', 'earlier', 'loss', 'profit', 'oper']
+cluster 13
+['bank', 'loan', 'mr', 'billion', 'would', 'first', 'feder', 'debt', 'thrift', 'save']
+cluster 14
+['mr', 'court', 'case', 'judg', 'feder', 'law', 'would', 'charg', 'file', 'firm']
+cluster 15
+['mr', 'one', 'make', 'would', 'time', 'get', 'peopl', 'market', 'like', 'also']
+cluster 16
+['mr', 'presid', 'chief', 'execut', 'offic', 'chairman', 'name', 'director', 'board', 'succeed']
+cluster 17
+['mr', 'share', 'would', 'unit', 'market', 'amp', 'sale', 'stock', 'oper', 'price']
+cluster 18
+['rat', 'debt', 'amp', 'moodi', 'singl', 'b', 'p', 'concern', 'corp', 'senior']
+cluster 19
+['mile', 'passeng', 'revenu', 'one', 'load', 'factor', 'traffic', 'earlier', 'billion', 'rise']
