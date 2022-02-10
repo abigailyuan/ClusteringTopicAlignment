@@ -110,5 +110,5 @@ def get_cluster_vectors(cid, directory='ClusterResults/'):
 
     kmeans = pickle.load(open(directory+str(cid)+'/model', 'rb'))
 
-    return kmeans.cluster_centrers_
+    return kmeans.cluster_centers_
 
