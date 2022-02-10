@@ -131,7 +131,7 @@ def visualise_vecter_similarity(tid, cid, directory='figures/'):
     for i in range(len(clusters)):
         for j in range(len(topics)):
             text = ax.text(j, i, cos_sim_matrix[i, j],
-                           ha="center", va="center", color="w")
+                           ha="center", va="center", color="w", fontsize='x-small')
 
     fig.tight_layout()
     figname = f'{directory}c{cid}t{tid}heatmap.pdf'
