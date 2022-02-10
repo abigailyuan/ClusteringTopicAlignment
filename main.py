@@ -75,6 +75,9 @@ def work_pipeline():
     tid = 1
     Visualisation.visualise_vecter_similarity(tid,cid, directory='figures/')
 
+    #Jaccard similarity
+
+
     return 0
 
 
