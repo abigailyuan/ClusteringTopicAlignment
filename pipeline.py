@@ -28,5 +28,5 @@ result = np.multiply(cluster_topic_matrix, cos_sim_matrix)
 print('Cluster scores:')
 print(np.sum(result, 1))
 
-print('/nTopic scores:')
+print('Topic scores:')
 print(np.sum(result, 0))

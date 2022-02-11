@@ -20,7 +20,8 @@ c17    61.952092
 c18    24.911796
 c19    24.400812
 dtype: float64
-/nTopic scores:
+
+Topic scores:
 t0       4.154406
 t1      61.029603
 t2      56.443784

@@ -124,6 +124,9 @@ def visualise_vecter_similarity(tid, cid, directory='figures/'):
     plt.savefig(figname)
 
 
+
+
+
 def jaccard_similarity(cid, tid, directory='figures/'):
     #TODO load clustering and topic keywords
 
