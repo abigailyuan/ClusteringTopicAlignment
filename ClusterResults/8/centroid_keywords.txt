@@ -1,0 +1,40 @@
+cluster 0
+['mr', 'share', 'king', 'bid', 'trade', 'wast', 'manag', 'icn', 'spokesman', 'investig']
+cluster 1
+['mr', 'democrat', 'hous', 'wright', 'senat', 'sale', 'car', 'share', 'byrd', 'corona']
+cluster 2
+['mr', 'democrat', 'hous', 'wright', 'senat', 'militari', 'kramer', 'byrd', 'oper', 'rebel']
+cluster 3
+['mr', 'oil', 'last', 'european', 'aircraft', 'expect', 'share', 'contract', 'standard', 'plan']
+cluster 4
+['price', 'import', 'tax', 'yield', 'bond', 'state', 'secur', 'increas', 'market', 'mr']
+cluster 5
+['drug', 'firm', 'squibb', 'first', 'barney', 'smith', 'gate', 'rise', 'mr', 'price']
+cluster 6
+['rep', 'xerox', 'mr', 'restructur', 'invest', 'homeless', 'south', 'execut', 'busi', 'sale']
+cluster 7
+['trade', 'market', 'futur', 'japanes', 'bond', 'price', 'mr', 'oil', 'drill', 'last']
+cluster 8
+['index', 'mr', 'one', 'wing', 'louisiana', 'centuri', 'grossman', 'met', 'could', 'pacif']
+cluster 9
+['share', 'stock', 'doctrin', 'market', 'would', 'reebok', 'also', 'govern', 'plan', 'mr']
+cluster 10
+['mr', 'hoover', 'amp', 'taft', 'presid', 'ge', 'market', 'oper', 'group', 'investor']
+cluster 11
+['mr', 'would', 'servic', 'costa', 'farm', 'plan', 'bell', 'funaro', 'long', 'amp']
+cluster 12
+['trade', 'amp', 'zero', 'bond', 'stock', 'share', 'broker', 'tax', 'pit', 'corpor']
+cluster 13
+['mr', 'fire', 'report', 'offic', 'jefferi', 'one', 'firm', 'navi', 'baxter', 'bond']
+cluster 14
+['stock', 'share', 'london', 'exchang', 'board', 'trade', 'big', 'gate', 'firm', 'public']
+cluster 15
+['mr', 'toshiba', 'fire', 'trade', 'exchang', 'japanes', 'buy', 'one', 'japan', 'american']
+cluster 16
+['greyhound', 'share', 'mr', 'stock', 'billion', 'carson', 'market', 'inflat', 'greek', 'price']
+cluster 17
+['culver', 'dr', 'doctor', 'hospit', 'ethic', 'committe', 'patient', 'case', 'want', 'make']
+cluster 18
+['mr', 'tax', 'world', 'caesar', 'sosnoff', 'market', 'share', 'increas', 'week', 'debt']
+cluster 19
+['sale', 'mr', 'store', 'bank', 'cat', 'report', 'loan', 'card', 'rat', 'amp']
