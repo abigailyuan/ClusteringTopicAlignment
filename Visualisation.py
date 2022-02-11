@@ -117,7 +117,7 @@ def visualise_vecter_similarity(tid, cid, directory='figures/'):
 
     fig, ax = plt.subplots(figsize=(16,10))
 
-    ax = sns.heatmap(cos_sim_matrix,annot=True, annot_kws={'fontsize':"xx-small"})
+    ax = sns.heatmap(cos_sim_matrix,annot=True, annot_kws={'fontsize':"x-small"})
     ax.set_xlabel("Topic")
     ax.set_ylabel("Cluster")
     figname = f'{directory}c{cid}t{tid}heatmap.pdf'
