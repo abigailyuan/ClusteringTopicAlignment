@@ -23,31 +23,31 @@ def work_pipeline():
     # corpus = preprocessing.lemmatize_corpus(corpus)
 
     # vectorize corpus
-    # corpus = 'ProcessedWSJ/wsj_stemmed.pkl'
-    # bow_corpus = 'ProcessedWSJ/bow.pkl'
-    # directory = 'ProcessedWSJ/'
-    # corpus_vectorizer.create_dictionary(filename=corpus, directory=directory)
-    # dictionary = directory+'dictionary.pkl'
-    # corpus_vectorizer.tfidf_vectorize(bow_corpus, dictionary, directory=directory)
-    #
-    # corpus_vectorizer.doc2vec_vectorize(corpus, directory=directory)
+    corpus = 'ProcessedWSJ/wsj_stemmed.pkl'
+    bow_corpus = 'ProcessedWSJ/bow.pkl'
+    directory = 'ProcessedWSJ/'
+    #corpus_vectorizer.create_dictionary(filename=corpus, directory=directory)
+    dictionary = directory+'dictionary.pkl'
+    #corpus_vectorizer.tfidf_vectorize(bow_corpus, dictionary, directory=directory)
+
+    corpus_vectorizer.doc2vec_vectorize(corpus, vector_size=10000, directory=directory)
 
     # order of comparison
     order = 20
 
     # generate K-Means clustering run
-    # cid = 7
-    # directory = 'ClusterResults/'
-    # bow_corpus = 'ProcessedWSJ/bow.pkl'
-    # dense_corpus = 'ProcessedWSJ/dense_corpus.pkl'
-    # doc2vec_corpus = 'ProcessedWSJ/wsj_doc2vec.pkl'
-    # dictionary = 'ProcessedWSJ/dictionary.pkl'
-    # KMeansGenerator.generate_k_means(dense_corpus=dense_corpus, run_id=cid, directory=directory, k=order)
-    # KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    # KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
-    #                                           mode='centroid', directory=directory)
-    # KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
-    #                                           mode='cluster', directory=directory)
+    cid = 8
+    directory = 'ClusterResults/'
+    bow_corpus = 'ProcessedWSJ/bow.pkl'
+    dense_corpus = 'ProcessedWSJ/dense_corpus.pkl'
+    doc2vec_corpus = 'ProcessedWSJ/wsj_doc2vec10000.pkl'
+    dictionary = 'ProcessedWSJ/dictionary.pkl'
+    KMeansGenerator.generate_k_means(dense_corpus=doc2vec_corpus, run_id=cid, directory=directory, k=order)
+    KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=doc2vec_corpus, bow=bow_corpus, dictionary=dictionary,
+                                              mode='centroid', directory=directory)
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=doc2vec_corpus, bow=bow_corpus, dictionary=dictionary,
+                                              mode='cluster', directory=directory)
 
     # generate topic models
     #tid = 5
@@ -59,19 +59,19 @@ def work_pipeline():
     # LDAGenerator.generate_topic_keywords(run_id=tid, num_keywords=10, num_topics=order, directory=directory)
 
     # generate figures
-    # cid = 7
-    # tid = 1
-    # clustering = 'ClusterResults/' + str(cid) + '/model'
-    # topic_model = 'LDAResults/' + str(tid) + '/model'
-    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    # directory = 'figures/'
-    # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
-    #                                                                      order=order)
-    # Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
-    #                                            directory=directory)
+    cid = 8
+    tid = 1
+    clustering = 'ClusterResults/' + str(cid) + '/model'
+    topic_model = 'LDAResults/' + str(tid) + '/model'
+    corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    directory = 'figures/'
+    clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
+                                                                         order=order)
+    Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
+                                               directory=directory)
 
     #vector similarity
-    cid = 7
+    cid = 8
     tid = 1
     Visualisation.visualise_vecter_similarity(tid,cid, directory='figures/')
 

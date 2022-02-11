@@ -7,19 +7,19 @@
 #SBATCH --nodes=1
 
 # The name of the job:
-#SBATCH --job-name="vecsim debug"
+#SBATCH --job-name="doc2vec large"
 
 # The project ID which this job should run under:
 #SBATCH --account="punim1409"
 
 # Maximum number of tasks/CPU cores used by the job:
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=8
 
 
 
 # The amount of memory in megabytes per process in the job:
-#SBATCH --mem=16384
+#SBATCH --mem=65536
 
 # Use this email address:
 #SBATCH --mail-user=myuan3@student.unimelb.edu.au

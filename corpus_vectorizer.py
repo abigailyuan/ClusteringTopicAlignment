@@ -61,7 +61,7 @@ def doc2vec_vectorize(filename, vector_size=500, window=2, min_count=15, max_voc
     model = Doc2Vec(documents, vector_size=vector_size, window=window, min_count=min_count,
                     max_vocab_size=max_vocab_size,
                     workers=8)  # was 100,000,0
-    model.save(directory + 'doc2vec.model')
+    model.save(directory + 'doc2vec'+str(vector_size)+'.model')
     end = time.perf_counter()
     print('Doc2vec model created.')
     print('time used:', int(end - start))
@@ -71,6 +71,6 @@ def doc2vec_vectorize(filename, vector_size=500, window=2, min_count=15, max_voc
         corpus.append(model.docvecs[i])
 
     corpus = asarray(corpus)
-    pickle.dump(corpus, open(directory + 'wsj_doc2vec.pkl', 'wb'))
+    pickle.dump(corpus, open(directory + 'wsj_doc2vec'+str(vector_size)+'.pkl', 'wb'))
 
     return 0
