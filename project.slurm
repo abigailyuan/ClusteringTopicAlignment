@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Partition for the job:
-#SBATCH --partition=physical
+#SBATCH --partition=snowy
 
 # Multithreaded (SMP) job: must run on one node
 #SBATCH --nodes=1
 
 # The name of the job:
-#SBATCH --job-name="doc2vec large"
+#SBATCH --job-name="batch generate"
 
 # The project ID which this job should run under:
 #SBATCH --account="punim1409"

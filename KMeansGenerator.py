@@ -7,13 +7,13 @@ import numpy as np
 import os
 
 
-def generate_k_means(k=10, dense_corpus=None, run_id=0, directory='/ClusterResults/'):
+def generate_k_means(k=10, dense_corpus=None, run_id=0, algorithm='auto', directory='/ClusterResults/'):
     """generate KMeans and save results to the directory specified."""
 
     dense_corpus = pickle.load(open(dense_corpus, 'rb'))
     # start to generate KMeans clustering
     start = time.perf_counter()
-    kmeans = KMeans(n_clusters=k, max_iter=500, n_init=20).fit(dense_corpus)
+    kmeans = KMeans(n_clusters=k, max_iter=500, n_init=20, random_state=run_id, algorithm=algorithm).fit(dense_corpus)
     clustering = kmeans.predict(dense_corpus)
     clustering_result = dd(list)
     for i in range(len(clustering)):

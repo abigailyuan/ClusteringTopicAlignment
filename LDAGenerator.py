@@ -4,14 +4,14 @@ import pickle
 import time
 
 
-def generate_lda(corpus, run_id, num_topics=10, dictionary=None, directory='/LDAResults/'):
+def generate_lda(corpus, run_id, num_topics=10, dictionary=None, update_every=1,directory='/LDAResults/'):
     """generate an LDA model with the selected parameters and
     save to directory specified."""
 
     corpus = pickle.load(open(corpus, 'rb'))
     dictionary = pickle.load(open(dictionary, 'rb'))
     start = time.perf_counter()
-    lda_model = LdaModel(corpus, num_topics=num_topics, id2word=dictionary, alpha='auto')
+    lda_model = LdaModel(corpus, num_topics=num_topics, id2word=dictionary, alpha='auto', random_state=run_id, update_every=update_every)
 
     os.mkdir(directory + str(run_id))
     lda_model.save(directory + str(run_id) + '/model')
