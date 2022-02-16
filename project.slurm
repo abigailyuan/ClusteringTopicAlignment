@@ -7,7 +7,7 @@
 #SBATCH --nodes=1
 
 # The name of the job:
-#SBATCH --job-name="batch generate"
+#SBATCH --job-name="debug"
 
 # The project ID which this job should run under:
 #SBATCH --account="punim1409"
@@ -19,7 +19,7 @@
 
 
 # The amount of memory in megabytes per process in the job:
-#SBATCH --mem=8192
+#SBATCH --mem=16384
 
 # Use this email address:
 #SBATCH --mail-user=myuan3@student.unimelb.edu.au
