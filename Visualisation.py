@@ -11,7 +11,18 @@ import LDAGenerator
 import seaborn as sns
 
 
-def compare_cluster_topic(clustering, topic_model, corpus, order=10):
+def create_topic_rows(document_topics, order):
+    topic_rows = np.zeros((len(document_topics), order))
+
+    for doc_id in range(len(document_topics)):
+        doc = document_topics[doc_id]
+        for topic_id, prob in doc:
+            topic_rows[doc_id][topic_id] = prob
+
+    return topic_rows
+
+
+def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label'):
     # load topic model
     corpus = pickle.load(open(corpus, 'rb'))
     lda_model = LdaModel.load(topic_model)
@@ -26,31 +37,44 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10):
     for i in labels:
         clusters[i] += 1
 
-    # create dataframe
-    k = order
-    d = {'cluster': labels, 'topic_r1': topics_r1}
-    # print(len(topics_r1))
-    # print(len(labels))
-    corpus_labels = pd.DataFrame(d)
+    if mode == 'label':
+        # create dataframe
+        k = order
+        d = {'cluster': labels, 'topic_r1': topics_r1}
+        corpus_labels = pd.DataFrame(d)
 
-    data = np.zeros((k, k), dtype=float)
-    for row in range(corpus_labels.shape[0]):
-        cluster = corpus_labels.iloc[row, 0]
-        topic = corpus_labels.iloc[row, 1]
-        data[cluster][topic] += 1
+        data = np.zeros((k, k), dtype=float)
+        for row in range(corpus_labels.shape[0]):
+            cluster = corpus_labels.iloc[row, 0]
+            topic = corpus_labels.iloc[row, 1]
+            data[cluster][topic] += 1
 
-    np.set_printoptions(suppress=True)
-    index = ['c' + str(i) for i in range(k)]
-    columns = ['t' + str(i) for i in range(k)]
-    cluster_topic_matrix = pd.DataFrame(data=data, index=index, columns=columns)
-    cluster_topic_matrix.head()
+        np.set_printoptions(suppress=True)
+        index = ['c' + str(i) for i in range(k)]
+        columns = ['t' + str(i) for i in range(k)]
+        cluster_topic_matrix = pd.DataFrame(data=data, index=index, columns=columns)
+        cluster_topic_matrix.head()
 
-    # get the percentage per bar
-    for row in range(cluster_topic_matrix.shape[0]):
-        cluster = cluster_topic_matrix.iloc[row]
-        cluster_size = cluster.sum()
-        for col in range(cluster_topic_matrix.shape[1]):
-            cluster_topic_matrix.iloc[row][col] /= (cluster_size / 100)  # making percentage
+        # get the percentage per bar
+        for row in range(cluster_topic_matrix.shape[0]):
+            cluster = cluster_topic_matrix.iloc[row]
+            cluster_size = cluster.sum()
+            for col in range(cluster_topic_matrix.shape[1]):
+                cluster_topic_matrix.iloc[row][col] /= (cluster_size / 100)  # making percentage
+
+    elif mode == 'distribution':
+        # create dataframe
+        topic_rows = create_topic_rows(documents_topics, order=order)
+        d = {'cluster':labels}
+        for i in range(order):
+            col = topic_rows[:, i]
+            d['topic_'+str(i)] = col
+
+        corpus_labels = pd.DataFrame(d)
+
+        cluster_topic_matrix = corpus_labels.groupby(['cluster']).sum()
+        print(cluster_topic_matrix)
+
 
     return clusters, cluster_topic_matrix
 
@@ -81,7 +105,7 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, o
 
     cluster_sizes = [clusters[i] for i in range(len(clusters))]
 
-    print(cluster_sizes)
+    #print(cluster_sizes)
     new_yticklable = []
     i = 0
     for ticklabel in ax.get_yticklabels():

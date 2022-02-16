@@ -19,7 +19,7 @@
 
 
 # The amount of memory in megabytes per process in the job:
-#SBATCH --mem=65536
+#SBATCH --mem=8192
 
 # Use this email address:
 #SBATCH --mail-user=myuan3@student.unimelb.edu.au
