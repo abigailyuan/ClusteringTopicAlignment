@@ -9,6 +9,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import KMeansGenerator
 import LDAGenerator
 import seaborn as sns
+import sklearn
 
 
 def create_topic_rows(document_topics, order):
@@ -73,6 +74,8 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         corpus_labels = pd.DataFrame(d)
 
         cluster_topic_matrix = corpus_labels.groupby(['cluster']).sum()
+
+        cluster_topic_matrix = cluster_topic_matrix.div(cluster_topic_matrix.sum(axis=1), axis=0)
         print(cluster_topic_matrix)
 
 
@@ -125,26 +128,32 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, o
     return 0
 
 
-def vector_similarity(centroids, topics):
+def vector_similarity(centroids, topics, norm='l1',axis=1):
 
     cos_sim_matrix = cosine_similarity(centroids, topics)
+    if norm=='l1':
+        cos_sim_matrix = sklearn.preprocessing.normalize(cos_sim_matrix, norm, axis)
+
     return cos_sim_matrix
 
-def visualise_vecter_similarity(tid, cid, directory='figures/'):
+def visualise_vecter_similarity(tid, cid, directory='figures/',norm='none', figname=''):
 
     centroids = KMeansGenerator.get_cluster_vectors(cid)
     topics = LDAGenerator.get_topic_vectors(tid)
-    cos_sim_matrix = vector_similarity(centroids, topics)
+    cos_sim_matrix = vector_similarity(centroids, topics,norm)
     order = cos_sim_matrix.shape[0]
     clusters = ['c'+str(i) for i in range(order)]
     topics = ['t'+str(i) for i in range(order)]
 
     fig, ax = plt.subplots(figsize=(16,10))
 
-    ax = sns.heatmap(cos_sim_matrix,annot=True, annot_kws={'fontsize':"x-small"})
+    ax = sns.heatmap(cos_sim_matrix,annot=True, annot_kws={'fontsize':"small"})
     ax.set_xlabel("Topic")
     ax.set_ylabel("Cluster")
-    figname = f'{directory}c{cid}t{tid}heatmap.pdf'
+    if figname:
+        figname = f'{directory}c{cid}t{tid}heatmap_{figname}.pdf'
+    else:
+        figname = f'{directory}c{cid}t{tid}heatmap.pdf'
     plt.savefig(figname)
 
 

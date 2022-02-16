@@ -113,10 +113,10 @@ def work_pipeline():
     Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
                                                directory=directory)
 
-    #vector similarity
-    # cid = 8
-    # tid = 1
-    # Visualisation.visualise_vecter_similarity(tid,cid, directory='figures/')
+    # vector similarity
+    cid = 9
+    tid = 1
+    Visualisation.visualise_vecter_similarity(tid,cid, directory='figures/',norm='l1',figname='row_l1')
 
     #Jaccard similarity
 
