@@ -39,6 +39,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         clusters[i] += 1
 
     if mode == 'label':
+        print('this is label run.')
         # create dataframe
         k = order
         d = {'cluster': labels, 'topic_r1': topics_r1}
@@ -64,6 +65,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
                 cluster_topic_matrix.iloc[row][col] /= (cluster_size / 100)  # making percentage
 
     elif mode == 'distribution':
+        print('this is distribution run.')
         # create dataframe
         topic_rows = create_topic_rows(documents_topics, order=order)
         d = {'cluster':labels}
