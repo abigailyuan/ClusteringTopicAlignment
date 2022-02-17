@@ -82,7 +82,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
     return clusters, cluster_topic_matrix
 
 
-def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, order=10, directory='figures/',mode='lable'):
+def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, order=10, directory='figures/',mode='label'):
     # set plot title
     # plot
     num_topic = order

@@ -111,12 +111,12 @@ def work_pipeline():
     clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
                                                                          order=order, mode='distribution')
     Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
-                                               directory=directory)
+                                               directory=directory, mode='distribution')
 
     clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
                                                                          order=order, mode='label')
     Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
-                                               directory=directory)
+                                               directory=directory, mode='label')
 
     # vector similarity
     cid = 9
