@@ -33,8 +33,5 @@ print(np.sum(result, 0))
 
 
 # min value = 0
-print('Overall Clustering socre:')
+print('Overall matching score:')
 print(np.sum(np.sum(result, 1)))
-
-print('Overall LDA core:')
-print(np.sum(np.sum(result, 0)))

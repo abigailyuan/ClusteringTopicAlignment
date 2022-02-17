@@ -76,7 +76,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         cluster_topic_matrix = corpus_labels.groupby(['cluster']).sum()
 
         cluster_topic_matrix = cluster_topic_matrix.div(cluster_topic_matrix.sum(axis=1), axis=0)
-        print(cluster_topic_matrix)
+        #print(cluster_topic_matrix)
 
 
     return clusters, cluster_topic_matrix
@@ -136,7 +136,7 @@ def vector_similarity(centroids, topics, norm='l1',axis=1):
     cos_sim_matrix = cosine_similarity(centroids, topics)
     if norm=='l1':
         cos_sim_matrix = sklearn.preprocessing.normalize(cos_sim_matrix, norm, axis)
-    print(cos_sim_matrix)
+    #print(cos_sim_matrix)
     return cos_sim_matrix
 
 def visualise_vecter_similarity(tid, cid, directory='figures/',norm='none', figname=''):
