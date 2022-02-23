@@ -202,6 +202,7 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
 def hist_plot(topic_dist, t, c, tid, directory):
     fig, ax = plt.subplots(figsize=(16, 10))
     ax = sns.histplot(data=topic_dist, kde=True)
+    ax.set_xlim(0, 1)
     ax.set_xlabel("topic percentage")
     ax.set_ylabel("count")
 
