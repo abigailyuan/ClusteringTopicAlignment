@@ -175,9 +175,10 @@ def topic_distribution(document_topics, t, doc_range=None):
     if doc_range:
         dist = []
         for i in doc_range:
-            print(document_topics[i])
-            print(document_topics[i][t])
-            dist.append(document_topics[i][t][1])
+            try:
+                dist.append(document_topics[i][t][1])
+            except:
+                dist.append(0)
 
     else:
         dist = []
