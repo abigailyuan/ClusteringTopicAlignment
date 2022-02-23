@@ -195,11 +195,11 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
 
     return topic_dist
 
-def hist_plot(topic_dist, t, tid, bin):
+def hist_plot(topic_dist, t, c, tid, directory):
     fig, ax = plt.subplots(figsize=(16, 10))
     ax = sns.histplot(data=topic_dist, kde=True)
     ax.set_xlabel("topic percentage")
     ax.set_ylabel("count")
 
-    figname = 'figures/run'+str(tid)+'_t'+str(t)+'_prob_density.pdf'
+    figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
     plt.savefig(figname)

@@ -124,8 +124,13 @@ def work_pipeline():
     # Visualisation.visualise_vecter_similarity(tid,cid, directory='figures/',norm='l1',figname='row_l1')
 
     corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    dist = Visualisation.get_topic_distribution(corpus=corpus, cid=9, tid=1, c=0,t=0, mode='all')
-    Visualisation.hist_plot(topic_dist=dist,t=0,tid=1,bin=0.05)
+    cid = 9
+    tid = 1
+    for c in range(20):
+        for t in range(20):
+            dist = Visualisation.get_topic_distribution(corpus=corpus, cid=cid, tid=tid, c=c,t=t, mode='c')
+            Visualisation.hist_plot(topic_dist=dist,c=c, t=t,tid=1, directory='figures/c9t1/')
+
 
 
     return 0
