@@ -191,7 +191,7 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
         topic_dist = topic_distribution(documents_topics, t)
     else:
         doc_range = get_doc_range(cid, c)
-        topic_dist = topic_distribution((documents_topics, t, doc_range))
+        topic_dist = topic_distribution(documents_topics, t, doc_range)
 
     return topic_dist
 
