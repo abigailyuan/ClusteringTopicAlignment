@@ -102,28 +102,30 @@ def work_pipeline():
     #     print('LDA run: ' + str(tid) + ' generated.')
 
     # generate figures
-    cid = 9
-    tid = 1
-    clustering = 'ClusterResults/' + str(cid) + '/model'
-    topic_model = 'LDAResults/' + str(tid) + '/model'
-    corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    directory = 'figures/'
-    clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
-                                                                         order=order, mode='distribution')
-    Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
-                                               directory=directory, mode='distribution')
-
-    clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
-                                                                         order=order, mode='label')
-    Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
-                                               directory=directory, mode='label')
+    # cid = 9
+    # tid = 1
+    # clustering = 'ClusterResults/' + str(cid) + '/model'
+    # topic_model = 'LDAResults/' + str(tid) + '/model'
+    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    # directory = 'figures/'
+    # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
+    #                                                                      order=order, mode='distribution')
+    # Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
+    #                                            directory=directory, mode='distribution')
+    #
+    # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
+    #                                                                      order=order, mode='label')
+    # Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
+    #                                            directory=directory, mode='label')
 
     # vector similarity
-    cid = 9
-    tid = 1
-    Visualisation.visualise_vecter_similarity(tid,cid, directory='figures/',norm='l1',figname='row_l1')
+    # cid = 9
+    # tid = 1
+    # Visualisation.visualise_vecter_similarity(tid,cid, directory='figures/',norm='l1',figname='row_l1')
 
-    #Jaccard similarity
+    corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    dist = Visualisation.get_topic_distribution(corpus=corpus, cid=9, tid=1, c=0,t=0, mode='all')
+    Visualisation.hist_plot(topic_dist=dist,t=0,tid=1,bin=0.05)
 
 
     return 0

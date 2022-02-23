@@ -161,14 +161,45 @@ def visualise_vecter_similarity(tid, cid, directory='figures/',norm='none', fign
         figname = f'{directory}c{cid}t{tid}heatmap.pdf'
     plt.savefig(figname)
 
+def get_doc_range(c_id, c):
+    doc_range = []
+    labels = pickle.load(open('ClusterResults/'+str(c_id)+'/labels','rb'))
+    for i in range(len(labels)):
+        if labels[i] == c:
+            doc_range.append(i)
 
+    return doc_range
 
+def topic_distribution(document_topics, t, doc_range=None):
+    if doc_range:
+        dist = []
+        for i in doc_range:
+            dist.append(document_topics[i][t][1])
 
+    else:
+        dist = []
+        for i in document_topics:
+            dist.append(i[t][1])
+    return dist
 
-def jaccard_similarity(cid, tid, directory='figures/'):
-    #TODO load clustering and topic keywords
+def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
+    corpus = pickle.load(open(corpus, 'rb'))
+    labels = pickle.load(open('ClusterResults/'+str(cid)+'/labels','rb'))
+    lda_model = LdaModel.load('LDAResults/'+str(tid)+'/model')
+    documents_topics = lda_model.get_document_topics(corpus)
+    if mode == 'all':
+        topic_dist = topic_distribution(documents_topics, t)
+    else:
+        doc_range = get_doc_range(cid, c)
+        topic_dist = topic_distribution((documents_topics, t, doc_range))
 
+    return topic_dist
 
-    #TODO create two lists for calculation
-    #TODO return similarity matrix
-    return None
+def hist_plot(topic_dist, t, tid, bin):
+    fig, ax = plt.subplots(figsize=(16, 10))
+    ax = sns.histplot(data=topic_dist, bin=bin, kde=True)
+    ax.set_xlabel("topic percentage")
+    ax.set_ylabel("count")
+
+    figname = 'figures/run'+str(tid)+'_t'+str(t)+'_prob_density.pdf'
+    plt.savefig(figname)
