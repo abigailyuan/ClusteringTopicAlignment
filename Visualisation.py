@@ -10,6 +10,7 @@ import KMeansGenerator
 import LDAGenerator
 import seaborn as sns
 import sklearn
+from scipy.stats import skew
 
 
 def create_topic_rows(document_topics, order):
@@ -174,6 +175,8 @@ def topic_distribution(document_topics, t, doc_range=None):
     if doc_range:
         dist = []
         for i in doc_range:
+            print(document_topics[i])
+            print(document_topics[i][t])
             dist.append(document_topics[i][t][1])
 
     else:
@@ -203,3 +206,6 @@ def hist_plot(topic_dist, t, c, tid, directory):
 
     figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
     plt.savefig(figname)
+
+def skewness_measure(dist):
+    return skew(dist)
