@@ -163,7 +163,7 @@ def work_pipeline():
 
     for t in range(20):
         dist = Visualisation.cluster_topic_dist(clusters, cluster_topic_matrix, t)
-        Visualisation.hist_plot(topic_dist=dist, c=x, t=t, tid=1, directory='figures/c9t1_topic/')
+        Visualisation.hist_plot(topic_dist=dist, c=1, t=t, tid=1, directory='figures/c9t1_topic/')
 
     return 0
 
