@@ -133,22 +133,22 @@ def work_pipeline():
 
 
     #measure skewness of c9t1
-    # cid =9
-    # tid = 1
-    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    # print('Skewness per cluster\n\n')
-    # for c in range(20):
-    #     for t in range(20):
-    #         dist = Visualisation.get_topic_distribution(corpus=corpus, cid=cid, tid=tid, c=c, t=t, mode='c')
-    #         skewness = Visualisation.skewness_measure(dist)
-    #         print(f"c{c}t{t}:  {skewness}")
-    #
-    #
-    # print("Skewness of whole corpus")
-    # for t in range(20):
-    #     dist = Visualisation.get_topic_distribution(corpus=corpus, cid=cid, tid=tid, t=t, mode='all')
-    #     skewness = Visualisation.skewness_measure(dist)
-    #     print(f"t{t}:  {skewness}")
+    cid =9
+    tid = 1
+    corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    print('Skewness per cluster\n\n')
+    for c in range(20):
+        for t in range(20):
+            dist = Visualisation.get_topic_distribution(corpus=corpus, cid=cid, tid=tid, c=c, t=t, mode='c')
+            skewness = Visualisation.skewness_measure(dist)
+            print(f"c{c}t{t}:  {skewness}")
+
+
+    print("Skewness of whole corpus")
+    for t in range(20):
+        dist = Visualisation.get_topic_distribution(corpus=corpus, cid=cid, tid=tid, t=t, mode='all')
+        skewness = Visualisation.skewness_measure(dist)
+        print(f"t{t}:  {skewness}")
 
 
     #testing
@@ -160,7 +160,10 @@ def work_pipeline():
     directory = 'figures/'
     clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
                                                                          order=order, mode='distribution')
-    Visualisation.cluster_topic_dist(clusters, cluster_topic_matrix, 0)
+
+    for t in range(20):
+        dist = Visualisation.cluster_topic_dist(clusters, cluster_topic_matrix, t)
+        Visualisation.hist_plot(topic_dist=dist, c=x, t=t, tid=1, directory='figures/c9t1_topic/')
 
     return 0
 

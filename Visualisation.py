@@ -206,12 +206,13 @@ def hist_plot(topic_dist, t, c, tid, directory):
     ax.set_xlabel("topic percentage")
     ax.set_ylabel("count")
 
-    figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
+    #figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
+    figname = directory+'t'+str(t)+'_prob_density.pdf'
     plt.savefig(figname)
 
 
 def cluster_topic_dist(clusters, cluster_topic_matrix, t):
-    print(cluster_topic_matrix)
+    return cluster_topic_matrix[:, t]
 
 
 def skewness_measure(dist):
