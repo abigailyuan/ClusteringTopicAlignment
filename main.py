@@ -123,13 +123,13 @@ def work_pipeline():
     # tid = 1
     # Visualisation.visualise_vecter_similarity(tid,cid, directory='figures/',norm='l1',figname='row_l1')
 
-    corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    cid = 9
-    tid = 1
-    for c in range(20):
-        for t in range(20):
-            dist = Visualisation.get_topic_distribution(corpus=corpus, cid=cid, tid=tid, c=c,t=t, mode='c')
-            Visualisation.hist_plot(topic_dist=dist,c=c, t=t,tid=1, directory='figures/c9t1/')
+    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    # cid = 9
+    # tid = 1
+    # for c in range(20):
+    #     for t in range(20):
+    #         dist = Visualisation.get_topic_distribution(corpus=corpus, cid=cid, tid=tid, c=c,t=t, mode='c')
+    #         Visualisation.hist_plot(topic_dist=dist,c=c, t=t,tid=1, directory='figures/c9t1/')
 
 
     #measure skewness of c9t1
@@ -150,6 +150,17 @@ def work_pipeline():
     #     skewness = Visualisation.skewness_measure(dist)
     #     print(f"t{t}:  {skewness}")
 
+
+    #testing
+    cid = 9
+    tid = 1
+    clustering = 'ClusterResults/' + str(cid) + '/model'
+    topic_model = 'LDAResults/' + str(tid) + '/model'
+    corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    directory = 'figures/'
+    clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
+                                                                         order=order, mode='distribution')
+    Visualisation.cluster_topic_dist(clusters, cluster_topic_matrix, 0)
 
     return 0
 
