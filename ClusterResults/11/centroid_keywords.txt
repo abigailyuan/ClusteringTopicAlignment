@@ -1,0 +1,40 @@
+cluster 0
+['share', 'trade', 'corp', 'world', 'first', 'mr', 'dynam', 'offer', 'financi', 'nation']
+cluster 1
+['doctrin', 'mr', 'committe', 'chairman', 'announc', 'month', 'pnc', 'sen', 'power', 'hold']
+cluster 2
+['british', 'japanes', 'share', 'mr', 'pan', 'investor', 'govern', 'presid', 'profit', 'friday']
+cluster 3
+['mr', 'billion', 'maxwel', 'order', 'good', 'one', 'name', 'month', 'januari', 'rise']
+cluster 4
+['space', 'japanes', 'mr', 'japan', 'dollar', 'intern', 'american', 'offer', 'trade', 'cost']
+cluster 5
+['would', 'wast', 'busi', 'manag', 'last', 'plan', 'expect', 'industri', 'alli', 'also']
+cluster 6
+['stock', 'expir', 'futur', 'trade', 'market', 'would', 'presid', 'amp', 'helicopt', 'militari']
+cluster 7
+['drug', 'squibb', 'would', 'patient', 'one', 'bank', 'first', 'could', 'heart', 'market']
+cluster 8
+['mr', 'texaco', 'court', 'holm', 'share', 'stock', 'harcourt', 'jovanovich', 'pennzoil', 'would']
+cluster 9
+['mr', 'tamil', 'would', 'one', 'wing', 'centuri', 'make', 'work', 'state', 'govern']
+cluster 10
+['benefici', 'reserv', 'insur', 'share', 'american', 'sale', 'expect', 'gas', 'quarter', 'declin']
+cluster 11
+['color', 'film', 'mr', 'would', 'teen', 'big', 'yanke', 'stock', 'share', 'sale']
+cluster 12
+['mr', 'bank', 'industri', 'lerner', 'mall', 'stock', 'teen', 'billion', 'last', 'hold']
+cluster 13
+['bank', 'share', 'polic', 'amp', 'call', 'billion', 'dixon', 'crime', 'address', 'debt']
+cluster 14
+['billion', 'aid', 'administr', 'bank', 'congress', 'foreign', 'cabl', 'would', 'interest', 'debt']
+cluster 15
+['price', 'sale', 'station', 'firm', 'share', 'trade', 'mr', 'barney', 'smith', 'report']
+cluster 16
+['mr', 'texaco', 'court', 'holm', 'york', 'would', 'pennzoil', 'product', 'ir', 'sell']
+cluster 17
+['oil', 'exxon', 'mr', 'billion', 'share', 'invest', 'price', 'ward', 'reserv', 'guin']
+cluster 18
+['mr', 'drug', 'gari', 'tax', 'smith', 'state', 'dealer', 'buy', 'two', 'one']
+cluster 19
+['fund', 'stock', 'cash', 'servic', 'amp', 'ltv', 'sale', 'mr', 'time', 'bethlehem']

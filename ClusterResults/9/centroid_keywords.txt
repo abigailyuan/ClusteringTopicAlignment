@@ -1,0 +1,40 @@
+cluster 0
+['landlord', 'leas', 'mr', 'offic', 'work', 'may', 'cost', 'report', 'space', 'agenc']
+cluster 1
+['mr', 'presid', 'reagan', 'execut', 'bank', 'last', 'public', 'peter', 'iran', 'control']
+cluster 2
+['bank', 'interior', 'would', 'design', 'robin', 'state', 'architect', 'plan', 'billion', 'also']
+cluster 3
+['job', 'market', 'aid', 'educ', 'labor', 'dollar', 'water', 'depart', 'trade', 'need']
+cluster 4
+['tax', 'deduct', 'form', 'taxpay', 'chang', 'depend', 'exempt', 'law', 'secur', 'interest']
+cluster 5
+['divorc', 'execut', 'mr', 'one', 'man', 'amp', 'marri', 'would', 'share', 'time']
+cluster 6
+['via', 'march', 'share', 'bond', 'inc', 'mr', 'group', 'revenu', 'april', 'lead']
+cluster 7
+['mr', 'chairman', 'presid', 'execut', 'chief', 'card', 'rjr', 'share', 'offic', 'would']
+cluster 8
+['fund', 'mr', 'billion', 'bethlehem', 'sale', 'industri', 'money', 'market', 'asset', 'week']
+cluster 9
+['mr', 'partnership', 'offer', 'investor', 'taxpay', 'form', 'may', 'cannon', 'w', 'one']
+cluster 10
+['share', 'mr', 'case', 'trade', 'stock', 'corp', 'ship', 'insid', 'suit', 'plaintiff']
+cluster 11
+['bank', 'dome', 'mr', 'execut', 'canadian', 'school', 'pay', 'job', 'account', 'japanes']
+cluster 12
+['share', 'plan', 'would', 'offer', 'allegi', 'billion', 'owen', 'illinoi', 'bid', 'order']
+cluster 13
+['bank', 'citicorp', 'reserv', 'market', 'pound', 'british', 'exchang', 'trade', 'stock', 'base']
+cluster 14
+['offer', 'share', 'industri', 'product', 'nation', 'japanes', 'manag', 'defens', 'mr', 'govern']
+cluster 15
+['firm', 'polic', 'time', 'call', 'share', 'dixon', 'airlin', 'problem', 'crime', 'address']
+cluster 16
+['patient', 'west', 'trade', 'disabl', 'rockefel', 'sen', 'job', 'senat', 'byrd', 'work']
+cluster 17
+['herald', 'mr', 'usair', 'via', 'cuban', 'share', 'hospit', 'piedmont', 'twa', 'nonprofit']
+cluster 18
+['billion', 'aid', 'administr', 'bank', 'congress', 'foreign', 'cabl', 'would', 'interest', 'debt']
+cluster 19
+['trade', 'begin', 'stock', 'exchang', 'base', 'symbol', 'current', 'greek', 'inflat', 'mr']

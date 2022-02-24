@@ -1,0 +1,40 @@
+cluster 0
+['quarter', 'share', 'cent', 'sale', 'net', 'earn', 'earlier', 'loss', 'profit', 'oper']
+cluster 1
+['mr', 'share', 'would', 'unit', 'amp', 'stock', 'sale', 'oper', 'plan', 'market']
+cluster 2
+['mile', 'passeng', 'revenu', 'one', 'load', 'factor', 'traffic', 'earlier', 'billion', 'rise']
+cluster 3
+['mr', 'soviet', 'presid', 'would', 'one', 'govern', 'offici', 'polit', 'parti', 'reagan']
+cluster 4
+['presid', 'mr', 'vice', 'execut', 'chief', 'name', 'offic', 'chairman', 'succeed', 'oper']
+cluster 5
+['stock', 'market', 'price', 'trade', 'share', 'futur', 'index', 'rise', 'investor', 'mr']
+cluster 6
+['membership', 'board', 'director', 'increas', 'exchang', 'seat', 'presid', 'name', 'sell', 'execut']
+cluster 7
+['ton', 'week', 'steel', 'earlier', 'metric', 'product', 'last', 'produc', 'capabl', 'industri']
+cluster 8
+['share', 'stock', 'offer', 'common', 'exchang', 'hold', 'group', 'trade', 'outstand', 'close']
+cluster 9
+['tax', 'would', 'bill', 'hous', 'billion', 'budget', 'mr', 'senat', 'incom', 'presid']
+cluster 10
+['car', 'gm', 'ford', 'sale', 'auto', 'motor', 'chrysler', 'plant', 'model', 'mr']
+cluster 11
+['bond', 'price', 'yield', 'issu', 'market', 'rate', 'treasuri', 'month', 'rat', 'day']
+cluster 12
+['dollar', 'trade', 'market', 'share', 'price', 'bank', 'yen', 'mark', 'stock', 'york']
+cluster 13
+['billion', 'trade', 'japanes', 'japan', 'market', 'dollar', 'export', 'mr', 'govern', 'foreign']
+cluster 14
+['bank', 'loan', 'mr', 'billion', 'would', 'feder', 'first', 'debt', 'thrift', 'save']
+cluster 15
+['via', 'share', 'offer', 'common', 'inc', 'amp', 'co', 'initi', 'secur', 'bond']
+cluster 16
+['comput', 'ibm', 'mr', 'system', 'softwar', 'market', 'product', 'machin', 'make', 'busi']
+cluster 17
+['contract', 'aircraft', 'boe', 'air', 'unit', 'navi', 'corp', 'forc', 'receiv', 'engin']
+cluster 18
+['rise', 'price', 'sale', 'month', 'increas', 'earlier', 'rate', 'adjust', 'report', 'depart']
+cluster 19
+['mr', 'one', 'would', 'make', 'time', 'also', 'get', 'two', 'peopl', 'work']

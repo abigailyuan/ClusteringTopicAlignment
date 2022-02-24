@@ -1,0 +1,40 @@
+topic 0
+['bond', 'mortgag', 'via', 'bank', 'yield', 'loan', 'rate', 'offer', 'thrift', 'due']
+topic 1
+['quarter', 'cent', 'net', 'earn', 'share', 'sale', 'profit', 'loss', 'earlier', 'rise']
+topic 2
+['mr', 'one', 'get', 'peopl', 'work', 'go', 'time', 'like', 'make', 'busi']
+topic 3
+['drug', 'tax', 'health', 'plant', 'fda', 'test', 'research', 'hospit', 'medic', 'insur']
+topic 4
+['seat', 'membership', 'debentur', 'aug', 'healthcar', 'redempt', 'redeem', 'convert', 'unisi', 'thomson']
+topic 5
+['billion', 'franc', 'rise', 'statist', 'earlier', 'juli', 'export', 'june', 'passeng', 'surplus']
+topic 6
+['court', 'judg', 'alleg', 'investig', 'suit', 'attorney', 'charg', 'pretax', 'case', 'feder']
+topic 7
+['presid', 'vice', 'name', 'chief', 'execut', 'succeed', 'director', 'offic', 'chairman', 'elect']
+topic 8
+['index', 'market', 'stock', 'price', 'bond', 'trader', 'trade', 'dollar', 'fund', 'investor']
+topic 9
+['airlin', 'boe', 'air', 'aircraft', 'union', 'pilot', 'ual', 'eastern', 'carrier', 'flight']
+topic 10
+['disney', 'paramount', 'film', 'movi', 'entertain', 'column', 'mca', 'maxwel', 'postal', 'studio']
+topic 11
+['comput', 'ibm', 'softwar', 'machin', 'data', 'digit', 'system', 'appl', 'chip', 'technolog']
+topic 12
+['moodi', 'rat', 'debt', 'p', 'singl', 'b', 'downgrad', 'smithklin', 'bill', 'shelf']
+topic 13
+['bush', 'senat', 'democrat', 'hous', 'bill', 'soviet', 'vote', 'congress', 'parti', 'administr']
+topic 14
+['car', 'ford', 'penc', 'gm', 'auto', 'motor', 'chrysler', 'model', 'truck', 'plant']
+topic 15
+['dividend', 'payabl', 'split', 'cent', 'wang', 'record', 'declar', 'stock', 'share', 'sept']
+topic 16
+['gas', 'oil', 'pipelin', 'exxon', 'natur', 'sir', 'energi', 'explor', 'mci', 'unit']
+topic 17
+['advertis', 'network', 'ad', 'soviet', 'product', 'magazin', 'televis', 'nasdaq', 'tv', 'china']
+topic 18
+['share', 'common', 'stock', 'outstand', 'offer', 'tender', 'contract', 'sharehold', 'acquir', 'purchas']
+topic 19
+['bank', 'loan', 'debt', 'share', 'asset', 'estat', 'creditor', 'bankruptci', 'stock', 'agreement']

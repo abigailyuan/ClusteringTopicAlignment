@@ -1,0 +1,40 @@
+cluster 0
+['mr', 'would', 'one', 'make', 'presid', 'govern', 'state', 'tax', 'also', 'time']
+cluster 1
+['bond', 'price', 'rate', 'market', 'yield', 'issu', 'treasuri', 'month', 'rat', 'day']
+cluster 2
+['billion', 'trade', 'deficit', 'rise', 'export', 'yen', 'dollar', 'increas', 'earlier', 'import']
+cluster 3
+['dollar', 'trade', 'york', 'bank', 'market', 'yen', 'currenc', 'mark', 'exchang', 'trader']
+cluster 4
+['rise', 'price', 'increas', 'month', 'sale', 'earlier', 'week', 'rate', 'report', 'ton']
+cluster 5
+['mile', 'passeng', 'revenu', 'one', 'load', 'factor', 'traffic', 'earlier', 'billion', 'rise']
+cluster 6
+['mr', 'would', 'market', 'make', 'share', 'amp', 'one', 'also', 'unit', 'last']
+cluster 7
+['membership', 'board', 'director', 'increas', 'exchang', 'seat', 'presid', 'name', 'execut', 'sell']
+cluster 8
+['car', 'gm', 'ford', 'sale', 'auto', 'motor', 'chrysler', 'plant', 'model', 'mr']
+cluster 9
+['share', 'offer', 'stock', 'common', 'trade', 'would', 'mr', 'close', 'buy', 'sharehold']
+cluster 10
+['bank', 'loan', 'mr', 'billion', 'would', 'feder', 'first', 'debt', 'thrift', 'save']
+cluster 11
+['contract', 'aircraft', 'boe', 'air', 'unit', 'navi', 'corp', 'forc', 'receiv', 'equip']
+cluster 12
+['presid', 'mr', 'vice', 'execut', 'chief', 'name', 'offic', 'chairman', 'succeed', 'oper']
+cluster 13
+['stock', 'market', 'price', 'share', 'trade', 'index', 'rise', 'futur', 'investor', 'close']
+cluster 14
+['via', 'share', 'offer', 'common', 'inc', 'amp', 'co', 'initi', 'secur', 'bond']
+cluster 15
+['share', 'dividend', 'stock', 'cent', 'quarter', 'record', 'split', 'payabl', 'increas', 'declar']
+cluster 16
+['rat', 'debt', 'amp', 'debentur', 'moodi', 'singl', 'b', 'concern', 'subordin', 'corp']
+cluster 17
+['quarter', 'share', 'cent', 'sale', 'net', 'earn', 'earlier', 'loss', 'profit', 'oper']
+cluster 18
+['oil', 'gas', 'price', 'barrel', 'product', 'opec', 'mr', 'would', 'unit', 'natur']
+cluster 19
+['share', 'file', 'group', 'hold', 'exchang', 'stake', 'common', 'stock', 'secur', 'invest']

@@ -1,0 +1,40 @@
+cluster 0
+['mr', 'amp', 'debt', 'bank', 'would', 'general', 'supermarket', 'news', 'propos', 'countri']
+cluster 1
+['tax', 'state', 'would', 'share', 'foreign', 'gas', 'offer', 'may', 'ohio', 'one']
+cluster 2
+['hugh', 'would', 'last', 'baker', 'depart', 'price', 'month', 'rise', 'merger', 'drug']
+cluster 3
+['stock', 'expir', 'futur', 'trade', 'amp', 'johnson', 'share', 'option', 'mr', 'index']
+cluster 4
+['stock', 'market', 'bond', 'r', 'us', 'mr', 'go', 'name', 'toy', 'one']
+cluster 5
+['bank', 'loan', 'secur', 'offer', 'capit', 'back', 'fund', 'sell', 'credit', 'card']
+cluster 6
+['airlin', 'billion', 'union', 'trade', 'faa', 'last', 'start', 'flight', 'unit', 'group']
+cluster 7
+['mr', 'rate', 'courtesi', 'texaco', 'bank', 'would', 'peopl', 'increas', 'one', 'committe']
+cluster 8
+['patient', 'drug', 'aid', 'azt', 'pan', 'nation', 'would', 'wellcom', 'cost', 'quarter']
+cluster 9
+['via', 'stock', 'share', 'increas', 'group', 'bond', 'revenu', 'market', 'amp', 'corp']
+cluster 10
+['bank', 'trade', 'exchang', 'foreign', 'shearson', 'debt', 'market', 'american', 'express', 'last']
+cluster 11
+['execut', 'mr', 'first', 'share', 'women', 'insur', 'carr', 'contract', 'life', 'unit']
+cluster 12
+['arm', 'mr', 'hostag', 'parti', 'iran', 'presid', 'mubarak', 'elect', 'offic', 'union']
+cluster 13
+['amend', 'hous', 'semiconductor', 'chip', 'firm', 'presid', 'coal', 'white', 'start', 'industri']
+cluster 14
+['mr', 'court', 'share', 'deaver', 'guin', 'judg', 'mac', 'ward', 'law', 'jackson']
+cluster 15
+['trade', 'land', 'farm', 'bank', 'begin', 'feder', 'mr', 'bill', 'symbol', 'shapiro']
+cluster 16
+['mr', 'theater', 'xerox', 'film', 'last', 'taft', 'also', 'share', 'movi', 'south']
+cluster 17
+['trade', 'heck', 'tax', 'group', 'rep', 'rostenkowski', 'bank', 'file', 'import', 'month']
+cluster 18
+['share', 'mr', 'promot', 'billion', 'cabl', 'financi', 'would', 'propos', 'busch', 'first']
+cluster 19
+['bank', 'share', 'polic', 'amp', 'call', 'billion', 'dixon', 'crime', 'address', 'debt']

@@ -1,0 +1,40 @@
+cluster 0
+['mr', 'one', 'make', 'would', 'time', 'market', 'get', 'also', 'peopl', 'like']
+cluster 1
+['bond', 'price', 'rate', 'market', 'yield', 'issu', 'treasuri', 'rat', 'bank', 'month']
+cluster 2
+['via', 'share', 'offer', 'common', 'inc', 'amp', 'debentur', 'co', 'secur', 'initi']
+cluster 3
+['quarter', 'share', 'cent', 'sale', 'net', 'earn', 'loss', 'earlier', 'profit', 'oper']
+cluster 4
+['mr', 'would', 'presid', 'soviet', 'hous', 'reagan', 'govern', 'one', 'offici', 'democrat']
+cluster 5
+['comput', 'ibm', 'mr', 'system', 'market', 'softwar', 'product', 'machin', 'make', 'busi']
+cluster 6
+['presid', 'mr', 'vice', 'execut', 'chief', 'name', 'offic', 'chairman', 'director', 'succeed']
+cluster 7
+['ton', 'week', 'steel', 'earlier', 'metric', 'product', 'last', 'produc', 'capabl', 'industri']
+cluster 8
+['stock', 'market', 'price', 'share', 'trade', 'index', 'rise', 'futur', 'investor', 'close']
+cluster 9
+['dollar', 'trade', 'york', 'bank', 'market', 'yen', 'currenc', 'mark', 'exchang', 'trader']
+cluster 10
+['contract', 'navi', 'air', 'forc', 'corp', 'aircraft', 'receiv', 'unit', 'equip', 'armi']
+cluster 11
+['share', 'stock', 'offer', 'common', 'hold', 'exchang', 'group', 'trade', 'outstand', 'close']
+cluster 12
+['tax', 'would', 'incom', 'mr', 'ir', 'state', 'pay', 'increas', 'billion', 'gain']
+cluster 13
+['car', 'gm', 'ford', 'sale', 'auto', 'motor', 'chrysler', 'plant', 'model', 'maker']
+cluster 14
+['oil', 'gas', 'price', 'barrel', 'product', 'opec', 'unit', 'mr', 'would', 'natur']
+cluster 15
+['mile', 'passeng', 'revenu', 'one', 'load', 'factor', 'traffic', 'earlier', 'billion', 'rise']
+cluster 16
+['mr', 'court', 'case', 'judg', 'feder', 'law', 'would', 'charg', 'file', 'lawyer']
+cluster 17
+['bank', 'mr', 'share', 'would', 'amp', 'stock', 'unit', 'billion', 'market', 'sale']
+cluster 18
+['rise', 'price', 'increas', 'month', 'sale', 'rate', 'earlier', 'report', 'adjust', 'depart']
+cluster 19
+['billion', 'trade', 'export', 'deficit', 'rise', 'yen', 'japan', 'dollar', 'increas', 'import']

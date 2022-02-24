@@ -1,0 +1,40 @@
+topic 0
+['share', 'mr', 'stock', 'quarter', 'sale', 'bank', 'presid', 'cent', 'tax', 'product']
+topic 1
+['share', 'bank', 'mr', 'stock', 'sale', 'price', 'billion', 'market', 'rise', 'trade']
+topic 2
+['share', 'mr', 'presid', 'quarter', 'sale', 'stock', 'bank', 'earlier', 'cent', 'price']
+topic 3
+['share', 'bank', 'mr', 'quarter', 'stock', 'cent', 'price', 'sale', 'billion', 'market']
+topic 4
+['share', 'bank', 'mr', 'stock', 'market', 'quarter', 'billion', 'price', 'trade', 'rise']
+topic 5
+['bank', 'share', 'mr', 'stock', 'billion', 'market', 'price', 'rise', 'quarter', 'bond']
+topic 6
+['share', 'mr', 'stock', 'bank', 'quarter', 'sale', 'market', 'presid', 'billion', 'cent']
+topic 7
+['share', 'bank', 'mr', 'stock', 'market', 'price', 'billion', 'sale', 'quarter', 'trade']
+topic 8
+['share', 'mr', 'bank', 'stock', 'billion', 'presid', 'trade', 'offer', 'price', 'market']
+topic 9
+['share', 'stock', 'mr', 'bank', 'billion', 'sale', 'price', 'market', 'presid', 'quarter']
+topic 10
+['share', 'bank', 'mr', 'stock', 'market', 'price', 'billion', 'trade', 'sale', 'product']
+topic 11
+['share', 'bank', 'mr', 'stock', 'sale', 'price', 'billion', 'rise', 'offer', 'amp']
+topic 12
+['share', 'mr', 'bank', 'stock', 'offer', 'common', 'billion', 'quarter', 'price', 'market']
+topic 13
+['share', 'mr', 'quarter', 'bank', 'stock', 'cent', 'presid', 'sale', 'billion', 'trade']
+topic 14
+['share', 'mr', 'stock', 'bank', 'price', 'presid', 'market', 'billion', 'trade', 'rise']
+topic 15
+['mr', 'share', 'bank', 'presid', 'billion', 'stock', 'market', 'sale', 'offer', 'vice']
+topic 16
+['share', 'mr', 'bank', 'stock', 'presid', 'sale', 'quarter', 'market', 'offer', 'price']
+topic 17
+['share', 'mr', 'bank', 'stock', 'offer', 'price', 'market', 'quarter', 'billion', 'common']
+topic 18
+['share', 'mr', 'bank', 'sale', 'billion', 'stock', 'market', 'presid', 'price', 'rise']
+topic 19
+['share', 'quarter', 'bank', 'mr', 'billion', 'price', 'sale', 'cent', 'rise', 'stock']
