@@ -168,9 +168,6 @@ def get_doc_range(c_id, c):
     for i in range(len(labels)):
         if labels[i] == c:
             doc_range.append(i)
-    # debug
-    print(len(doc_range))
-    #end debug
 
     return doc_range
 
@@ -193,13 +190,7 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
     corpus = pickle.load(open(corpus, 'rb'))
     labels = pickle.load(open('ClusterResults/'+str(cid)+'/labels','rb'))
     lda_model = LdaModel.load('LDAResults/'+str(tid)+'/model')
-    documents_topics = lda_model.get_document_topics(corpus)
-
-    # debug
-    print(len(documents_topics))
-    print(documents_topics[0])
-    return None
-    # end debug
+    documents_topics = lda_model.get_document_topics(bow=corpus, minimum_probability=0.0)
 
     if mode == 'all':
         topic_dist = topic_distribution(documents_topics, t)
@@ -209,12 +200,14 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
 
     return topic_dist
 
+
+# displot
 def hist_plot(topic_dist, t, c, tid, directory):
     fig, ax = plt.subplots(figsize=(16, 10))
-    ax = sns.histplot(data=topic_dist, kde=True)
-    ax.set_xlim(0, 1)
+    ax = sns.histplot(data=topic_dist, stat='density', bins=100, kde=True)
+    # ax.set_xlim(0, 1)
     ax.set_xlabel("topic percentage")
-    ax.set_ylabel("count")
+    ax.set_ylabel("density")
 
     #figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
     figname = directory+'t'+str(t)+'_prob_density.pdf'
