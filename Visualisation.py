@@ -168,6 +168,9 @@ def get_doc_range(c_id, c):
     for i in range(len(labels)):
         if labels[i] == c:
             doc_range.append(i)
+    # debug
+    print(len(doc_range))
+    #end debug
 
     return doc_range
 
@@ -191,6 +194,13 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
     labels = pickle.load(open('ClusterResults/'+str(cid)+'/labels','rb'))
     lda_model = LdaModel.load('LDAResults/'+str(tid)+'/model')
     documents_topics = lda_model.get_document_topics(corpus)
+
+    # debug
+    print(len(documents_topics))
+    print(documents_topics[0])
+    return None
+    # end debug
+
     if mode == 'all':
         topic_dist = topic_distribution(documents_topics, t)
     else:

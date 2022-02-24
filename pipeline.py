@@ -64,11 +64,15 @@ def match_score(cid, tid, order, directory='figures/'):
 
     return cluster_score,topic_score,score
 
-results = np.zeros((10,10))
+# results = np.zeros((10,10))
+#
+# for cid in range(9,19):
+#     for tid in range(6,16):
+#         cluster,topic,score = match_score(cid, tid, order=20,directory='figures/')
+#         results[cid-9][tid-6] = score
+#
+# print(results)
 
-for cid in range(9,19):
-    for tid in range(6,16):
-        cluster,topic,score = match_score(cid, tid, order=20,directory='figures/')
-        results[cid-9][tid-6] = score
-
-print(results)
+corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+Visualisation.get_doc_range(9, 5)
+Visualisation.get_topic_distribution(corpus=corpus, cid=9, tid=1, c=0, t=0, mode='all')
