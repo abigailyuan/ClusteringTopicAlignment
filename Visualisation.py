@@ -77,6 +77,8 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         corpus_labels = pd.DataFrame(d)
 
         # debug begins
+        print(topic_rows[:, 0])
+        print(topic_rows[:5])
         print(corpus_labels.head())
         print(corpus_labels.groupby(['cluster']).head())
 

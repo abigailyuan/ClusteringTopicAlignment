@@ -157,7 +157,7 @@ def work_pipeline():
     directory = 'figures/'
     clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
                                                                          order=order, mode='distribution')
-    print(cluster_topic_matrix[0])
+    print(cluster_topic_matrix.head())
     t = 0
     dist = Visualisation.cluster_topic_dist(clusters, cluster_topic_matrix, t)
     print(dist.head())
