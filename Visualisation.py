@@ -18,11 +18,11 @@ def create_topic_rows(document_topics, order):
 
     for doc_id in range(len(document_topics)):
         doc = document_topics[doc_id]
+
         for topic_id, prob in doc:
             topic_rows[doc_id][topic_id] = prob
-            print(topic_rows[doc_id])
 
-        break
+
 
     return topic_rows
 
@@ -76,6 +76,9 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         for i in range(order):
             col = topic_rows[:, i]
             d['topic_'+str(i)] = col
+            print('topic 1 for first 100 docs')
+            print(col[:100])
+            break
 
         corpus_labels = pd.DataFrame(d)
 
