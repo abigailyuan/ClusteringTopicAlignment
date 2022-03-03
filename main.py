@@ -160,7 +160,6 @@ def work_pipeline():
     print(cluster_topic_matrix.head())
     t = 15
     dist = Visualisation.get_topic_distribution(corpus, cid, tid, c=0, t=t, mode='all')
-    print(dist.shape)
     Visualisation.hist_plot(topic_dist=dist, c=1, t=t, tid=1, directory='figures/test/git ')
     # for t in range(20):
     #     dist = Visualisation.cluster_topic_dist(clusters, cluster_topic_matrix, t)
