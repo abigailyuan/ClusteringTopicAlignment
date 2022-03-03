@@ -189,6 +189,8 @@ def topic_distribution(document_topics, t, doc_range=None):
     else:
         dist = []
         for i in document_topics:
+            print(i)
+            break
             dist.append(i[t][1])
     return dist
 
