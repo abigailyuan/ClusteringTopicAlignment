@@ -28,7 +28,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
     # load topic model
     corpus = pickle.load(open(corpus, 'rb'))
     lda_model = LdaModel.load(topic_model)
-    documents_topics = lda_model.get_document_topics(corpus)
+    documents_topics = lda_model.get_document_topics(corpus, minimum_probability=0.05)
     topics_r1 = [sorted(i, key=lambda x: x[1], reverse=True)[0][0] for i in
                  documents_topics]  # find the most likely topic per document
 
@@ -77,8 +77,6 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         corpus_labels = pd.DataFrame(d)
 
         # debug begins
-        print(topic_rows[:, 0])
-        print(topic_rows[:5])
         print(corpus_labels.head())
         print(corpus_labels.groupby(['cluster']).head())
 
