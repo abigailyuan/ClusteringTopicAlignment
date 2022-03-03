@@ -84,7 +84,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         print(type(cluster_topic_matrix))
         print(cluster_topic_matrix.iloc[0, :])
 
-        cluster_topic_matrix = cluster_topic_matrix.div(cluster_topic_matrix.sum(axis='rows'), axis='columns')
+        cluster_topic_matrix = cluster_topic_matrix.div(cluster_topic_matrix.sum(axis='rows'), axis='rows')
         print('after normalisation')
         print(cluster_topic_matrix.iloc[0,:])
 
