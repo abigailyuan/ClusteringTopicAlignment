@@ -158,7 +158,7 @@ def work_pipeline():
     clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
                                                                          order=order, mode='distribution')
     print(cluster_topic_matrix.head())
-    t = 0
+    t = 2
     dist = Visualisation.cluster_topic_dist(clusters, cluster_topic_matrix, t)
     print(dist.head(100))
     Visualisation.hist_plot(topic_dist=dist, c=1, t=t, tid=1, directory='figures/test/git ')
