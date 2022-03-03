@@ -18,6 +18,8 @@ def create_topic_rows(document_topics, order):
 
     for doc_id in range(len(document_topics)):
         doc = document_topics[doc_id]
+        print(doc)
+        break
         for topic_id, prob in doc:
             topic_rows[doc_id][topic_id] = prob
 
@@ -77,6 +79,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         corpus_labels = pd.DataFrame(d)
 
         # debug begins
+        print(topic_rows[0])
         print(corpus_labels.head())
         print(corpus_labels.groupby(['cluster']).head())
 
@@ -195,7 +198,7 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
     corpus = pickle.load(open(corpus, 'rb'))
     labels = pickle.load(open('ClusterResults/'+str(cid)+'/labels','rb'))
     lda_model = LdaModel.load('LDAResults/'+str(tid)+'/model')
-    documents_topics = lda_model.get_document_topics(bow=corpus, minimum_probability=0.0)
+    documents_topics = lda_model.get_document_topics(bow=corpus, minimum_probability=0.005)
 
     if mode == 'all':
         topic_dist = topic_distribution(documents_topics, t)
