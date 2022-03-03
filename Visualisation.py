@@ -199,7 +199,7 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
     corpus = pickle.load(open(corpus, 'rb'))
     labels = pickle.load(open('ClusterResults/'+str(cid)+'/labels','rb'))
     lda_model = LdaModel.load('LDAResults/'+str(tid)+'/model')
-    documents_topics = lda_model.get_document_topics(bow=corpus, minimum_probability=0.005)
+    documents_topics = lda_model.get_document_topics(bow=corpus, minimum_probability=0.05)
 
     if mode == 'all':
         topic_dist = topic_distribution(documents_topics, t)
