@@ -90,8 +90,8 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         #debug ends
         cluster_topic_matrix = corpus_labels.groupby(['cluster']).sum()
 
-        cluster_topic_matrix = cluster_topic_matrix.div(cluster_topic_matrix.sum(axis=1), axis=0)
-        #print(cluster_topic_matrix)
+        #cluster_topic_matrix = cluster_topic_matrix.div(cluster_topic_matrix.sum(axis=1), axis=0)
+        print(cluster_topic_matrix.head(5))
 
 
     return clusters, cluster_topic_matrix
