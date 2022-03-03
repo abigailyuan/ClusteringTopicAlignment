@@ -212,8 +212,8 @@ def hist_plot(topic_dist, t, c, tid, directory):
     fig, ax = plt.subplots(figsize=(16, 10))
     ax = sns.displot(data=topic_dist, kde=True)
     # ax.set_xlim(0, 1)
-    ax.set_xlabel("topic percentage")
-    ax.set_ylabel("count")
+    #ax.set_xlabel("topic percentage")
+    #ax.set_ylabel("count")
 
     #figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
     figname = directory+'t'+str(t)+'_prob_density.pdf'
