@@ -76,9 +76,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         for i in range(order):
             col = topic_rows[:, i]
             d['topic_'+str(i)] = col
-            print('topic 1 for first 100 docs')
-            print(col[:100])
-            break
+
 
         corpus_labels = pd.DataFrame(d)
 
@@ -89,8 +87,11 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
 
         #debug ends
         cluster_topic_matrix = corpus_labels.groupby(['cluster']).sum()
+        print(type(cluster_topic_matrix))
+        print(cluster_topic_matrix.head(5))
 
-        #cluster_topic_matrix = cluster_topic_matrix.div(cluster_topic_matrix.sum(axis=1), axis=0)
+        cluster_topic_matrix = cluster_topic_matrix.div(cluster_topic_matrix.sum(axis=1), axis=0)
+        print('after normalisation')
         print(cluster_topic_matrix.head(5))
 
 
