@@ -81,19 +81,12 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         corpus_labels = pd.DataFrame(d)
 
         cluster_topic_matrix = corpus_labels.groupby(['cluster']).sum()
-        print(type(cluster_topic_matrix))
-        print(cluster_topic_matrix.iloc[0, :])
 
         for row in range(cluster_topic_matrix.shape[0]):
             curr_row = cluster_topic_matrix.iloc[row, :]
             row_sum = curr_row.sum()
             for col in range(cluster_topic_matrix.shape[1]):
                 cluster_topic_matrix.iat[row, col] /= row_sum
-
-
-        print('after normalisation')
-        print(cluster_topic_matrix.iloc[0,:])
-
 
     return clusters, cluster_topic_matrix
 
@@ -228,7 +221,7 @@ def hist_plot(topic_dist, t, c, tid, directory):
 
 
 def cluster_topic_dist(clusters, cluster_topic_matrix, t):
-    return cluster_topic_matrix[:, t]
+    return cluster_topic_matrix.iloc[:, t]
 
 
 def skewness_measure(dist):
