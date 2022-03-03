@@ -21,7 +21,7 @@ def create_topic_rows(document_topics, order):
         for topic_id, prob in doc:
             topic_rows[doc_id][topic_id] = prob
             print(topic_rows[doc_id])
-            break
+
         break
 
     return topic_rows
