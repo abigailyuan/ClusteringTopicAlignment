@@ -18,10 +18,11 @@ def create_topic_rows(document_topics, order):
 
     for doc_id in range(len(document_topics)):
         doc = document_topics[doc_id]
-        print(doc)
-        break
         for topic_id, prob in doc:
             topic_rows[doc_id][topic_id] = prob
+            print(topic_rows[doc_id])
+            break
+        break
 
     return topic_rows
 
