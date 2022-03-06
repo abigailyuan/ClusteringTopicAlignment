@@ -72,7 +72,9 @@ def match_score(cid, tid, order, directory='figures/'):
 #         results[cid-9][tid-6] = score
 #
 # print(results)
-
+cid = 9
+tid = 1
 corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-Visualisation.get_doc_range(9, 5)
-Visualisation.get_topic_distribution(corpus=corpus, cid=9, tid=1, c=0, t=0, mode='all')
+dist = Visualisation.get_topic_distribution(corpus=corpus, cid=9, tid=1, c=0, t=15, mode='all')
+print(len(dist))
+print(dist[-10:])

@@ -31,7 +31,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
     # load topic model
     corpus = pickle.load(open(corpus, 'rb'))
     lda_model = LdaModel.load(topic_model)
-    documents_topics = lda_model.get_document_topics(corpus, minimum_probability=0.05)
+    documents_topics = lda_model.get_document_topics(corpus, minimum_probability=0.1)
     topics_r1 = [sorted(i, key=lambda x: x[1], reverse=True)[0][0] for i in
                  documents_topics]  # find the most likely topic per document
 
@@ -189,10 +189,9 @@ def topic_distribution(document_topics, t, doc_range=None):
     else:
         dist = []
         for i in document_topics:
-            try:
-                dist.append(i[t][1])
-            except:
-                dist.append(0)
+            for k,v in i:
+                if k == t:
+                    dist.append(v)
     return dist
 
 def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
@@ -200,7 +199,7 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
     labels = pickle.load(open('ClusterResults/'+str(cid)+'/labels','rb'))
     lda_model = LdaModel.load('LDAResults/'+str(tid)+'/model')
     documents_topics = lda_model.get_document_topics(bow=corpus, minimum_probability=0.05)
-
+    print(documents_topics[-1])
     if mode == 'all':
         topic_dist = topic_distribution(documents_topics, t)
     else:
@@ -213,10 +212,10 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
 # displot
 def hist_plot(topic_dist, t, c, tid, directory):
     fig, ax = plt.subplots(figsize=(16, 10))
-    ax = sns.histplot(data=topic_dist, bins=20, kde=True)
+    ax = sns.histplot(data=topic_dist, bins=100, kde=True,cumulative=False)
     # ax.set_xlim(0, 1)
-    #ax.set_xlabel("topic percentage")
-    #ax.set_ylabel("count")
+    ax.set_xlabel("topic percentage")
+    ax.set_ylabel("count")
 
     #figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
     figname = directory+'t'+str(t)+'_prob_density.pdf'
