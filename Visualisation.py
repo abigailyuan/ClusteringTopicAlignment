@@ -59,7 +59,9 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         index = ['c' + str(i) for i in range(k)]
         columns = ['t' + str(i) for i in range(k)]
         cluster_topic_matrix = pd.DataFrame(data=data, index=index, columns=columns)
-        cluster_topic_matrix.head()
+
+        # drop dominant topics here
+        cluster_topic_matrix = cluster_topic_matrix.drop(['t14','t15'], axis='columns')
 
         # get the percentage per bar
         for row in range(cluster_topic_matrix.shape[0]):
@@ -75,12 +77,15 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
         d = {'cluster':labels}
         for i in range(order):
             col = topic_rows[:, i]
-            d['topic_'+str(i)] = col
+            d['t'+str(i)] = col
 
 
         corpus_labels = pd.DataFrame(d)
 
         cluster_topic_matrix = corpus_labels.groupby(['cluster']).sum()
+
+        #drop dominant topics here
+        cluster_topic_matrix = cluster_topic_matrix.drop(['t14','t15'], axis='columns')
 
         for row in range(cluster_topic_matrix.shape[0]):
             curr_row = cluster_topic_matrix.iloc[row, :]
@@ -198,8 +203,7 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
     corpus = pickle.load(open(corpus, 'rb'))
     labels = pickle.load(open('ClusterResults/'+str(cid)+'/labels','rb'))
     lda_model = LdaModel.load('LDAResults/'+str(tid)+'/model')
-    documents_topics = lda_model.get_document_topics(bow=corpus, minimum_probability=0.05)
-    print(documents_topics[-1])
+    documents_topics = lda_model.get_document_topics(bow=corpus, minimum_probability=0.000)
     if mode == 'all':
         topic_dist = topic_distribution(documents_topics, t)
     else:
@@ -218,7 +222,7 @@ def hist_plot(topic_dist, t, c, tid, directory):
     ax.set_ylabel("count")
 
     #figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
-    figname = directory+'t'+str(t)+'_prob_density.pdf'
+    figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
     plt.savefig(figname)
 
 
