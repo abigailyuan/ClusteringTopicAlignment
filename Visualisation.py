@@ -27,11 +27,11 @@ def create_topic_rows(document_topics, order):
     return topic_rows
 
 
-def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label'):
+def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=20, mode='label'):
     # load topic model
     corpus = pickle.load(open(corpus, 'rb'))
     lda_model = LdaModel.load(topic_model)
-    documents_topics = lda_model.get_document_topics(corpus, minimum_probability=0.1)
+    documents_topics = lda_model.get_document_topics(corpus, minimum_probability=0.0005)
     topics_r1 = [sorted(i, key=lambda x: x[1], reverse=True)[0][0] for i in
                  documents_topics]  # find the most likely topic per document
 
@@ -45,21 +45,23 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
     if mode == 'label':
         print('this is label run.')
         # create dataframe
-        k = order
+
         d = {'cluster': labels, 'topic_r1': topics_r1}
         corpus_labels = pd.DataFrame(d)
 
-        data = np.zeros((k, k), dtype=float)
+        data = np.zeros((c_order, t_order), dtype=float)
         for row in range(corpus_labels.shape[0]):
             cluster = corpus_labels.iloc[row, 0]
             topic = corpus_labels.iloc[row, 1]
             data[cluster][topic] += 1
 
         np.set_printoptions(suppress=True)
-        index = ['c' + str(i) for i in range(k)]
-        columns = ['t' + str(i) for i in range(k)]
+        index = ['c' + str(i) for i in range(c_order)]
+        columns = ['t' + str(i) for i in range(t_order)]
         cluster_topic_matrix = pd.DataFrame(data=data, index=index, columns=columns)
-        cluster_topic_matrix.head()
+
+        # drop dominant topics here
+        cluster_topic_matrix = cluster_topic_matrix.drop(['t14','t15'], axis='columns')
 
         # get the percentage per bar
         for row in range(cluster_topic_matrix.shape[0]):
@@ -71,16 +73,19 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
     elif mode == 'distribution':
         print('this is distribution run.')
         # create dataframe
-        topic_rows = create_topic_rows(documents_topics, order=order)
+        topic_rows = create_topic_rows(documents_topics, order=t_order)
         d = {'cluster':labels}
-        for i in range(order):
+        for i in range(t_order):
             col = topic_rows[:, i]
-            d['topic_'+str(i)] = col
+            d['t'+str(i)] = col
 
 
         corpus_labels = pd.DataFrame(d)
 
         cluster_topic_matrix = corpus_labels.groupby(['cluster']).sum()
+
+        #drop dominant topics here
+        cluster_topic_matrix = cluster_topic_matrix.drop(['t14','t15'], axis='columns')
 
         for row in range(cluster_topic_matrix.shape[0]):
             curr_row = cluster_topic_matrix.iloc[row, :]
@@ -91,10 +96,10 @@ def compare_cluster_topic(clustering, topic_model, corpus, order=10, mode='label
     return clusters, cluster_topic_matrix
 
 
-def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, order=10, directory='figures/',mode='label'):
+def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, c_order=30,t_order=20, directory='figures/',mode='label'):
     # set plot title
     # plot
-    num_topic = order
+    num_topic = t_order
 
     crun = str(cid)
     trun = str(tid)
@@ -134,7 +139,7 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, o
     if mode == 'label':
         figname = f'{directory}c{crun}t{trun}.pdf'
     else:
-        figname = f'{directory}c{crun}t{trun}_{mode}.pdf'
+        figname = f'{directory}c{crun}t{trun}_{mode}_no1415.pdf'
     plt.savefig(figname)
 
     return 0
@@ -198,8 +203,7 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
     corpus = pickle.load(open(corpus, 'rb'))
     labels = pickle.load(open('ClusterResults/'+str(cid)+'/labels','rb'))
     lda_model = LdaModel.load('LDAResults/'+str(tid)+'/model')
-    documents_topics = lda_model.get_document_topics(bow=corpus, minimum_probability=0.05)
-    print(documents_topics[-1])
+    documents_topics = lda_model.get_document_topics(bow=corpus, minimum_probability=0.000)
     if mode == 'all':
         topic_dist = topic_distribution(documents_topics, t)
     else:
@@ -218,7 +222,7 @@ def hist_plot(topic_dist, t, c, tid, directory):
     ax.set_ylabel("count")
 
     #figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
-    figname = directory+'t'+str(t)+'_prob_density.pdf'
+    figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
     plt.savefig(figname)
 
 

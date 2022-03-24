@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 import preprocessing
 import corpus_vectorizer
 import pickle
@@ -7,7 +9,7 @@ import KMeansGenerator
 import LDAGenerator
 import Visualisation
 import numpy as np
-
+from seaborn import boxplot
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
@@ -103,20 +105,21 @@ def work_pipeline():
     #     print('LDA run: ' + str(tid) + ' generated.')
 
     # generate figures
-    cid = 9
+    cid = 3
     tid = 1
     clustering = 'ClusterResults/' + str(cid) + '/model'
     topic_model = 'LDAResults/' + str(tid) + '/model'
     corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
     directory = 'figures/'
     clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
-                                                                         order=order, mode='distribution')
-    Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
+                                                                         c_order=30,t_order=20, mode='distribution')
+
+    Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, c_order=30, t_order=20,
                                                directory=directory, mode='distribution')
 
     clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
-                                                                         order=order, mode='label')
-    Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, order=order,
+                                                                         c_order=30, t_order=20, mode='label')
+    Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, c_order=30, t_order=20,
                                                directory=directory, mode='label')
 
     # vector similarity
@@ -150,12 +153,12 @@ def work_pipeline():
     #     print(f"t{t}:  {skewness}")
 
     # testing
-    cid = 9
-    tid = 1
-    clustering = 'ClusterResults/' + str(cid) + '/model'
-    topic_model = 'LDAResults/' + str(tid) + '/model'
-    corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    directory = 'figures/'
+    # cid = 9
+    # tid = 11
+    # clustering = 'ClusterResults/' + str(cid) + '/model'
+    # topic_model = 'LDAResults/' + str(tid) + '/model'
+    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    # directory = 'figures/'
     # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,order=order, mode='distribution')
     # print(cluster_topic_matrix.head())
     # t = 2
@@ -166,8 +169,32 @@ def work_pipeline():
     # Visualisation.hist_plot(topic_dist=dist, c=1, t=t, tid=1, directory='figures/test/')
 
     # for t in range(20):
-    #     dist = Visualisation.get_topic_distribution(corpus, cid, tid, c=0, t=t, mode='all')
-    #     Visualisation.hist_plot(topic_dist=dist, c=1, t=t, tid=1, directory='figures/c9t1_topic/')
+    #     for c in range(20):
+    #         dist = Visualisation.get_topic_distribution(corpus, cid, tid, c=0, t=t, mode='cluster')
+    #         Visualisation.hist_plot(topic_dist=dist, c=c, t=t, tid=1, directory='figures/c9t11/')
+    #     print('topic',t,'finished.')
+
+    # topic distribution boxplot to compare topic significance
+    # cid = 9
+    # tid = 1
+    # clustering = 'ClusterResults/' + str(cid) + '/model'
+    # topic_model = 'LDAResults/' + str(tid) + '/model'
+    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    # directory = 'figures/'
+    # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
+    #                                                                      order=order, mode='distribution')
+    #
+    # print(cluster_topic_matrix.head(5))
+
+    # cluster_topic_matrix = cluster_topic_matrix.drop(['t14','t15'], axis='columns')
+    # plt.clf()
+    # plt.figure()
+    # ax = boxplot(data = cluster_topic_matrix)
+    # ax.set_xlabel("Topic")
+    # ax.set_ylabel("Percentage in Clusters")
+    # plt.savefig('topic_boxplt.pdf')
+
+
 
     return 0
 
