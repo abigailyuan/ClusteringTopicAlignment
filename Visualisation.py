@@ -26,6 +26,15 @@ def create_topic_rows(document_topics, order):
 
     return topic_rows
 
+def to_labels(queries):
+    docs = []
+    for q in queries:
+        for d in queries[q]:
+            docs.append((d,q))
+
+    docs = sorted(docs)
+
+    return docs
 
 def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=20, mode='label'):
     # load topic model
@@ -36,11 +45,18 @@ def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=2
                  documents_topics]  # find the most likely topic per document
 
     # load clustering
-    kmeans = pickle.load(open(clustering, 'rb'))
-    labels = kmeans.labels_
-    clusters = dd(int)
-    for i in labels:
-        clusters[i] += 1
+    # kmeans = pickle.load(open(clustering, 'rb'))
+    # labels = kmeans.labels_
+    # clusters = dd(int)
+    # for i in labels:
+    #     clusters[i] += 1
+
+    # for qrel version
+    clusters = clustering
+    docs = to_labels(clusters)
+    labels = [v for k,v in docs]
+
+
 
     if mode == 'label':
         print('this is label run.')
@@ -75,8 +91,9 @@ def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=2
         # create dataframe
         topic_rows = create_topic_rows(documents_topics, order=t_order)
         d = {'cluster':labels}
+        selected_rows = [k for k,v in docs]
         for i in range(t_order):
-            col = topic_rows[:, i]
+            col = topic_rows[selected_rows, i]
             d['t'+str(i)] = col
 
 
@@ -120,9 +137,10 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, c
     for bar, hatch in zip(bars, hatches):  # loop over bars and hatches to set hatches in correct order
         bar.set_hatch(hatch)
 
-    cluster_sizes = [clusters[i] for i in range(len(clusters))]
+    cluster_sizes = [len(clusters[i]) for i in range(len(clusters))]
+    #cluster_sizes = [clusters[i] for i in range(len(clusters))]
 
-    #print(cluster_sizes)
+    print(cluster_sizes)
     new_yticklable = []
     i = 0
     for ticklabel in ax.get_yticklabels():
