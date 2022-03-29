@@ -36,7 +36,7 @@ def to_labels(queries):
 
     return docs
 
-def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=20, mode='label'):
+def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=20, mode='label', normalised = False):
     # load topic model
     corpus = pickle.load(open(corpus, 'rb'))
     lda_model = LdaModel.load(topic_model)
@@ -45,16 +45,16 @@ def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=2
                  documents_topics]  # find the most likely topic per document
 
     # load clustering
-    # kmeans = pickle.load(open(clustering, 'rb'))
-    # labels = kmeans.labels_
-    # clusters = dd(int)
-    # for i in labels:
-    #     clusters[i] += 1
+    kmeans = pickle.load(open(clustering, 'rb'))
+    labels = kmeans.labels_
+    clusters = dd(int)
+    for i in labels:
+        clusters[i] += 1
 
     # for qrel version
-    clusters = clustering
-    docs = to_labels(clusters)
-    labels = [v for k,v in docs]
+    # clusters = clustering
+    # docs = to_labels(clusters)
+    # labels = [v for k,v in docs]
 
 
 
@@ -77,7 +77,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=2
         cluster_topic_matrix = pd.DataFrame(data=data, index=index, columns=columns)
 
         # drop dominant topics here
-        cluster_topic_matrix = cluster_topic_matrix.drop(['t14','t15'], axis='columns')
+        # cluster_topic_matrix = cluster_topic_matrix.drop(['t9','t13'], axis='columns')
 
         # get the percentage per bar
         for row in range(cluster_topic_matrix.shape[0]):
@@ -91,9 +91,10 @@ def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=2
         # create dataframe
         topic_rows = create_topic_rows(documents_topics, order=t_order)
         d = {'cluster':labels}
-        selected_rows = [k for k,v in docs]
+        #selected_rows = [k for k,v in docs]
         for i in range(t_order):
-            col = topic_rows[selected_rows, i]
+            #col = topic_rows[selected_rows, i]
+            col = topic_rows[:,i]
             d['t'+str(i)] = col
 
 
@@ -102,7 +103,23 @@ def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=2
         cluster_topic_matrix = corpus_labels.groupby(['cluster']).sum()
 
         #drop dominant topics here
-        cluster_topic_matrix = cluster_topic_matrix.drop(['t14','t15'], axis='columns')
+        # cluster_topic_matrix = cluster_topic_matrix.drop(['t9','t13'], axis='columns')
+
+        # normalise the topic distributions with corpus topic probability
+        if normalised:
+            corpus_topics = {}
+            for doc in documents_topics:
+                for topic, val in doc:
+                    corpus_topics[topic] = corpus_topics.get(topic, 0) + val
+
+            corpus_sum = sum([v for v in corpus_topics.values()])
+
+            for k in corpus_topics.keys():
+                corpus_topics[k] /= corpus_sum
+
+            for col in range(cluster_topic_matrix.shape[1]):
+                colume = cluster_topic_matrix.iloc[:, col] / corpus_topics[col]
+                cluster_topic_matrix['t' + str(col)] = colume
 
         for row in range(cluster_topic_matrix.shape[0]):
             curr_row = cluster_topic_matrix.iloc[row, :]
@@ -137,10 +154,9 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, c
     for bar, hatch in zip(bars, hatches):  # loop over bars and hatches to set hatches in correct order
         bar.set_hatch(hatch)
 
-    cluster_sizes = [len(clusters[i]) for i in range(len(clusters))]
-    #cluster_sizes = [clusters[i] for i in range(len(clusters))]
+    #cluster_sizes = [len(clusters[i]) for i in range(len(clusters))]
+    cluster_sizes = [clusters[i] for i in range(len(clusters))]
 
-    print(cluster_sizes)
     new_yticklable = []
     i = 0
     for ticklabel in ax.get_yticklabels():
@@ -153,11 +169,12 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, c
     ax.grid(which='both')
     ax.grid(which='minor', alpha=0.2, linestyle='--')
     ax.legend(loc=1)
+    plt.title("Normliazed Topic Distribution Per Cluster", fontsize = 18)
     # change figure name and save
     if mode == 'label':
-        figname = f'{directory}c{crun}t{trun}.pdf'
+        figname = f'{directory}c{crun}t{trun}_no913.pdf'
     else:
-        figname = f'{directory}c{crun}t{trun}_{mode}_no1415.pdf'
+        figname = f'{directory}c{crun}t{trun}_{mode}_normalised.pdf'
     plt.savefig(figname)
 
     return 0
@@ -242,6 +259,7 @@ def hist_plot(topic_dist, t, c, tid, directory):
     #figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
     figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
     plt.savefig(figname)
+    plt.close()
 
 
 def cluster_topic_dist(clusters, cluster_topic_matrix, t):
