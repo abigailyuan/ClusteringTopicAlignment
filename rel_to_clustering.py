@@ -112,21 +112,20 @@ def read_run(filename, queries):
 # for i,k in enumerate(queries.keys()):
 #     print(i,k)
 
-queries = dd(list)
-read_run("trec2/input.citri1", queries)
-read_run("trec3.adhoc/input.citri1", queries)
-read_run("trec4.adhoc/input.citri1", queries)
+def get_query_docs():
+    queries = dd(list)
+    read_run("trec2/input.citri1", queries)
+    read_run("trec3.adhoc/input.citri1", queries)
+    read_run("trec4.adhoc/input.citri1", queries)
 
-convert_to_id(queries)
-query_keys = []
-new_queries = {}
-for q in queries:
-    if queries[q] != []:
-        new_queries[q] = queries[q]
-    else:
-        print(q)
-print(len(queries))
-print(len(new_queries))
+    convert_to_id(queries)
+    new_queries = {}
+    for q in queries:
+        if queries[q] != []:
+            new_queries[q] = queries[q]
+    return new_queries
+
+new_queries = get_query_docs()
 # fig, axes = plt.subplots(5,1, figsize=(80, 160))
 #
 # cid = 199
