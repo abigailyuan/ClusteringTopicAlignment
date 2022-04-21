@@ -57,7 +57,6 @@ def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=2
     # labels = [v for k,v in docs]
 
 
-
     if mode == 'label':
         print('this is label run.')
         # create dataframe
@@ -91,12 +90,13 @@ def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=2
         # create dataframe
         topic_rows = create_topic_rows(documents_topics, order=t_order)
         d = {'cluster':labels}
-        #selected_rows = [k for k,v in docs]
+
+        # for qrel
+        # selected_rows = [k for k,v in docs]
         for i in range(t_order):
             #col = topic_rows[selected_rows, i]
             col = topic_rows[:,i]
             d['t'+str(i)] = col
-
 
         corpus_labels = pd.DataFrame(d)
 
@@ -130,7 +130,7 @@ def compare_cluster_topic(clustering, topic_model, corpus, c_order=20, t_order=2
     return clusters, cluster_topic_matrix
 
 
-def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, c_order=30,t_order=20, directory='figures/',mode='label'):
+def topic_distribution_visualise(ax, clusters, cluster_topic_matrix, cid=0, tid=0, c_order=30,t_order=20, directory='figures/',mode='label'):
     # set plot title
     # plot
     num_topic = t_order
@@ -138,10 +138,14 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, c
     crun = str(cid)
     trun = str(tid)
 
-    plt.clf()
-    plt.figure()
+    # plt.clf()
+    # plt.figure()
 
-    ax = cluster_topic_matrix.plot.barh(stacked=True, figsize=(20, 10))
+    try:
+        ax = cluster_topic_matrix.plot.barh(ax = ax, stacked=True, figsize=(30,30))
+    except:
+        print(cluster_topic_matrix)
+        return 0
 
     patterns = [' '] * int(num_topic / 2)
     patterns_back = ['///', '\\\\\\'] * int(num_topic / 4)
@@ -154,7 +158,8 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, c
     for bar, hatch in zip(bars, hatches):  # loop over bars and hatches to set hatches in correct order
         bar.set_hatch(hatch)
 
-    #cluster_sizes = [len(clusters[i]) for i in range(len(clusters))]
+    # for qrel
+    # cluster_sizes = [len(clusters[i]) for i in sorted(list(clusters.keys()))]
     cluster_sizes = [clusters[i] for i in range(len(clusters))]
 
     new_yticklable = []
@@ -165,17 +170,17 @@ def topic_distribution_visualise(clusters, cluster_topic_matrix, cid=0, tid=0, c
         i += 1
     ax.set_yticklabels(new_yticklable)
     ax.set_xlabel('percentage of topics', fontsize=18)
-    ax.set_ylabel('cluster (cluster-size)', fontsize=18)
+    ax.set_ylabel('query (# retrieved docs)', fontsize=18)
     ax.grid(which='both')
     ax.grid(which='minor', alpha=0.2, linestyle='--')
     ax.legend(loc=1)
-    plt.title("Normliazed Topic Distribution Per Cluster", fontsize = 18)
+    ax.set_title("Topic Distribution Per Cluster", fontsize = 18)
     # change figure name and save
     if mode == 'label':
         figname = f'{directory}c{crun}t{trun}_no913.pdf'
     else:
         figname = f'{directory}c{crun}t{trun}_{mode}_normalised.pdf'
-    plt.savefig(figname)
+    # plt.savefig(figname)
 
     return 0
 
@@ -249,17 +254,17 @@ def get_topic_distribution(corpus=None, cid=0, tid=0, c=0, t=0, mode='all'):
 
 
 # displot
-def hist_plot(topic_dist, t, c, tid, directory):
-    fig, ax = plt.subplots(figsize=(16, 10))
-    ax = sns.histplot(data=topic_dist, bins=100, kde=True,cumulative=False)
+def hist_plot(ax, topic_dist, t, c, tid, directory):
+    ax = sns.histplot(data=topic_dist, bins=100, kde=True,cumulative=False, ax=ax)
     # ax.set_xlim(0, 1)
-    ax.set_xlabel("topic percentage")
-    ax.set_ylabel("count")
+    ax.set_xlabel("topic percentage", fontsize=18)
+    ax.set_ylabel("count", fontsize = 18)
+    return ax
 
-    #figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
-    figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
-    plt.savefig(figname)
-    plt.close()
+    # #figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
+    # figname = directory+'c'+str(c)+'t'+str(t)+'_prob_density.pdf'
+    # plt.savefig(figname)
+    # plt.close()
 
 
 def cluster_topic_dist(clusters, cluster_topic_matrix, t):
