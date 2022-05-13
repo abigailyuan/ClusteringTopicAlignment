@@ -62,17 +62,36 @@ def get_domain(query_file):
         queries_dict[num] = query_dict
     return queries_dict
 
-queries = get_domain('topics.101-150')
-domains = dd(list)
-for i in queries:
-    domains[queries[i]['domain']].append(i)
-for k in domains:
-    print(k)
-print(len(domains))
-print(domains['International Politics'])
-print(domains['Military'])
-print(domains['International Economics'])
-print(domains['Medical & Biological'])
+
+def get_topic_word_distribution(lda, topic_id):
+    term_topic_matrix = lda.get_topics()
+
+    return term_topic_matrix[topic_id]
+
+topic_model = 'LDAResults/' + '1' + '/model'
+lda = LdaModel.load(topic_model)
+print(len(get_topic_word_distribution(lda, 0)))
+
+corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+dictionary = 'ProcessedWSJ/dictionary.pkl'
+dict = pickle.load(open(dictionary, 'rb'))
+print(len(dict))
+print(list(dict.keys())[:10])
+print(list(dict.values())[:10])
+tfidf = pickle.load(open(corpus,'rb'))
+print(tfidf[0])
+print(sum([i[1] for i in tfidf[0]]))
+# queries = get_domain('topics.101-150')
+# domains = dd(list)
+# for i in queries:
+#     domains[queries[i]['domain']].append(i)
+# for k in domains:
+#     print(k)
+# print(len(domains))
+# print(domains['International Politics'])
+# print(domains['Military'])
+# print(domains['International Economics'])
+# print(domains['Medical & Biological'])
 # queries = get_query_docs()
 # normalised_distribution, corpus_topics = get_collection_topic_distribution(tid=1, corpus_file='ProcessedWSJ/tfidf_corpus.pkl')
 # query_kl = dd(float)
