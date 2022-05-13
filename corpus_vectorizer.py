@@ -5,6 +5,7 @@ from gensim.models import TfidfModel
 from gensim.matutils import corpus2dense
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from numpy import asarray
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 def create_dictionary(filename, no_below=15, no_above=0.5, keep_n=10000, directory='ProcessedWSJ/'):
@@ -46,6 +47,19 @@ def tfidf_vectorize(filename, dictionary, directory='ProcessedWSJ'):
 
     return 0
 
+
+def bow_vectorize(filename, dictionary, directory='ProcessedWSJ'):
+    corpus = pickle.load(open(filename, 'rb'))
+    dictionary = pickle.load(open(dictionary, 'rb'))
+
+    start = time.perf_counter()
+    model = CountVectorizer(vocabulary=dictionary)
+    vectorized_corpus = model.fit_transform(corpus)
+    end = time.perf_counter()
+    print('Corpus is vectorized with CountBased Vectorizer.')
+    print('time used:', int(end - start))
+
+    pickle.dump(vectorized_corpus, open(directory + 'count_corpus.pkl', 'wb'))
 
 def doc2vec_vectorize(filename, vector_size=500, window=2, min_count=15, max_vocab_size=10000,
                       directory='ProcessedWSJ/'):

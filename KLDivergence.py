@@ -65,22 +65,23 @@ def get_domain(query_file):
 
 def get_topic_word_distribution(lda, topic_id):
     term_topic_matrix = lda.get_topics()
-
     return term_topic_matrix[topic_id]
 
-topic_model = 'LDAResults/' + '1' + '/model'
+
+
+topic_model = 'LDAResults/' + '16' + '/model'
 lda = LdaModel.load(topic_model)
 print(len(get_topic_word_distribution(lda, 0)))
 
 corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
 dictionary = 'ProcessedWSJ/dictionary.pkl'
 dict = pickle.load(open(dictionary, 'rb'))
-print(len(dict))
-print(list(dict.keys())[:10])
-print(list(dict.values())[:10])
-tfidf = pickle.load(open(corpus,'rb'))
-print(tfidf[0])
-print(sum([i[1] for i in tfidf[0]]))
+# print(len(dict))
+# print(list(dict.keys())[:10])
+# print(list(dict.values())[:10])
+# tfidf = pickle.load(open(corpus,'rb'))
+# print(tfidf[0])
+# print(sum([i[1] for i in tfidf[0]]))
 # queries = get_domain('topics.101-150')
 # domains = dd(list)
 # for i in queries:
@@ -128,3 +129,22 @@ print(sum([i[1] for i in tfidf[0]]))
 # ax.set_title("KL Divergence with reference to collection topic distribution", fontsize = 18)
 # plt.xticks(rotation=90, fontsize=10)
 # plt.savefig("figures/KL_divergence_unsorted.pdf")
+
+
+# word based KL diverence (query subset vs. topics)
+
+queries = get_query_docs()
+word_topic_matrix = []
+for i in range(20):
+    prob = get_topic_word_distribution(lda, i)
+query_kl = dd(float)
+for query in queries.keys():
+    # get query subset topic distribution
+    query_topics = get_subset_topic_distribution(corpus_topics, queries[query])
+
+    # compute KL divergence regarding to corpus distribution
+    kl_divergence = KL_divergence(normalised_distribution, query_topics)
+    query_kl[query] = kl_divergence
+
+query_kl_lst = sorted([(k,v) for k,v in query_kl.items()], key=lambda x:x[1])
+print(query_kl_lst[:5])
