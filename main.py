@@ -31,6 +31,13 @@ def work_pipeline():
     # directory = 'ProcessedWSJ/'
     # corpus_vectorizer.create_dictionary(filename=corpus, directory=directory)
     # dictionary = directory+'dictionary.pkl'
+    # print(type(dictionary))
+    # bow = pickle.load(open('ProcessedWSJ/bow.pkl','rb'))
+    # print(type(bow))
+    # print(bow[200])
+
+
+    # corpus_vectorizer.bow_vectorize(corpus, dictionary, directory=directory)
     # corpus_vectorizer.tfidf_vectorize(bow_corpus, dictionary, directory=directory)
 
     # corpus_vectorizer.doc2vec_vectorize(corpus, vector_size=10000, directory=directory)
@@ -79,9 +86,10 @@ def work_pipeline():
     #     print('clustering run: ' + str(cid) + ' generated.')
 
     # generate topic models
-    # tid = 5
+    # tid = 16
     # directory = 'LDAResults/'
-    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    # # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    # corpus = 'ProcessedWSJ/bow.pkl'
     # dictionary = 'ProcessedWSJ/dictionary.pkl'
     # LDAGenerator.generate_lda(corpus=corpus, run_id=tid, num_topics=order, dictionary=dictionary, directory=directory)
     # LDAGenerator.predict_topic_labels(run_id=tid, corpus=corpus, directory=directory)
@@ -106,7 +114,7 @@ def work_pipeline():
 
     # generate figures
     # cid = 9
-    # tid = 7
+    # tid = 16
     # clustering = 'ClusterResults/' + str(cid) + '/model'
     # topic_model = 'LDAResults/' + str(tid) + '/model'
     # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
@@ -114,9 +122,8 @@ def work_pipeline():
     # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
     #                                                                      c_order=20,t_order=20, mode='distribution', normalised=True)
     #
-    # Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, c_order=20, t_order=20,
+    # Visualisation.topic_distribution_visualise(0, clusters, cluster_topic_matrix, cid=cid, tid=tid, c_order=20, t_order=20,
     #                                            directory=directory, mode='distribution')
-    #
     # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
     #                                                                      c_order=20, t_order=20, mode='label')
     # Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, c_order=20, t_order=20,
@@ -153,12 +160,12 @@ def work_pipeline():
     #     print(f"t{t}:  {skewness}")
 
     # testing
-    cid = 9
-    tid = 7
-    clustering = 'ClusterResults/' + str(cid) + '/model'
-    topic_model = 'LDAResults/' + str(tid) + '/model'
-    corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    directory = 'figures/'
+    # cid = 9
+    # tid = 7
+    # clustering = 'ClusterResults/' + str(cid) + '/model'
+    # topic_model = 'LDAResults/' + str(tid) + '/model'
+    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+    # directory = 'figures/'
     # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,c_order=20, t_order=20, mode='distribution')
     # print(cluster_topic_matrix.head())
     # t = 2
@@ -168,16 +175,16 @@ def work_pipeline():
     # print(np.median(dist))
     # Visualisation.hist_plot(topic_dist=dist, c=1, t=t, tid=1, directory='figures/test/')
 
-    for t in range(20):
-        plt.clf()
-        fig, axes = plt.subplots(20, 1, figsize=(20,150))
-        for c in range(20):
-            ax = axes[c]
-            dist = Visualisation.get_topic_distribution(corpus, cid, tid, c=c, t=t, mode='cluster')
-            axes[c] = Visualisation.hist_plot(ax, topic_dist=dist, c=c, t=t, tid=tid, directory='figures/c9t7/')
-            axes[c].set_title(f"Topic {t} distribution over cluster {c}", fontsize=18)
-        plt.savefig(f"figures/c9t7/topic{t}Skewness.pdf")
-        print('topic',t,'finished.')
+    # for t in range(20):
+    #     plt.clf()
+    #     fig, axes = plt.subplots(20, 1, figsize=(20,150))
+    #     for c in range(20):
+    #         ax = axes[c]
+    #         dist = Visualisation.get_topic_distribution(corpus, cid, tid, c=c, t=t, mode='cluster')
+    #         axes[c] = Visualisation.hist_plot(ax, topic_dist=dist, c=c, t=t, tid=tid, directory='figures/c9t7/')
+    #         axes[c].set_title(f"Topic {t} distribution over cluster {c}", fontsize=18)
+    #     plt.savefig(f"figures/c9t7/topic{t}Skewness.pdf")
+    #     print('topic',t,'finished.')
 
 
     # topic distribution boxplot to compare topic significance
@@ -199,6 +206,23 @@ def work_pipeline():
     # ax.set_xlabel("Topic")
     # ax.set_ylabel("Percentage in Clusters")
     # plt.savefig('topic_boxplt.pdf')
+
+    # topic-query subset KL Divergence visualisation
+    tfidf_topic_kl_matrix = pickle.load(open('tfidf_topic_query_KL_matrix.pkl','rb'))
+    bow_topic_kl_matrix = pickle.load(open('topic_query_KL_matrix.pkl','rb'))
+
+    plt.clf()
+    fig,axes = plt.subplots(3,1, figsize=(40,30))
+    axes[0] = Visualisation.visualise_topic_KL(tfidf_topic_kl_matrix, ax=axes[0])
+    axes[0].set_xlabel('Query Subset')
+    axes[0].set_ylabel('Topic')
+    axes[0].set_title('TFIDF-based Topic-Query Subset KL Divergence')
+
+    axes[1] = Visualisation.visualise_topic_KL(bow_topic_kl_matrix, ax=axes[1])
+    axes[1].set_xlabel('Query Subset')
+    axes[1].set_ylabel('Topic')
+    axes[1].set_title('BOW-based Topic-Query Subset KL Divergence')
+    plt.savefig('compare_topic_query_kl.pdf')
 
     return 0
 

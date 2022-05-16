@@ -8,10 +8,13 @@ def get_documents(query, bow_corpus):
     return docs
 
 
-def unigram_model(docs, k=0.1):
+def unigram_model(docs, k=1):
     # create a langauge model
     LM = {}
     BOW = 0
+    for i in range(10000):
+        LM[i] = k
+
     for doc in docs:
         for word, count in doc:
             if word in LM:
@@ -29,7 +32,7 @@ def unigram_model(docs, k=0.1):
 
 
 def to_word_probabilities(LM):
-    word_probability = numpy.zeros((1, 10000))
+    word_probability = numpy.zeros((10000, 1))
     for word in LM:
         word_probability[word] = LM[word]
     return word_probability

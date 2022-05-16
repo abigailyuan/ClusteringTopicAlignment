@@ -141,11 +141,8 @@ def topic_distribution_visualise(ax, clusters, cluster_topic_matrix, cid=0, tid=
     # plt.clf()
     # plt.figure()
 
-    try:
-        ax = cluster_topic_matrix.plot.barh(ax = ax, stacked=True, figsize=(30,30))
-    except:
-        print(cluster_topic_matrix)
-        return 0
+    fig, ax = plt.subplots()
+    ax = cluster_topic_matrix.plot.barh(stacked=True, figsize=(20,10))
 
     patterns = [' '] * int(num_topic / 2)
     patterns_back = ['///', '\\\\\\'] * int(num_topic / 4)
@@ -169,18 +166,18 @@ def topic_distribution_visualise(ax, clusters, cluster_topic_matrix, cid=0, tid=
         new_yticklable.append(f'{org_txt} ({cluster_sizes[i]:,d})')
         i += 1
     ax.set_yticklabels(new_yticklable)
-    ax.set_xlabel('percentage of topics', fontsize=18)
-    ax.set_ylabel('query (# retrieved docs)', fontsize=18)
+    ax.set_xlabel('percentage of topics', fontsize= 18)
+    ax.set_ylabel('Cluster(cluster-size)', fontsize=18)
     ax.grid(which='both')
     ax.grid(which='minor', alpha=0.2, linestyle='--')
     ax.legend(loc=1)
-    ax.set_title("Topic Distribution Per Cluster", fontsize = 18)
+    ax.set_title("Normalised Topic Distribution Per Cluster", fontsize = 18)
     # change figure name and save
     if mode == 'label':
         figname = f'{directory}c{crun}t{trun}_no913.pdf'
     else:
         figname = f'{directory}c{crun}t{trun}_{mode}_normalised.pdf'
-    # plt.savefig(figname)
+    plt.savefig(figname)
 
     return 0
 
@@ -273,3 +270,7 @@ def cluster_topic_dist(clusters, cluster_topic_matrix, t):
 
 def skewness_measure(dist):
     return skew(dist)
+
+def visualise_topic_KL(ax, topic_kl_matrix):
+    ax = sns.heatmap(topic_kl_matrix, linewidths=.5, ax=ax)
+    return ax

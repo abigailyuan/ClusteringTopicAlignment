@@ -1,7 +1,11 @@
+import time
+
 from gensim.models import LdaModel
 from collections import defaultdict as dd
 import pickle
 import pandas as pd
+
+import LanguageModel
 from rel_to_clustering import get_query_docs
 import numpy as np
 import matplotlib.pyplot as plt
@@ -67,15 +71,26 @@ def get_topic_word_distribution(lda, topic_id):
     term_topic_matrix = lda.get_topics()
     return term_topic_matrix[topic_id]
 
+def get_tfidf_weights(docs):
+    tfidf_weights = np.zeros(10000)
+    for i in range(len(tfidf_weights)):
+        tfidf_weights[i] = 0.1
+    for d in docs:
+        for word, score in d:
+            tfidf_weights[word] += score
+    s = np.sum(tfidf_weights)
+    for i in range(len(tfidf_weights)):
+        tfidf_weights[i] /= s
+    return tfidf_weights
 
-
-topic_model = 'LDAResults/' + '16' + '/model'
-lda = LdaModel.load(topic_model)
-print(len(get_topic_word_distribution(lda, 0)))
-
-corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-dictionary = 'ProcessedWSJ/dictionary.pkl'
-dict = pickle.load(open(dictionary, 'rb'))
+# topic_model = 'LDAResults/' + '16' + '/model'
+# lda = LdaModel.load(topic_model)
+# print(len(get_topic_word_distribution(lda, 0)))
+#
+# corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
+# dictionary = 'ProcessedWSJ/dictionary.pkl'
+# dict = pickle.load(open(dictionary, 'rb'))
+# bow_corpus = pickle.load((open('ProcessedWSJ/bow.pkl','rb')))
 # print(len(dict))
 # print(list(dict.keys())[:10])
 # print(list(dict.values())[:10])
@@ -130,21 +145,84 @@ dict = pickle.load(open(dictionary, 'rb'))
 # plt.xticks(rotation=90, fontsize=10)
 # plt.savefig("figures/KL_divergence_unsorted.pdf")
 
+def word_based_KL():
+    # word based KL diverence (query subset vs. topics)
+    topic_model = 'LDAResults/' + '16' + '/model'
+    lda = LdaModel.load(topic_model)
+    bow_corpus = pickle.load((open('ProcessedWSJ/bow.pkl','rb')))
 
-# word based KL diverence (query subset vs. topics)
+    # create topic word distributions
+    word_topic_matrix = []
+    for i in range(20):
+        prob = get_topic_word_distribution(lda, i)
+        word_topic_matrix.append(prob)
 
-queries = get_query_docs()
-word_topic_matrix = []
-for i in range(20):
-    prob = get_topic_word_distribution(lda, i)
-query_kl = dd(float)
-for query in queries.keys():
-    # get query subset topic distribution
-    query_topics = get_subset_topic_distribution(corpus_topics, queries[query])
+    # create query subset unigram language models
+    queries = get_query_docs()
+    query_LMs = []
+    for query in queries.keys():
+        # get query subset LM
+        docs = LanguageModel.get_documents(queries[query], bow_corpus)
+        LM = LanguageModel.unigram_model(docs,0.1)
+        word_prob = LanguageModel.to_word_probabilities(LM)
+        query_LMs.append(word_prob)
 
-    # compute KL divergence regarding to corpus distribution
-    kl_divergence = KL_divergence(normalised_distribution, query_topics)
-    query_kl[query] = kl_divergence
+    start = time.perf_counter()
+    # compute query-topic KL Divergence
+    topic_query_kl_matrix = []
+    for topic in word_topic_matrix:
+        query_kls = []
+        for query_LM in query_LMs:
+            kl_divergence = KL_divergence(topic, query_LM)
+            query_kls.append(kl_divergence)
+        topic_query_kl_matrix.append(query_kls)
 
-query_kl_lst = sorted([(k,v) for k,v in query_kl.items()], key=lambda x:x[1])
-print(query_kl_lst[:5])
+    # convert to a numpy ndarray
+    topic_query_kl_matrix = np.array(topic_query_kl_matrix)
+
+    print(topic_query_kl_matrix)
+    end = time.perf_counter()
+    print('time used:', int(end - start))
+    pickle.dump(topic_query_kl_matrix, open('topic_query_KL_matrix.pkl','wb'))
+
+
+def tfidf_based_KL():
+    # word based KL diverence (query subset vs. topics)
+    topic_model = 'LDAResults/' + '1' + '/model'
+    lda = LdaModel.load(topic_model)
+    tfidf_corpus = pickle.load(open('ProcessedWSJ/tfidf_corpus.pkl','rb'))
+
+    # create topic word distributions
+    word_topic_matrix = []
+    for i in range(20):
+        prob = get_topic_word_distribution(lda, i)
+        word_topic_matrix.append(prob)
+
+    # create query subset normalised TFIDF word weights
+    queries = get_query_docs()
+    tfidf_weights = []
+    for query in queries.keys():
+        # get query subset LM
+        docs = LanguageModel.get_documents(queries[query], tfidf_corpus)
+        tfidf_weight = get_tfidf_weights(docs)
+        tfidf_weights.append(tfidf_weight)
+
+    start = time.perf_counter()
+    # compute query-topic KL Divergence
+    topic_query_kl_matrix = []
+    for topic in word_topic_matrix:
+        query_kls = []
+        for query_tfidf in tfidf_weights:
+            kl_divergence = KL_divergence(topic, query_tfidf)
+            query_kls.append(kl_divergence)
+        topic_query_kl_matrix.append(query_kls)
+
+    # convert to a numpy ndarray
+    topic_query_kl_matrix = np.array(topic_query_kl_matrix)
+
+    print(topic_query_kl_matrix)
+    end = time.perf_counter()
+    print('time used:', int(end - start))
+    pickle.dump(topic_query_kl_matrix, open('tfidf_topic_query_KL_matrix.pkl', 'wb'))
+
+tfidf_based_KL()
