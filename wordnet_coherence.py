@@ -104,8 +104,9 @@ for tid in range(33, 43):
     scores = pickle.load(fp)
     fp.close()
     print(scores)
-    mean_coherence.append(statistics.mean(scores))
-    median_coherence.append(statistics.median(scores))
+    # mean_coherence.append(statistics.mean(scores))
+    # median_coherence.append(statistics.median(scores))
+    mean_coherence.append(scores[0])
 
 #
 # # for tid in range(44,46):
@@ -123,7 +124,7 @@ plt.plot(n_topics, mean_coherence)
 
 
 
-plt.ylabel('Corpus-based KL Divergence')
+plt.ylabel('WordNet Coherence')
 # plt.ylim(0,1)
 plt.xlabel('Number of Topics')
 # plt.savefig('corpus_based_KL_10.pdf')

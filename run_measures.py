@@ -53,26 +53,26 @@ def run_measures(n_topics, tid):
     # print('coherence:')
     # print(sum(coherences)/n_topics)
 
-    cm = CoherenceModel(model=model, texts=corpus, coherence='c_npmi')
-    coherence = cm.get_coherence()
-    coherences = cm.get_coherence_per_topic()
-    print('coherence:', coherence)
-    fp = open('LDAResults/' + str(run_id) + '/npmi_coherence.lst', 'wb')
-    pickle.dump(coherences, fp)
-    fp.close()
+    # cm = CoherenceModel(model=model, texts=corpus, coherence='c_npmi')
+    # coherence = cm.get_coherence()
+    # coherences = cm.get_coherence_per_topic()
+    # print('coherence:', coherence)
+    # fp = open('LDAResults/' + str(run_id) + '/npmi_coherence.lst', 'wb')
+    # pickle.dump(coherences, fp)
+    # fp.close()
 
     # generate cluster entropy
-    # entropies = cluster_entropy.compute_cluster_entropy(clusters, model, corpus, n_words=10)
-    # fp = open(directory + str(run_id) + '/cluster_entropy.lst', 'wb')
-    # pickle.dump(entropies, fp)
-    # fp.close()
-    # print('cluster entropy:')
-    # print(sum(entropies)/n_topics)
+    entropies = cluster_entropy.compute_cluster_entropy(clusters, model, corpus, n_words=10)
+    fp = open(directory + str(run_id) + '/cluster_entropy.lst', 'wb')
+    pickle.dump(entropies, fp)
+    fp.close()
+    print('cluster entropy:')
+    print(sum(entropies)/n_topics)
 
 
 # run_measures(n_topics=10, tid=18)
 #
-run_measures(n_topics=40, tid=36)
+run_measures(n_topics=50, tid=37)
 
 # n_topics = 10
 # for tid in range(36,43):
