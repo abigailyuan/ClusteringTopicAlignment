@@ -24,8 +24,8 @@ def run_measures(n_topics, tid):
 
     # generate KL Divergence
     directory = 'LDAResults/'
-    # corpus = 'ProcessedWSJ/bow_lemma.pkl'
-    corpus = 'ProcessedWSJ/wsj_lemmatised.pkl'
+    corpus = 'ProcessedWSJ/bow_lemma.pkl'
+    # corpus = 'ProcessedWSJ/wsj_lemmatised.pkl'
     run_id = tid
     # model = LdaModel.load(directory + str(run_id) + '/model')
     # KLs = KLDivergence.corpus_KL(model, corpus, n_words=10)
