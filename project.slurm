@@ -7,7 +7,7 @@
 #SBATCH --nodes=1
 
 # The name of the job:
-#SBATCH --job-name="c9t1 compare"
+#SBATCH --job-name="k=50"
 
 # The project ID which this job should run under:
 #SBATCH --account="punim1409"
@@ -47,4 +47,4 @@ fi
 module load python/3.7.4
 
 # The job command(s):
-python main.py
+python run_measures.py
