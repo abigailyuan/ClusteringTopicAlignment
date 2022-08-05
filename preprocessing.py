@@ -7,6 +7,7 @@ import nltk
 
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer, SnowballStemmer
+from gensim.matutils import corpus2csc
 
 
 def parse_wsj_corpus(filename, directory='ProcessedWSJ/'):
@@ -96,22 +97,28 @@ def remove_stopwords(corpus, directory='ProcessedWSJ/'):
 def lemmatize_corpus(corpus, directory='ProcessedWSJ/'):
     # initialise stemmer
     lemmatizer = WordNetLemmatizer()
-    stemmer = SnowballStemmer('english')
+    # stemmer = SnowballStemmer('english')
     stopwords = nltk.corpus.stopwords.words('english')
+
+    #add new stopwords
+    stopwords.append('mr')
+    stopwords.append('would')
+    stopwords.append('r')
 
     start = time.perf_counter()
     stemmed_corpus = []
     for doc in corpus:
-        doc = [stemmer.stem(lemmatizer.lemmatize(token, pos='v')) for token in doc]
+        # doc = [stemmer.stem(lemmatizer.lemmatize(token, pos='v')) for token in doc]
+        doc = [lemmatizer.lemmatize(token.lower(), pos='n') for token in doc]
         doc = [i for i in doc if i not in stopwords]
         stemmed_corpus.append(doc)
 
     end = time.perf_counter()
 
-    print('WSJ corpus is stemmed.')
+    print('WSJ corpus is lemmatised.')
     print('time used:', int(end - start))
 
-    pickle.dump(stemmed_corpus, open(directory + 'wsj_stemmed.pkl', 'wb'))
+    pickle.dump(stemmed_corpus, open(directory + 'wsj_lemmatised.pkl', 'wb'))
 
     return stemmed_corpus
 
@@ -129,3 +136,16 @@ def generate_subcollections(corpus, len_threshold=100, directory='ProcessedWSJ/'
     pickle.dump(wsj_small, open(directory + 'wsj_small.pkl', 'wb'))
 
     print('Subcollections created.')
+
+# def convert_to_sparse_matrix(bow):
+#     return corpus2csc(bow)
+#
+# corpus = 'ProcessedWSJ/bow.pkl'
+# fp = open(corpus,'rb')
+# bow = pickle.load(fp)
+# fp.close()
+#
+# csc = convert_to_sparse_matrix(bow)
+# fp = open('ProcessedWSJ/sparse_bow.pkl','wb')
+# pickle.dump(csc, fp)
+# fp.close()

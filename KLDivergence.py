@@ -4,6 +4,7 @@ from gensim.models import LdaModel
 from collections import defaultdict as dd
 import pickle
 import pandas as pd
+import math
 
 import LanguageModel
 from rel_to_clustering import get_query_docs
@@ -225,4 +226,70 @@ def tfidf_based_KL():
     print('time used:', int(end - start))
     pickle.dump(topic_query_kl_matrix, open('tfidf_topic_query_KL_matrix.pkl', 'wb'))
 
-tfidf_based_KL()
+def get_word_collection_probability(corpus):
+    corpus_bow = corpus_bow = pickle.load(open(corpus, 'rb'))
+    M = 0
+    vocab = {}
+    for doc in corpus_bow:
+        for word,count in doc:
+            M += count
+            if word not in vocab:
+                vocab[word] = count
+            else:
+                vocab[word] += count
+
+    # calculate conditional probability
+    for word in vocab.keys():
+        vocab[word] /= M
+    return vocab
+
+def get_keywords(model, n_words=10):
+    #get word probability matrix per topic
+    word_prob_matrix = model.get_topics()
+
+    #extract top 10 keyword ids for each topic
+    topics = []
+    for topic in word_prob_matrix:
+        keywords = sorted(zip(list(range(len(topic))), topic), key=lambda x:x[1])[-n_words:]
+        keywords = [x[0] for x in keywords]
+        topics.append(keywords)
+    return topics
+
+def corpus_KL(model, corpus, n_words=10):
+    # get keywords of topics
+    topics = get_keywords(model,n_words)
+
+    # get P(w|C)
+    P_w_c = get_word_collection_probability(corpus)
+
+    # get P(w|k)
+    P_w_k = model.get_topics()
+
+    # calculate topic KL
+    KLs = []
+    for i in range(len(topics)):
+        topic = topics[i]
+        p_c = np.zeros((n_words,1))
+        p_k = np.zeros((n_words,1))
+        for j in range(len(topic)):
+            word = topic[j]
+            p_w_c = P_w_c[word]
+            p_w_k = P_w_k[i][word]
+            p_c[j] = p_w_c
+            p_k[j] = p_w_k
+        KL = KL_divergence(p_c, p_k)
+        KLs.append(KL)
+    return KLs
+
+# directory = 'LDAResults/'
+# corpus = 'ProcessedWSJ/bow.pkl'
+# run_id = 17
+# model = LdaModel.load(directory + str(run_id) + '/model')
+# KLs = corpus_KL(model, corpus, n_words=10)
+# fp = open('LDAResults/'+str(run_id)+'/corpus_KL.lst','wb')
+# pickle.dump(KLs, fp)
+# fp.close()
+# print(KLs)
+
+
+

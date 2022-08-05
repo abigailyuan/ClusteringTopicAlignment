@@ -14,10 +14,10 @@ def create_dictionary(filename, no_below=15, no_above=0.5, keep_n=10000, directo
 
     dictionary = gensim.corpora.Dictionary(corpus)
     dictionary.filter_extremes(no_below=no_below, no_above=no_above, keep_n=keep_n)
-    pickle.dump(dictionary, open(directory + 'dictionary.pkl', 'wb'))
+    pickle.dump(dictionary, open(directory + 'dictionary_lemma.pkl', 'wb'))
 
     bow = [dictionary.doc2bow(doc) for doc in corpus]
-    pickle.dump(bow, open(directory + 'bow.pkl', 'wb'))
+    pickle.dump(bow, open(directory + 'bow_lemma.pkl', 'wb'))
 
     return dictionary, bow
 
@@ -59,7 +59,14 @@ def bow_vectorize(filename, dictionary, directory='ProcessedWSJ'):
     print('Corpus is vectorized with CountBased Vectorizer.')
     print('time used:', int(end - start))
 
-    pickle.dump(vectorized_corpus, open(directory + 'count_corpus.pkl', 'wb'))
+    pickle.dump(vectorized_corpus, open(directory + 'count_corpus_lemma.pkl', 'wb'))
+
+    num_terms = len(dictionary)
+    corpus_size = len(vectorized_corpus)
+    dense_corpus = corpus2dense(vectorized_corpus, num_terms, corpus_size)
+    pickle.dump(dense_corpus.T, open(directory + 'dense_corpus_lemma.pkl', 'wb'))
+
+    return 0
 
 def doc2vec_vectorize(filename, vector_size=500, window=2, min_count=15, max_vocab_size=10000,
                       directory='ProcessedWSJ/'):

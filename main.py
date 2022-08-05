@@ -23,21 +23,25 @@ def work_pipeline():
     # corpus = preprocessing.clean_corpus(corpus)
     # corpus = preprocessing.tokenize_corpus(corpus)
     # corpus = preprocessing.remove_stopwords(corpus)
+    # directory = 'ProcessedWSJ/'
+    # fp = open(directory + 'wsj_tokenized.pkl', 'rb')
+    # corpus = pickle.load(fp)
+    # fp.close()
     # corpus = preprocessing.lemmatize_corpus(corpus)
-
-    # vectorize corpus
-    # corpus = 'ProcessedWSJ/wsj_stemmed.pkl'
+    #
+    # # vectorize corpus
+    # corpus = 'ProcessedWSJ/bow_lemma.pkl'
     # bow_corpus = 'ProcessedWSJ/bow.pkl'
     # directory = 'ProcessedWSJ/'
     # corpus_vectorizer.create_dictionary(filename=corpus, directory=directory)
-    # dictionary = directory+'dictionary.pkl'
+    # dictionary = directory+'dictionary_lemma.pkl'
     # print(type(dictionary))
-    # bow = pickle.load(open('ProcessedWSJ/bow.pkl','rb'))
+    # bow = pickle.load(open('ProcessedWSJ/bow_lemma.pkl','rb'))
     # print(type(bow))
     # print(bow[200])
 
 
-    # corpus_vectorizer.bow_vectorize(corpus, dictionary, directory=directory)
+    corpus_vectorizer.bow_vectorize(corpus, dictionary, directory=directory)
     # corpus_vectorizer.tfidf_vectorize(bow_corpus, dictionary, directory=directory)
 
     # corpus_vectorizer.doc2vec_vectorize(corpus, vector_size=10000, directory=directory)
@@ -46,18 +50,18 @@ def work_pipeline():
     order = 20
 
     # generate K-Means clustering run
-    # cid = 8
-    # directory = 'ClusterResults/'
-    # bow_corpus = 'ProcessedWSJ/bow.pkl'
-    # dense_corpus = 'ProcessedWSJ/dense_corpus.pkl'
-    # doc2vec_corpus = 'ProcessedWSJ/wsj_doc2vec10000.pkl'
-    # dictionary = 'ProcessedWSJ/dictionary.pkl'
-    # KMeansGenerator.generate_k_means(dense_corpus=dense_corpus, run_id=cid,algorithm='auto', directory=directory, k=order)
-    # KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    # KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
-    #                                           mode='centroid', directory=directory)
-    # KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
-    #                                           mode='cluster', directory=directory)
+    cid = 19
+    directory = 'ClusterResults/'
+    bow_corpus = 'ProcessedWSJ/bow_lemma.pkl'
+    dense_corpus = 'ProcessedWSJ/dense_corpus_lemma.pkl'
+    doc2vec_corpus = 'ProcessedWSJ/wsj_doc2vec10000_lemma.pkl'
+    dictionary = 'ProcessedWSJ/dictionary_lemma.pkl'
+    KMeansGenerator.generate_k_means(dense_corpus=dense_corpus, run_id=cid,algorithm='auto', directory=directory, k=order)
+    KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
+                                              mode='centroid', directory=directory)
+    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
+                                              mode='cluster', directory=directory)
 
     # directory = 'ClusterResults/'
     # bow_corpus = 'ProcessedWSJ/bow.pkl'
@@ -86,7 +90,7 @@ def work_pipeline():
     #     print('clustering run: ' + str(cid) + ' generated.')
 
     # generate topic models
-    # tid = 16
+    # tid = 17
     # directory = 'LDAResults/'
     # # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
     # corpus = 'ProcessedWSJ/bow.pkl'
@@ -94,6 +98,8 @@ def work_pipeline():
     # LDAGenerator.generate_lda(corpus=corpus, run_id=tid, num_topics=order, dictionary=dictionary, directory=directory)
     # LDAGenerator.predict_topic_labels(run_id=tid, corpus=corpus, directory=directory)
     # LDAGenerator.generate_topic_keywords(run_id=tid, num_keywords=10, num_topics=order, directory=directory)
+
+
 
     # directory = 'LDAResults/'
     # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
@@ -208,21 +214,21 @@ def work_pipeline():
     # plt.savefig('topic_boxplt.pdf')
 
     # topic-query subset KL Divergence visualisation
-    tfidf_topic_kl_matrix = pickle.load(open('tfidf_topic_query_KL_matrix.pkl','rb'))
-    bow_topic_kl_matrix = pickle.load(open('topic_query_KL_matrix.pkl','rb'))
-
-    plt.clf()
-    fig,axes = plt.subplots(3,1, figsize=(40,30))
-    axes[0] = Visualisation.visualise_topic_KL(tfidf_topic_kl_matrix, ax=axes[0])
-    axes[0].set_xlabel('Query Subset')
-    axes[0].set_ylabel('Topic')
-    axes[0].set_title('TFIDF-based Topic-Query Subset KL Divergence')
-
-    axes[1] = Visualisation.visualise_topic_KL(bow_topic_kl_matrix, ax=axes[1])
-    axes[1].set_xlabel('Query Subset')
-    axes[1].set_ylabel('Topic')
-    axes[1].set_title('BOW-based Topic-Query Subset KL Divergence')
-    plt.savefig('compare_topic_query_kl.pdf')
+    # tfidf_topic_kl_matrix = pickle.load(open('tfidf_topic_query_KL_matrix.pkl','rb'))
+    # bow_topic_kl_matrix = pickle.load(open('topic_query_KL_matrix.pkl','rb'))
+    #
+    # plt.clf()
+    # fig,axes = plt.subplots(3,1, figsize=(40,30))
+    # axes[0] = Visualisation.visualise_topic_KL(tfidf_topic_kl_matrix, ax=axes[0])
+    # axes[0].set_xlabel('Query Subset')
+    # axes[0].set_ylabel('Topic')
+    # axes[0].set_title('TFIDF-based Topic-Query Subset KL Divergence')
+    #
+    # axes[1] = Visualisation.visualise_topic_KL(bow_topic_kl_matrix, ax=axes[1])
+    # axes[1].set_xlabel('Query Subset')
+    # axes[1].set_ylabel('Topic')
+    # axes[1].set_title('BOW-based Topic-Query Subset KL Divergence')
+    # plt.savefig('compare_topic_query_kl.pdf')
 
     return 0
 
