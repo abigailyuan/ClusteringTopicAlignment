@@ -1,0 +1,40 @@
+topic 0
+['quarter', 'sale', 'share', 'billion', 'earn', 'cent', 'profit', 'net', 'loss', 'earlier']
+topic 1
+['trade', 'japan', 'billion', 'japanes', 'foreign', 'market', 'franc', 'european', 'export', 'govern']
+topic 2
+['court', 'feder', 'case', 'mr', 'law', 'judg', 'charg', 'investig', 'rule', 'state']
+topic 3
+['hous', 'would', 'mr', 'bush', 'senat', 'presid', 'bill', 'administr', 'congress', 'democrat']
+topic 4
+['share', 'stock', 'offer', 'hold', 'group', 'common', 'exchang', 'close', 'buy', 'sharehold']
+topic 5
+['airlin', 'union', 'worker', 'air', 'employe', 'plan', 'labor', 'would', 'unit', 'carrier']
+topic 6
+['mr', 'would', 'polit', 'govern', 'econom', 'polici', 'state', 'nation', 'parti', 'one']
+topic 7
+['bond', 'rate', 'yield', 'rat', 'issu', 'price', 'treasuri', 'day', 'month', 'note']
+topic 8
+['mr', 'presid', 'execut', 'offic', 'chief', 'vice', 'chairman', 'name', 'director', 'oper']
+topic 9
+['price', 'trade', 'dollar', 'market', 'trader', 'futur', 'exchang', 'york', 'gold', 'mark']
+topic 10
+['product', 'plant', 'contract', 'industri', 'unit', 'corp', 'use', 'engin', 'electr', 'co']
+topic 11
+['car', 'auto', 'ford', 'sale', 'motor', 'gm', 'maker', 'truck', 'model', 'chrysler']
+topic 12
+['stock', 'market', 'price', 'rise', 'index', 'share', 'investor', 'gain', 'industri', 'month']
+topic 13
+['one', 'mr', 'get', 'work', 'peopl', 'like', 'go', 'mani', 'make', 'even']
+topic 14
+['comput', 'system', 'market', 'busi', 'product', 'amp', 'technolog', 'network', 'machin', 'servic']
+topic 15
+['bank', 'fund', 'tax', 'drug', 'loan', 'insur', 'would', 'feder', 'billion', 'thrift']
+topic 16
+['oil', 'gas', 'canadian', 'bankruptci', 'plan', 'canada', 'creditor', 'would', 'mine', 'energi']
+topic 17
+['mr', 'time', 'one', 'ad', 'show', 'advertis', 'get', 'make', 'publish', 'like']
+topic 18
+['south', 'black', 'govern', 'peopl', 'countri', 'east', 'leader', 'offici', 'two', 'kill']
+topic 19
+['mr', 'firm', 'invest', 'amp', 'stock', 'manag', 'secur', 'trade', 'investor', 'buy']

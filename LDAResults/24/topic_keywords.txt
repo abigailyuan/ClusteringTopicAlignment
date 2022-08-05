@@ -1,0 +1,40 @@
+topic 0
+['share', 'stock', 'offer', 'buy', 'would', 'group', 'hold', 'bid', 'sharehold', 'stake']
+topic 1
+['comput', 'system', 'product', 'technolog', 'corp', 'contract', 'servic', 'industri', 'make', 'busi']
+topic 2
+['share', 'quarter', 'earn', 'sale', 'cent', 'profit', 'net', 'loss', 'billion', 'earlier']
+topic 3
+['japanes', 'trade', 'japan', 'product', 'industri', 'market', 'foreign', 'countri', 'import', 'export']
+topic 4
+['bond', 'amp', 'price', 'note', 'offer', 'inc', 'due', 'issu', 'corp', 'secur']
+topic 5
+['airlin', 'union', 'worker', 'air', 'unit', 'ton', 'employe', 'plan', 'eastern', 'pilot']
+topic 6
+['market', 'price', 'stock', 'bond', 'investor', 'index', 'issu', 'rise', 'trade', 'point']
+topic 7
+['bank', 'loan', 'feder', 'debt', 'month', 'billion', 'rate', 'thrift', 'mortgag', 'credit']
+topic 8
+['state', 'citi', 'insur', 'school', 'black', 'real', 'build', 'estat', 'nation', 'educ']
+topic 9
+['soviet', 'govern', 'offici', 'parti', 'would', 'polit', 'mr', 'nation', 'leader', 'minist']
+topic 10
+['mr', 'bush', 'presid', 'democrat', 'hous', 'polit', 'administr', 'senat', 'campaign', 'reagan']
+topic 11
+['mr', 'presid', 'execut', 'offic', 'chief', 'chairman', 'vice', 'name', 'former', 'director']
+topic 12
+['dollar', 'yen', 'trade', 'market', 'mark', 'franc', 'bank', 'british', 'london', 'west']
+topic 13
+['store', 'sale', 'market', 'advertis', 'amp', 'retail', 'busi', 'ad', 'sell', 'product']
+topic 14
+['mr', 'one', 'get', 'like', 'go', 'make', 'time', 'peopl', 'even', 'take']
+topic 15
+['tax', 'would', 'fund', 'bill', 'hous', 'billion', 'budget', 'congress', 'propos', 'cut']
+topic 16
+['court', 'feder', 'case', 'law', 'judg', 'file', 'rule', 'suit', 'attorney', 'lawyer']
+topic 17
+['firm', 'trade', 'secur', 'exchang', 'market', 'stock', 'amp', 'account', 'busi', 'futur']
+topic 18
+['drug', 'health', 'research', 'use', 'test', 'care', 'medic', 'studi', 'hospit', 'patient']
+topic 19
+['car', 'billion', 'sale', 'rise', 'month', 'increas', 'auto', 'ford', 'rate', 'price']

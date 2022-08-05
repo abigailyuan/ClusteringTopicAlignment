@@ -1,0 +1,40 @@
+topic 0
+['airlin', 'court', 'plan', 'air', 'bankruptci', 'would', 'feder', 'judg', 'pilot', 'file']
+topic 1
+['mr', 'stock', 'share', 'buy', 'bid', 'takeov', 'would', 'offer', 'manag', 'invest']
+topic 2
+['would', 'worker', 'program', 'union', 'cost', 'industri', 'japanes', 'trade', 'employe', 'plan']
+topic 3
+['billion', 'rise', 'month', 'increas', 'earlier', 'canadian', 'juli', 'report', 'price', 'june']
+topic 4
+['car', 'sale', 'auto', 'ford', 'motor', 'maker', 'gm', 'plant', 'model', 'truck']
+topic 5
+['share', 'stock', 'bank', 'offer', 'hold', 'common', 'exchang', 'close', 'group', 'inc']
+topic 6
+['drug', 'use', 'research', 'plant', 'test', 'product', 'health', 'studi', 'medic', 'develop']
+topic 7
+['oil', 'gas', 'amp', 'rat', 'unit', 'energi', 'debt', 'corp', 'util', 'oper']
+topic 8
+['mr', 'presid', 'offici', 'bush', 'administr', 'hous', 'would', 'reagan', 'aid', 'govern']
+topic 9
+['soviet', 'mr', 'polit', 'parti', 'govern', 'nation', 'would', 'one', 'countri', 'american']
+topic 10
+['bond', 'fund', 'yield', 'price', 'market', 'issu', 'rate', 'day', 'secur', 'month']
+topic 11
+['mr', 'presid', 'execut', 'comput', 'offic', 'chief', 'vice', 'chairman', 'name', 'amp']
+topic 12
+['advertis', 'mr', 'ad', 'network', 'communic', 'news', 'agenc', 'televis', 'time', 'cabl']
+topic 13
+['bank', 'loan', 'economi', 'rat', 'econom', 'billion', 'rate', 'foreign', 'interest', 'debt']
+topic 14
+['contract', 'firm', 'defens', 'sec', 'mr', 'aircraft', 'secur', 'drexel', 'trade', 'corp']
+topic 15
+['tax', 'hous', 'would', 'democrat', 'bill', 'mr', 'budget', 'incom', 'senat', 'state']
+topic 16
+['quarter', 'share', 'sale', 'earn', 'profit', 'cent', 'loss', 'net', 'billion', 'expect']
+topic 17
+['market', 'stock', 'price', 'trade', 'index', 'trader', 'rise', 'exchang', 'share', 'dollar']
+topic 18
+['mr', 'one', 'get', 'like', 'go', 'make', 'peopl', 'time', 'work', 'even']
+topic 19
+['mr', 'feder', 'court', 'law', 'case', 'charg', 'state', 'attorney', 'lawyer', 'alleg']

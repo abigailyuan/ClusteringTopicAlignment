@@ -1,0 +1,180 @@
+topic 0
+['palestinian', 'mail', 'el', 'contra', 'cocaine', 'colombia', 'thompson', 'miami', 'nicaragua', 'cuban']
+topic 1
+['european', 'french', 'europe', 'france', 'de', 'boeing', 'spain', 'engine', 'aircraft', 'italy']
+topic 2
+['report', 'newspaper', 'news', 'paper', 'journal', 'smith', 'letter', 'press', 'daily', 'jones']
+topic 3
+['drug', 'research', 'fda', 'test', 'aid', 'study', 'cancer', 'pharmaceutical', 'patient', 'researcher']
+topic 4
+['texas', 'art', 'express', 'continental', 'american', 'museum', 'artist', 'painting', 'dallas', 'houston']
+topic 5
+['food', 'restaurant', 'wang', 'product', 'consumer', 'mcdonald', 'wine', 'space', 'chain', 'shuttle']
+topic 6
+['north', 'marine', 'gen', 'panama', 'intelligence', 'panamanian', 'col', 'nova', 'pillsbury', 'cia']
+topic 7
+['environmental', 'waste', 'cleanup', 'tire', 'grumman', 'pollution', 'williams', 'epa', 'rubber', 'clean']
+topic 8
+['board', 'member', 'committee', 'chairman', 'meeting', 'panel', 'tobacco', 'rjr', 'wilson', 'lord']
+topic 9
+['east', 'party', 'communist', 'war', 'world', 'century', 'people', 'hungary', 'political', 'th']
+topic 10
+['mile', 'ual', 'seat', 'passenger', 'traffic', 'revenue', 'one', 'load', 'billion', 'rose']
+topic 11
+['agency', 'safety', 'accident', 'fine', 'problem', 'inspection', 'department', 'spokesman', 'fire', 'violation']
+topic 12
+['first', 'national', 'boston', 'city', 'bank', 'security', 'offering', 'corp', 'fdic', 'asset']
+topic 13
+['amp', 'offering', 'via', 'co', 'inc', 'drexel', 'bond', 'security', 'priced', 'share']
+topic 14
+['insurance', 'business', 'unit', 'sale', 'life', 'insurer', 'sell', 'amp', 'hotel', 'service']
+topic 15
+['order', 'defense', 'pentagon', 'contractor', 'machine', 'industry', 'tool', 'equipment', 'hughes', 'unisys']
+topic 16
+['week', 'sony', 'last', 'institute', 'previous', 'earlier', 'capability', 'date', 'friedman', 'american']
+topic 17
+['oil', 'gas', 'energy', 'exxon', 'natural', 'pipeline', 'petroleum', 'exploration', 'field', 'production']
+topic 18
+['quarter', 'loss', 'earlier', 'net', 'third', 'fourth', 'first', 'second', 'month', 'reported']
+topic 19
+['san', 'francisco', 'sears', 'ge', 'st', 'patent', 'diego', 'trading', 'began', 'symbol']
+topic 20
+['employee', 'job', 'office', 'manager', 'work', 'say', 'executive', 'people', 'staff', 'salary']
+topic 21
+['share', 'british', 'london', 'market', 'britain', 'plc', 'price', 'index', 'pretax', 'closed']
+topic 22
+['president', 'executive', 'chief', 'officer', 'vice', 'chairman', 'named', 'director', 'old', 'senior']
+topic 23
+['airline', 'air', 'pilot', 'eastern', 'flight', 'carrier', 'united', 'airport', 'plane', 'fare']
+topic 24
+['billion', 'trade', 'farmer', 'import', 'export', 'deficit', 'farm', 'surplus', 'earlier', 'government']
+topic 25
+['kodak', 'system', 'sterling', 'bailout', 'toy', 'republic', 'lawson', 'eastman', 'rochester', 'photo']
+topic 26
+['film', 'movie', 'warner', 'entertainment', 'music', 'video', 'picture', 'star', 'studio', 'paramount']
+topic 27
+['problem', 'system', 'could', 'economic', 'level', 'one', 'even', 'market', 'high', 'policy']
+topic 28
+['pacific', 'park', 'santa', 'southern', 'railroad', 'disney', 'rail', 'fe', 'freight', 'california']
+topic 29
+['health', 'care', 'medical', 'hospital', 'cost', 'dr', 'program', 'doctor', 'patient', 'benefit']
+topic 30
+['bond', 'rate', 'yield', 'day', 'treasury', 'issue', 'month', 'market', 'mortgage', 'point']
+topic 31
+['share', 'earnings', 'sale', 'profit', 'billion', 'cent', 'net', 'quarter', 'analyst', 'income']
+topic 32
+['gold', 'metal', 'mine', 'mining', 'copper', 'ounce', 'precious', 'silver', 'consolidated', 'mineral']
+topic 33
+['debt', 'p', 'rating', 'amp', 'b', 'moody', 'single', 'debenture', 'subordinated', 'due']
+topic 34
+['state', 'government', 'law', 'federal', 'right', 'private', 'california', 'public', 'benefit', 'local']
+topic 35
+['water', 'material', 'could', 'use', 'scientist', 'used', 'one', 'say', 'design', 'goldberg']
+topic 36
+['bid', 'analyst', 'share', 'takeover', 'stock', 'billion', 'stake', 'could', 'amp', 'yesterday']
+topic 37
+['bank', 'loan', 'debt', 'billion', 'banking', 'asset', 'banker', 'reserve', 'interest', 'credit']
+topic 38
+['offer', 'shareholder', 'bid', 'share', 'takeover', 'tender', 'plan', 'board', 'right', 'holder']
+topic 39
+['bush', 'campaign', 'political', 'party', 'republican', 'democratic', 'democrat', 'election', 'vote', 'president']
+topic 40
+['price', 'cent', 'analyst', 'market', 'soybean', 'corn', 'pound', 'crop', 'demand', 'supply']
+topic 41
+['official', 'department', 'investigation', 'government', 'general', 'report', 'attorney', 'justice', 'federal', 'according']
+topic 42
+['house', 'bill', 'congress', 'budget', 'senate', 'administration', 'billion', 'president', 'rep', 'cut']
+topic 43
+['woman', 'child', 'family', 'young', 'age', 'parent', 'men', 'abortion', 'people', 'mother']
+topic 44
+['ad', 'amp', 'advertising', 'product', 'agency', 'brand', 'marketing', 'consumer', 'account', 'campaign']
+topic 45
+['say', 'one', 'game', 'time', 'like', 'team', 'old', 'get', 'people', 'two']
+topic 46
+['firm', 'investment', 'security', 'market', 'investor', 'amp', 'partner', 'broker', 'client', 'capital']
+topic 47
+['computer', 'system', 'ibm', 'technology', 'software', 'machine', 'product', 'data', 'maker', 'apple']
+topic 48
+['fund', 'utility', 'power', 'money', 'asset', 'mutual', 'nuclear', 'plant', 'electric', 'investment']
+topic 49
+['south', 'black', 'korea', 'white', 'korean', 'africa', 'african', 'seoul', 'minority', 'avon']
+topic 50
+['credit', 'fee', 'card', 'standard', 'sun', 'charge', 'consumer', 'pierce', 'fannie', 'freddie']
+topic 51
+['soviet', 'union', 'western', 'gorbachev', 'moscow', 'weapon', 'nuclear', 'treaty', 'missile', 'defense']
+topic 52
+['contract', 'corp', 'air', 'force', 'system', 'navy', 'aircraft', 'unit', 'general', 'received']
+topic 53
+['school', 'city', 'student', 'education', 'college', 'housing', 'program', 'community', 'university', 'teacher']
+topic 54
+['say', 'business', 'many', 'one', 'get', 'even', 'time', 'money', 'big', 'still']
+topic 55
+['rate', 'month', 'economy', 'increase', 'growth', 'economist', 'inflation', 'report', 'july', 'economic']
+topic 56
+['charge', 'sec', 'fraud', 'case', 'former', 'security', 'government', 'attorney', 'federal', 'investigation']
+topic 57
+['columbia', 'philip', 'coca', 'miller', 'cola', 'morris', 'grand', 'mgm', 'soft', 'ua']
+topic 58
+['sale', 'store', 'retailer', 'retail', 'chain', 'department', 'federated', 'brady', 'apparel', 'mart']
+topic 59
+['prime', 'minister', 'saatchi', 'shoe', 'holiday', 'sullivan', 'zenith', 'martin', 'parliament', 'leisure']
+topic 60
+['rule', 'accounting', 'return', 'must', 'use', 'may', 'value', 'individual', 'heritage', 'book']
+topic 61
+['future', 'trading', 'exchange', 'market', 'trader', 'trade', 'chicago', 'contract', 'option', 'stock']
+topic 62
+['dollar', 'yen', 'currency', 'trading', 'york', 'mark', 'franc', 'bank', 'market', 'trader']
+topic 63
+['canadian', 'canada', 'dollar', 'toronto', 'price', 'ltd', 'montreal', 'quebec', 'georgia', 'july']
+topic 64
+['car', 'auto', 'ford', 'motor', 'gm', 'sale', 'truck', 'model', 'maker', 'chrysler']
+topic 65
+['oil', 'opec', 'barrel', 'gulf', 'saudi', 'production', 'day', 'iran', 'sea', 'iraq']
+topic 66
+['plan', 'proposal', 'florida', 'satellite', 'proposed', 'agency', 'rule', 'murphy', 'delaware', 'fcc']
+topic 67
+['group', 'stake', 'filing', 'investment', 'share', 'commission', 'security', 'holding', 'hold', 'based']
+topic 68
+['west', 'fed', 'rate', 'german', 'germany', 'mark', 'policy', 'interest', 'bank', 'central']
+topic 69
+['plant', 'unit', 'venture', 'product', 'chemical', 'sale', 'inc', 'project', 'operation', 'joint']
+topic 70
+['agreement', 'agreed', 'merger', 'reached', 'negotiation', 'approval', 'two', 'proposed', 'talk', 'transaction']
+topic 71
+['service', 'amp', 'telephone', 'bell', 'phone', 'communication', 'telecommunication', 'customer', 'cellular', 'information']
+topic 72
+['stock', 'market', 'investor', 'price', 'share', 'index', 'issue', 'dow', 'trading', 'rose']
+topic 73
+['buy', 'leveraged', 'debt', 'junk', 'management', 'transaction', 'group', 'financing', 'billion', 'cooper']
+topic 74
+['network', 'cable', 'tv', 'television', 'show', 'station', 'news', 'time', 'cbs', 'broadcasting']
+topic 75
+['union', 'worker', 'labor', 'strike', 'employee', 'wage', 'contract', 'work', 'job', 'plant']
+topic 76
+['court', 'judge', 'case', 'suit', 'lawyer', 'federal', 'law', 'filed', 'appeal', 'attorney']
+topic 77
+['steel', 'ton', 'china', 'mill', 'metric', 'aluminum', 'production', 'usx', 'steelmaker', 'chinese']
+topic 78
+['one', 'like', 'day', 'two', 'old', 'say', 'people', 'time', 'back', 'first']
+topic 79
+['hong', 'penny', 'kong', 'china', 'de', 'taiwan', 'chinese', 'generale', 'beijing', 'royal']
+topic 80
+['tax', 'income', 'gain', 'capital', 'rate', 'revenue', 'irs', 'pay', 'payment', 'benefit']
+topic 81
+['thrift', 'saving', 'federal', 'loan', 'bank', 'amp', 'l', 'deposit', 'regulator', 'association']
+topic 82
+['estate', 'real', 'home', 'property', 'building', 'campeau', 'development', 'developer', 'office', 'land']
+topic 83
+['country', 'foreign', 'government', 'trade', 'world', 'economic', 'international', 'official', 'mexico', 'debt']
+topic 84
+['japanese', 'japan', 'yen', 'tokyo', 'market', 'chip', 'industry', 'semiconductor', 'electronics', 'maker']
+topic 85
+['share', 'stock', 'common', 'cent', 'trading', 'exchange', 'closed', 'outstanding', 'yesterday', 'dividend']
+topic 86
+['bankruptcy', 'creditor', 'texaco', 'plan', 'chapter', 'protection', 'reorganization', 'court', 'proceeding', 'code']
+topic 87
+['government', 'leader', 'president', 'military', 'official', 'party', 'political', 'israel', 'state', 'force']
+topic 88
+['one', 'american', 'even', 'time', 'u', 'way', 'like', 'well', 'much', 'know']
+topic 89
+['magazine', 'book', 'australian', 'publishing', 'publisher', 'australia', 'edition', 'wsj', 'see', 'publication']

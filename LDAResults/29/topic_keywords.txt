@@ -1,0 +1,40 @@
+topic 0
+['bond', 'price', 'yield', 'rat', 'market', 'rate', 'issu', 'day', 'note', 'treasuri']
+topic 1
+['unit', 'oper', 'amp', 'sale', 'store', 'inc', 'sell', 'corp', 'base', 'servic']
+topic 2
+['court', 'law', 'case', 'judg', 'feder', 'file', 'rule', 'mr', 'suit', 'lawyer']
+topic 3
+['would', 'hous', 'bill', 'senat', 'propos', 'congress', 'administr', 'committe', 'budget', 'presid']
+topic 4
+['fund', 'tax', 'invest', 'insur', 'money', 'pay', 'capit', 'incom', 'firm', 'investor']
+topic 5
+['dollar', 'trade', 'japan', 'japanes', 'yen', 'market', 'foreign', 'mark', 'west', 'franc']
+topic 6
+['mr', 'polit', 'econom', 'govern', 'one', 'would', 'nation', 'state', 'polici', 'even']
+topic 7
+['mr', 'investig', 'contract', 'charg', 'govern', 'alleg', 'offici', 'defens', 'trade', 'depart']
+topic 8
+['share', 'stock', 'offer', 'exchang', 'common', 'trade', 'hold', 'close', 'sharehold', 'cent']
+topic 9
+['mr', 'presid', 'execut', 'offic', 'chief', 'vice', 'chairman', 'name', 'director', 'manag']
+topic 10
+['stock', 'market', 'share', 'trade', 'price', 'index', 'investor', 'rise', 'close', 'issu']
+topic 11
+['drug', 'health', 'use', 'research', 'care', 'test', 'studi', 'medic', 'hospit', 'patient']
+topic 12
+['mr', 'bid', 'amp', 'offer', 'would', 'takeov', 'group', 'buy', 'firm', 'billion']
+topic 13
+['bank', 'loan', 'debt', 'feder', 'billion', 'thrift', 'first', 'credit', 'save', 'month']
+topic 14
+['comput', 'market', 'product', 'system', 'busi', 'technolog', 'make', 'industri', 'amp', 'use']
+topic 15
+['mr', 'one', 'get', 'like', 'time', 'go', 'make', 'peopl', 'work', 'even']
+topic 16
+['car', 'airlin', 'union', 'worker', 'plant', 'air', 'auto', 'ford', 'motor', 'gm']
+topic 17
+['soviet', 'mr', 'offici', 'govern', 'militari', 'leader', 'presid', 'east', 'war', 'parti']
+topic 18
+['quarter', 'billion', 'sale', 'rise', 'earlier', 'earn', 'share', 'increas', 'cent', 'profit']
+topic 19
+['oil', 'gas', 'product', 'produc', 'canadian', 'canada', 'ton', 'de', 'price', 'industri']
