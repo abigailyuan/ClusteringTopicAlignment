@@ -24,7 +24,7 @@ def keyword_occurrence(topic, corpus):
     return count
 
 
-def prob_cluster_given_topic(cluster, topic, corpus):
+def prob_cluster_given_topic(cluster, topic, corpus, smooth=0.0001):
     # get N_c_k
     N_c_k = cluster_keyword_occurrence(topic, corpus, cluster)
 
@@ -34,7 +34,7 @@ def prob_cluster_given_topic(cluster, topic, corpus):
     # probability
     p_c_k = N_c_k / N_d_k
 
-    return p_c_k
+    return p_c_k if (p_c_k != 0) else smooth
 
 
 def get_keywords(model, n_words=10):

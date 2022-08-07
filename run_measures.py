@@ -74,7 +74,7 @@ def run_measures(n_topics, tid):
 #
 
 run_measures(n_topics=50, tid=37)
-run_measures(n_topics=60, tid=38)
+# run_measures(n_topics=60, tid=38)
 run_measures(n_topics=70, tid=39)
 run_measures(n_topics=80, tid=40)
 run_measures(n_topics=90, tid=41)
