@@ -14,13 +14,13 @@
 
 # Maximum number of tasks/CPU cores used by the job:
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=4
 
 
 
 
 # The amount of memory in megabytes per process in the job:
-#SBATCH --mem=16384
+#SBATCH --mem=4096
 
 # Use this email address:
 #SBATCH --mail-user=myuan3@student.unimelb.edu.au
