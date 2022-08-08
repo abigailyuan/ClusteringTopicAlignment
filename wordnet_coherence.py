@@ -100,13 +100,13 @@ n_topics = list(range(10,101,10))
 median_coherence = []
 mean_coherence = []
 for tid in range(33, 43):
-    fp = open('LDAResults/'+str(tid)+'/wordnet_coherence.pkl','rb')
+    fp = open('LDAResults/'+str(tid)+'/pairwise_coherence.lst','rb')
     scores = pickle.load(fp)
     fp.close()
-    print(scores)
+    entropy = sum(scores) / len(scores)
     # mean_coherence.append(statistics.mean(scores))
     # median_coherence.append(statistics.median(scores))
-    mean_coherence.append(scores[0])
+    mean_coherence.append(entropy)
 
 #
 # # for tid in range(44,46):
@@ -124,10 +124,10 @@ plt.plot(n_topics, mean_coherence)
 
 
 
-plt.ylabel('WordNet Coherence')
+plt.ylabel('Cluster-based Entropy')
 # plt.ylim(0,1)
 plt.xlabel('Number of Topics')
-# plt.savefig('corpus_based_KL_10.pdf')
+#plt.savefig('cluster_entropy_topics_10.pdf')
 plt.show()
 
 

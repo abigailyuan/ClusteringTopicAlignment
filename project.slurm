@@ -7,7 +7,7 @@
 #SBATCH --nodes=1
 
 # The name of the job:
-#SBATCH --job-name="k=10-60"
+#SBATCH --job-name="k=50-100"
 
 # The project ID which this job should run under:
 #SBATCH --account="punim1409"
@@ -20,7 +20,7 @@
 
 
 # The amount of memory in megabytes per process in the job:
-#SBATCH --mem=4096
+#SBATCH --mem=8192
 
 # Use this email address:
 #SBATCH --mail-user=myuan3@student.unimelb.edu.au
