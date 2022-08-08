@@ -72,13 +72,16 @@ def run_measures(n_topics, tid):
 
 # run_measures(n_topics=10, tid=18)
 #
-
-run_measures(n_topics=50, tid=37)
-# run_measures(n_topics=60, tid=38)
-run_measures(n_topics=70, tid=39)
-run_measures(n_topics=80, tid=40)
-run_measures(n_topics=90, tid=41)
-run_measures(n_topics=100, tid=42)
+run_measures(n_topics=10, tid=33)
+run_measures(n_topics=20, tid=34)
+run_measures(n_topics=30, tid=35)
+run_measures(n_topics=40, tid=36)
+#run_measures(n_topics=50, tid=37)
+run_measures(n_topics=60, tid=38)
+# run_measures(n_topics=70, tid=39)
+# run_measures(n_topics=80, tid=40)
+# run_measures(n_topics=90, tid=41)
+# run_measures(n_topics=100, tid=42)
 
 
 # n_topics = 10

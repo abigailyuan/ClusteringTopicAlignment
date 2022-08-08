@@ -7,7 +7,7 @@
 #SBATCH --nodes=1
 
 # The name of the job:
-#SBATCH --job-name="k=50"
+#SBATCH --job-name="k=10-60"
 
 # The project ID which this job should run under:
 #SBATCH --account="punim1409"
@@ -15,6 +15,7 @@
 # Maximum number of tasks/CPU cores used by the job:
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
+
 
 
 
