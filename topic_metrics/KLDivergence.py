@@ -4,12 +4,11 @@ from gensim.models import LdaModel
 from collections import defaultdict as dd
 import pickle
 import pandas as pd
-import math
 
-import LanguageModel
+from model_creation import LanguageModel
 from rel_to_clustering import get_query_docs
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 def get_collection_topic_distribution(tid, corpus_file):
 
@@ -164,7 +163,7 @@ def word_based_KL():
     for query in queries.keys():
         # get query subset LM
         docs = LanguageModel.get_documents(queries[query], bow_corpus)
-        LM = LanguageModel.unigram_model(docs,0.1)
+        LM = LanguageModel.unigram_model(docs, 0.1)
         word_prob = LanguageModel.to_word_probabilities(LM)
         query_LMs.append(word_prob)
 
@@ -184,7 +183,7 @@ def word_based_KL():
     print(topic_query_kl_matrix)
     end = time.perf_counter()
     print('time used:', int(end - start))
-    pickle.dump(topic_query_kl_matrix, open('topic_query_KL_matrix.pkl','wb'))
+    pickle.dump(topic_query_kl_matrix, open('../topic_query_KL_matrix.pkl', 'wb'))
 
 
 def tfidf_based_KL():
@@ -224,7 +223,7 @@ def tfidf_based_KL():
     print(topic_query_kl_matrix)
     end = time.perf_counter()
     print('time used:', int(end - start))
-    pickle.dump(topic_query_kl_matrix, open('tfidf_topic_query_KL_matrix.pkl', 'wb'))
+    pickle.dump(topic_query_kl_matrix, open('../tfidf_topic_query_KL_matrix.pkl', 'wb'))
 
 def get_word_collection_probability(corpus):
     corpus_bow = corpus_bow = pickle.load(open(corpus, 'rb'))

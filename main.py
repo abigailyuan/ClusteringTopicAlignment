@@ -1,15 +1,8 @@
-import matplotlib.pyplot as plt
+from pre_processing import corpus_vectorizer
 
-import preprocessing
-import corpus_vectorizer
-import pickle
-from gensim.models import LdaModel
+from model_creation import KMeansGenerator
 
-import KMeansGenerator
-import LDAGenerator
-import Visualisation
-import numpy as np
-from seaborn import boxplot
+
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
@@ -56,7 +49,7 @@ def work_pipeline():
     dense_corpus = 'ProcessedWSJ/dense_corpus_lemma.pkl'
     doc2vec_corpus = 'ProcessedWSJ/wsj_doc2vec10000_lemma.pkl'
     dictionary = 'ProcessedWSJ/dictionary_lemma.pkl'
-    KMeansGenerator.generate_k_means(dense_corpus=dense_corpus, run_id=cid,algorithm='auto', directory=directory, k=order)
+    KMeansGenerator.generate_k_means(dense_corpus=dense_corpus, run_id=cid, algorithm='auto', directory=directory, k=order)
     KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
     KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
                                               mode='centroid', directory=directory)

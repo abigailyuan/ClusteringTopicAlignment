@@ -6,8 +6,7 @@ import numpy as np
 from gensim.models import LdaModel
 from collections import defaultdict as dd
 from sklearn.metrics.pairwise import cosine_similarity
-import KMeansGenerator
-import LDAGenerator
+from model_creation import KMeansGenerator, LDAGenerator
 import seaborn as sns
 import sklearn
 from scipy.stats import skew

@@ -33,7 +33,7 @@ def build_index(index):
     return indexes
 
 def convert_to_id(queries):
-    index = pickle.load(open("ProcessedWSJ/wsj_index.pkl",'rb'))
+    index = pickle.load(open("../ProcessedWSJ/wsj_index.pkl", 'rb'))
     index = build_index(index)
     for q in queries:
         docs = queries[q]
@@ -114,9 +114,9 @@ def read_run(filename, queries):
 
 def get_query_docs():
     queries = dd(list)
-    read_run("trec2/input.citri1", queries)
-    read_run("trec3.adhoc/input.citri1", queries)
-    read_run("trec4.adhoc/input.citri1", queries)
+    read_run("../trec2/input.citri1", queries)
+    read_run("../trec3.adhoc/input.citri1", queries)
+    read_run("../trec4.adhoc/input.citri1", queries)
 
     convert_to_id(queries)
     new_queries = {}

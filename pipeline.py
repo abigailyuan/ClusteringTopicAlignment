@@ -1,11 +1,6 @@
 import numpy as np
 
-import preprocessing
-import corpus_vectorizer
-import pickle
-
-import KMeansGenerator
-import LDAGenerator
+from model_creation import KMeansGenerator, LDAGenerator
 import Visualisation
 
 

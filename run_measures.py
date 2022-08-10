@@ -1,10 +1,6 @@
-from gensim.models import LdaModel, CoherenceModel
+from gensim.models import LdaModel
 
-import KLDivergence
-import LDAGenerator
-import topic_measures
-import perplexity
-import cluster_entropy
+from topic_metrics import cluster_entropy, topic_measures
 import pickle
 
 

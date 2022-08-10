@@ -1,11 +1,7 @@
 import pickle
 
-from gensim.models import LdaModel
 from nltk.corpus import wordnet as wn
 import matplotlib.pyplot as plt
-import statistics
-
-import LDAGenerator
 
 
 def word_similarity(w1, w2):
