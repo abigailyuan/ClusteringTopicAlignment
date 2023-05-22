@@ -82,7 +82,7 @@ def remove_stopwords(corpus, directory='ProcessedWSJ/'):
     start = time.perf_counter()
     for i in range(len(corpus)):
         doc = corpus[i]
-        doc = [i for i in doc if i not in stopwords]
+        doc = [i for i in doc if (i not in stopwords) and len(i)>2 ]
         corpus[i] = doc
     end = time.perf_counter()
 

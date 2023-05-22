@@ -1,233 +1,51 @@
+import os
+import pickle
+from collections import defaultdict as dd
+from gensim.models.doc2vec import Doc2Vec
+from numpy import asarray
+import numpy as np
+from gensim.models.ldamodel import LdaModel
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import normalize
+from seaborn import heatmap
+from scipy.spatial import distance
+import matplotlib.pyplot as plt
+
+from model_creation.KMeansGenerator import generate_k_means, predict_cluster_labels
+from model_creation.LDAGenerator import generate_lda, generate_topic_keywords
 from pre_processing import corpus_vectorizer
+from sklearn.random_projection import GaussianRandomProjection
 
-from model_creation import KMeansGenerator
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-def work_pipeline():
-    # generate WSJ collection
-
-    # corpus_name = '../datasets/wsj.gz'
-    # corpus = preprocessing.parse_wsj_corpus(corpus_name)
-    # corpus = preprocessing.clean_corpus(corpus)
-    # corpus = preprocessing.tokenize_corpus(corpus)
-    # corpus = preprocessing.remove_stopwords(corpus)
-    # directory = 'ProcessedWSJ/'
-    # fp = open(directory + 'wsj_tokenized.pkl', 'rb')
-    # corpus = pickle.load(fp)
-    # fp.close()
-    # corpus = preprocessing.lemmatize_corpus(corpus)
-    #
-    # # vectorize corpus
-    # corpus = 'ProcessedWSJ/bow_lemma.pkl'
-    # bow_corpus = 'ProcessedWSJ/bow.pkl'
-    # directory = 'ProcessedWSJ/'
-    # corpus_vectorizer.create_dictionary(filename=corpus, directory=directory)
-    # dictionary = directory+'dictionary_lemma.pkl'
-    # print(type(dictionary))
-    # bow = pickle.load(open('ProcessedWSJ/bow_lemma.pkl','rb'))
-    # print(type(bow))
-    # print(bow[200])
+def get_topic_distribution(model, corpus):
+    num_topics = model.get_topics().shape[0]
+    corpus_dist = np.ndarray((len(corpus), num_topics)) # number of topics is 23
+    for i in range(len(corpus)):
+        doc = corpus[i]
+        dist = model.get_document_topics(doc, minimum_probability=0)
+        for topic, prob in dist:
+            corpus_dist[i][topic] = prob
+    return corpus_dist
 
 
-    corpus_vectorizer.bow_vectorize(corpus, dictionary, directory=directory)
-    # corpus_vectorizer.tfidf_vectorize(bow_corpus, dictionary, directory=directory)
+# os.mkdir('Results/wiki/')
+dir = 'ProcessedWiki/'
+corpus = dir+'bow_lemma.pkl'
+dictionary = dir+'id2word.dict'
 
-    # corpus_vectorizer.doc2vec_vectorize(corpus, vector_size=10000, directory=directory)
+# os.mkdir(dir+'kmeans/')
 
-    # order of comparison
-    order = 20
+# lda = generate_lda(corpus=corpus, run_id=0, num_topics=20, dictionary=dictionary, update_every=1, directory='Results/wiki/')
+#
+# generate_topic_keywords(0,num_topics=20, directory='Results/wiki/' )
 
-    # generate K-Means clustering run
-    cid = 19
-    directory = 'ClusterResults/'
-    bow_corpus = 'ProcessedWSJ/bow_lemma.pkl'
-    dense_corpus = 'ProcessedWSJ/dense_corpus_lemma.pkl'
-    doc2vec_corpus = 'ProcessedWSJ/wsj_doc2vec10000_lemma.pkl'
-    dictionary = 'ProcessedWSJ/dictionary_lemma.pkl'
-    KMeansGenerator.generate_k_means(dense_corpus=dense_corpus, run_id=cid, algorithm='auto', directory=directory, k=order)
-    KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
-                                              mode='centroid', directory=directory)
-    KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
-                                              mode='cluster', directory=directory)
+# generate_k_means(k=20, dense_corpus=dir+'wsj_doc2vec500.pkl', directory=dir+'kmeans/')
 
-    # directory = 'ClusterResults/'
-    # bow_corpus = 'ProcessedWSJ/bow.pkl'
-    # dense_corpus = 'ProcessedWSJ/dense_corpus.pkl'
-    # doc2vec_corpus = 'ProcessedWSJ/wsj_doc2vec10000.pkl'
-    # dictionary = 'ProcessedWSJ/dictionary.pkl'
-    # for cid in range(9,14):
-    #     KMeansGenerator.generate_k_means(dense_corpus=dense_corpus, run_id=cid, algorithm='full',directory=directory, k=order)
-    #     KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    #     KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
-    #                                               mode='centroid', directory=directory)
-    #     KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus, dictionary=dictionary,
-    #                                               mode='cluster', directory=directory)
-    #     print('clustering run: '+str(cid)+' generated.')
-    #
-    # for cid in range(14,19):
-    #     KMeansGenerator.generate_k_means(dense_corpus=dense_corpus, run_id=cid, algorithm='elkan', directory=directory,
-    #                                      k=order)
-    #     KMeansGenerator.predict_cluster_labels(run_id=cid, directory=directory)
-    #     KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus,
-    #                                               dictionary=dictionary,
-    #                                               mode='centroid', directory=directory)
-    #     KMeansGenerator.generate_cluster_keywords(run_id=cid, corpus=dense_corpus, bow=bow_corpus,
-    #                                               dictionary=dictionary,
-    #                                               mode='cluster', directory=directory)
-    #     print('clustering run: ' + str(cid) + ' generated.')
+# predict_cluster_labels(0, dir+'kmeans/')
 
-    # generate topic models
-    # tid = 17
-    # directory = 'LDAResults/'
-    # # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    # corpus = 'ProcessedWSJ/bow.pkl'
-    # dictionary = 'ProcessedWSJ/dictionary.pkl'
-    # LDAGenerator.generate_lda(corpus=corpus, run_id=tid, num_topics=order, dictionary=dictionary, directory=directory)
-    # LDAGenerator.predict_topic_labels(run_id=tid, corpus=corpus, directory=directory)
-    # LDAGenerator.generate_topic_keywords(run_id=tid, num_keywords=10, num_topics=order, directory=directory)
+# random projection
 
+doc2vec_corpus = pickle.load(open(dir+'wsj_doc2vec500.pkl', 'rb'))
 
-
-    # directory = 'LDAResults/'
-    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    # dictionary = 'ProcessedWSJ/dictionary.pkl'
-    # for tid in range(6,11):
-    #     LDAGenerator.generate_lda(corpus=corpus, run_id=tid, num_topics=order, dictionary=dictionary,update_every=1,
-    #                               directory=directory)
-    #     LDAGenerator.predict_topic_labels(run_id=tid, corpus=corpus, directory=directory)
-    #     LDAGenerator.generate_topic_keywords(run_id=tid, num_keywords=10, num_topics=order, directory=directory)
-    #     print('LDA run: ' + str(tid) + ' generated.')
-    #
-    # for tid in range(11,16):
-    #     LDAGenerator.generate_lda(corpus=corpus, run_id=tid, num_topics=order, dictionary=dictionary,update_every=0,
-    #                               directory=directory)
-    #     LDAGenerator.predict_topic_labels(run_id=tid, corpus=corpus, directory=directory)
-    #     LDAGenerator.generate_topic_keywords(run_id=tid, num_keywords=10, num_topics=order, directory=directory)
-    #     print('LDA run: ' + str(tid) + ' generated.')
-
-    # generate figures
-    # cid = 9
-    # tid = 16
-    # clustering = 'ClusterResults/' + str(cid) + '/model'
-    # topic_model = 'LDAResults/' + str(tid) + '/model'
-    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    # directory = 'figures/'
-    # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
-    #                                                                      c_order=20,t_order=20, mode='distribution', normalised=True)
-    #
-    # Visualisation.topic_distribution_visualise(0, clusters, cluster_topic_matrix, cid=cid, tid=tid, c_order=20, t_order=20,
-    #                                            directory=directory, mode='distribution')
-    # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
-    #                                                                      c_order=20, t_order=20, mode='label')
-    # Visualisation.topic_distribution_visualise(clusters, cluster_topic_matrix, cid=cid, tid=tid, c_order=20, t_order=20,
-    #                                            directory=directory, mode='label')
-
-    # vector similarity
-    # cid = 9
-    # tid = 1
-    # Visualisation.visualise_vecter_similarity(tid,cid, directory='figures/',norm='l1',figname='row_l1')
-
-    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    # cid = 9
-    # tid = 1
-    # for c in range(20):
-    #     for t in range(20):
-    #         dist = Visualisation.get_topic_distribution(corpus=corpus, cid=cid, tid=tid, c=c,t=t, mode='c')
-    #         Visualisation.hist_plot(topic_dist=dist,c=c, t=t,tid=1, directory='figures/c9t1/')
-
-    # measure skewness of c9t1
-    # cid = 9
-    # tid = 1
-    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    # print('Skewness per cluster\n\n')
-    # for c in range(20):
-    #     for t in range(20):
-    #         dist = Visualisation.get_topic_distribution(corpus=corpus, cid=cid, tid=tid, c=c, t=t, mode='c')
-    #         skewness = Visualisation.skewness_measure(dist)
-    #         print(f"c{c}t{t}:  {skewness}")
-    #
-    # print("Skewness of whole corpus")
-    # for t in range(20):
-    #     dist = Visualisation.get_topic_distribution(corpus=corpus, cid=cid, tid=tid, t=t, mode='all')
-    #     skewness = Visualisation.skewness_measure(dist)
-    #     print(f"t{t}:  {skewness}")
-
-    # testing
-    # cid = 9
-    # tid = 7
-    # clustering = 'ClusterResults/' + str(cid) + '/model'
-    # topic_model = 'LDAResults/' + str(tid) + '/model'
-    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    # directory = 'figures/'
-    # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,c_order=20, t_order=20, mode='distribution')
-    # print(cluster_topic_matrix.head())
-    # t = 2
-    # dist = Visualisation.get_topic_distribution(corpus, cid, tid, c=0, t=t, mode='all')
-    # print(max(dist))
-    # print(np.mean(dist))
-    # print(np.median(dist))
-    # Visualisation.hist_plot(topic_dist=dist, c=1, t=t, tid=1, directory='figures/test/')
-
-    # for t in range(20):
-    #     plt.clf()
-    #     fig, axes = plt.subplots(20, 1, figsize=(20,150))
-    #     for c in range(20):
-    #         ax = axes[c]
-    #         dist = Visualisation.get_topic_distribution(corpus, cid, tid, c=c, t=t, mode='cluster')
-    #         axes[c] = Visualisation.hist_plot(ax, topic_dist=dist, c=c, t=t, tid=tid, directory='figures/c9t7/')
-    #         axes[c].set_title(f"Topic {t} distribution over cluster {c}", fontsize=18)
-    #     plt.savefig(f"figures/c9t7/topic{t}Skewness.pdf")
-    #     print('topic',t,'finished.')
-
-
-    # topic distribution boxplot to compare topic significance
-    # cid = 9
-    # tid = 1
-    # clustering = 'ClusterResults/' + str(cid) + '/model'
-    # topic_model = 'LDAResults/' + str(tid) + '/model'
-    # corpus = 'ProcessedWSJ/tfidf_corpus.pkl'
-    # directory = 'figures/'
-    # clusters, cluster_topic_matrix = Visualisation.compare_cluster_topic(clustering, topic_model, corpus=corpus,
-    #                                                                      c_order=20, t_order=20, mode='distribution')
-    #
-    # print(cluster_topic_matrix.head(5))
-    #
-    # cluster_topic_matrix = cluster_topic_matrix.drop(['t14','t15'], axis='columns')
-    # plt.clf()
-    # plt.figure()
-    # ax = boxplot(data = cluster_topic_matrix)
-    # ax.set_xlabel("Topic")
-    # ax.set_ylabel("Percentage in Clusters")
-    # plt.savefig('topic_boxplt.pdf')
-
-    # topic-query subset KL Divergence visualisation
-    # tfidf_topic_kl_matrix = pickle.load(open('tfidf_topic_query_KL_matrix.pkl','rb'))
-    # bow_topic_kl_matrix = pickle.load(open('topic_query_KL_matrix.pkl','rb'))
-    #
-    # plt.clf()
-    # fig,axes = plt.subplots(3,1, figsize=(40,30))
-    # axes[0] = Visualisation.visualise_topic_KL(tfidf_topic_kl_matrix, ax=axes[0])
-    # axes[0].set_xlabel('Query Subset')
-    # axes[0].set_ylabel('Topic')
-    # axes[0].set_title('TFIDF-based Topic-Query Subset KL Divergence')
-    #
-    # axes[1] = Visualisation.visualise_topic_KL(bow_topic_kl_matrix, ax=axes[1])
-    # axes[1].set_xlabel('Query Subset')
-    # axes[1].set_ylabel('Topic')
-    # axes[1].set_title('BOW-based Topic-Query Subset KL Divergence')
-    # plt.savefig('compare_topic_query_kl.pdf')
-
-    return 0
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    work_pipeline()
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+rj = GaussianRandomProjection(n_components=20)
+new_x = rj.fit_transform(X=doc2vec_corpus)
+pickle.dump(new_x, open('Results/wiki/rj.20.pkl', 'wb'))

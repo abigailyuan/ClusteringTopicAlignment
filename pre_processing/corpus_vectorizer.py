@@ -53,18 +53,18 @@ def bow_vectorize(filename, dictionary, directory='ProcessedWSJ'):
     dictionary = pickle.load(open(dictionary, 'rb'))
 
     start = time.perf_counter()
-    model = CountVectorizer(vocabulary=dictionary)
+    model = CountVectorizer()
     vectorized_corpus = model.fit_transform(corpus)
     end = time.perf_counter()
     print('Corpus is vectorized with CountBased Vectorizer.')
     print('time used:', int(end - start))
 
     pickle.dump(vectorized_corpus, open(directory + 'count_corpus_lemma.pkl', 'wb'))
-
-    num_terms = len(dictionary)
-    corpus_size = len(vectorized_corpus)
-    dense_corpus = corpus2dense(vectorized_corpus, num_terms, corpus_size)
-    pickle.dump(dense_corpus.T, open(directory + 'dense_corpus_lemma.pkl', 'wb'))
+    #
+    # num_terms = len(dictionary)
+    # corpus_size = vectorized_corpus.shape[0]
+    # dense_corpus = corpus2dense(vectorized_corpus, num_terms, corpus_size)
+    # pickle.dump(dense_corpus.T, open(directory + 'dense_corpus_lemma.pkl', 'wb'))
 
     return 0
 
@@ -95,3 +95,26 @@ def doc2vec_vectorize(filename, vector_size=500, window=2, min_count=15, max_voc
     pickle.dump(corpus, open(directory + 'wsj_doc2vec'+str(vector_size)+'.pkl', 'wb'))
 
     return 0
+
+directory = 'ProcessedWiki/'
+create_dictionary('ProcessedWiki/wsj_lemmatised.pkl', directory='ProcessedWiki/')
+corpus_file = directory+'sample_corpus.lst'
+dictionary = directory+'dictionary_lemma.pkl'
+# word2id = {}
+# d = pickle.load(open(dictionary,'rb'))
+# for k,v in d.items():
+#     word2id[v] = k
+# pickle.dump(word2id,open(directory+'word2id.dict','wb'))
+# dictionary = directory+'word2id.dict'
+#
+# bow_vectorize(corpus_file, dictionary, directory)
+
+# token = pickle.load(open(directory+'wsj_tokenized.pkl', 'rb'))
+# corpus =[]
+# for doc in token:
+#     d = ' '.join(doc)
+#     corpus.append(d)
+# pickle.dump(corpus, open(directory+'sample_corpus.lst', 'wb'))
+
+# corpus = directory + 'wsj_lemmatised.pkl'
+# doc2vec_vectorize(corpus, directory=directory)
