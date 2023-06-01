@@ -1,3 +1,4 @@
+import numpy as np
 from gensim.models import LdaModel
 import os
 import pickle
@@ -54,8 +55,8 @@ def generate_topic_keywords(run_id, num_keywords=10, num_topics=10, directory='/
         fp.write('\n')
         fp.write(keywords)
         fp.write('\n')
-        print('topic ' + tid)
-        print(keywords)
+        # print('topic ' + tid)
+        # print(keywords)
 
     fp.close()
     return topics
@@ -66,3 +67,14 @@ def get_topic_vectors(tid, directory='LDAResults/'):
     lda_model = LdaModel.load(directory+str(tid)+'/model')
     return lda_model.get_topics()
 
+def get_document_topic_matrix(bow, tid, dir='Results/wiki/'):
+    lda_model = LdaModel.load(dir+tid+'/model')
+    topics = lda_model.get_document_topics(bow, minimum_probability=0)
+    topic_matrix = []
+    for doc in topics:
+        topic_dist = [i[1] for i in doc]
+        topic_matrix.append(topic_dist)
+
+    topic_matrix = np.asarray(topic_matrix)
+
+    return topic_matrix

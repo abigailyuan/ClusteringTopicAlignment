@@ -100,21 +100,21 @@ directory = 'ProcessedWiki/'
 create_dictionary('ProcessedWiki/wsj_lemmatised.pkl', directory='ProcessedWiki/')
 corpus_file = directory+'sample_corpus.lst'
 dictionary = directory+'dictionary_lemma.pkl'
-# word2id = {}
-# d = pickle.load(open(dictionary,'rb'))
-# for k,v in d.items():
-#     word2id[v] = k
-# pickle.dump(word2id,open(directory+'word2id.dict','wb'))
-# dictionary = directory+'word2id.dict'
-#
-# bow_vectorize(corpus_file, dictionary, directory)
+word2id = {}
+d = pickle.load(open(dictionary,'rb'))
+for k,v in d.items():
+    word2id[v] = k
+pickle.dump(word2id,open(directory+'word2id.dict','wb'))
+dictionary = directory+'word2id.dict'
 
-# token = pickle.load(open(directory+'wsj_tokenized.pkl', 'rb'))
-# corpus =[]
-# for doc in token:
-#     d = ' '.join(doc)
-#     corpus.append(d)
-# pickle.dump(corpus, open(directory+'sample_corpus.lst', 'wb'))
+bow_vectorize(corpus_file, dictionary, directory)
 
-# corpus = directory + 'wsj_lemmatised.pkl'
-# doc2vec_vectorize(corpus, directory=directory)
+token = pickle.load(open(directory+'wsj_tokenized.pkl', 'rb'))
+corpus =[]
+for doc in token:
+    d = ' '.join(doc)
+    corpus.append(d)
+pickle.dump(corpus, open(directory+'sample_corpus.lst', 'wb'))
+
+corpus = directory + 'wsj_lemmatised.pkl'
+doc2vec_vectorize(corpus, directory=directory)

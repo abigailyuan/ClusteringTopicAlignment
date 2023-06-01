@@ -10,9 +10,8 @@ dir = 'Resources/'
 corpus = dd(list)
 for file in os.listdir(dir):
     fp = open(dir+file, 'r')
-    collection = [d['content'] for d in json.load(fp)['documents'] if len(d['content']) >= 500]
-    corpus[file[:-5]] = collection[:1000]
-
+    collection = [d['content'] for d in json.load(fp)['documents'] if len(d['content']) >= 1000]
+    corpus[file[:-5]] = collection[-1000:]
 # os.mkdir('ProcessedWiki/')
 pickle.dump(corpus, open('ProcessedWiki/sample_1000.dict', 'wb'))
 
