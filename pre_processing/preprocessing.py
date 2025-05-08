@@ -136,16 +136,3 @@ def generate_subcollections(corpus, len_threshold=100, directory='ProcessedWSJ/'
     pickle.dump(wsj_small, open(directory + 'wsj_small.pkl', 'wb'))
 
     print('Subcollections created.')
-
-# def convert_to_sparse_matrix(bow):
-#     return corpus2csc(bow)
-#
-# corpus = 'ProcessedWSJ/bow.pkl'
-# fp = open(corpus,'rb')
-# bow = pickle.load(fp)
-# fp.close()
-#
-# csc = convert_to_sparse_matrix(bow)
-# fp = open('ProcessedWSJ/sparse_bow.pkl','wb')
-# pickle.dump(csc, fp)
-# fp.close()
