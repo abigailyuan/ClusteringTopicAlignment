@@ -2,3 +2,7 @@ ProcessedWSJ/*
 !ProcessedWSJ/keep_this_file.txt
 
 Preprocessing/__pycache__/
+
+ .ipynb_checkpoints/*
+
+mappings/.ipynb_checkpoints/
