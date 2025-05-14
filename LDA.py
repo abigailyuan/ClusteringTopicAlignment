@@ -13,8 +13,10 @@ from nltk.corpus import stopwords
 nltk.download('punkt_tab')
 
 import numpy as np
+import gensim
 from gensim.corpora import Dictionary
 from gensim.models.ldamodel import LdaModel
+from gensim.models.ldamulticore import LdaMulticore
 
 from Preprocessing.wsj import WSJ
 
@@ -75,7 +77,7 @@ def main():
     # 3. Save model and dictionary
     lda.save(os.path.join(OUTPUT_DIR, "wsj_lda50.model"))
     dictionary.save(os.path.join(OUTPUT_DIR, "wsj_dictionary.dict"))
-    corpus.save(os.path.join(OUTPUT_DIR, "wsj_corpus.pkl"))
+    pickle.dump(corpus, open(os.path.join(OUTPUT_DIR, "wsj_corpus.pkl"), 'wb'))
 
     # 4. Build topic–document matrix
     td_matrix = build_topic_doc_matrix(lda, corpus, NUM_TOPICS)
@@ -90,6 +92,17 @@ def main():
     # (Optional) print out matrix snippet
     print("Sample (first 5 topics × first 5 docs):")
     print(td_matrix[:5, :5])
+    
+    print("Gensim version:", gensim.__version__)
+    print("Gensim path:   ", gensim.__file__)
+
+    print("Your model type:", type(lda))
+
+    print("Is instance of core LdaModel?    ", isinstance(lda, LdaModel))
+    print("Is instance of LdaMulticore?     ", isinstance(lda, LdaMulticore))
+    print("Has attribute `state`?           ", hasattr(lda, "state"))
+    print("`dir(lda)` snippet:               ", [attr for attr in dir(lda) if attr.startswith("state")])
+
 
 if __name__ == "__main__":
     main()

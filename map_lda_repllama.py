@@ -1,4 +1,4 @@
-from mappings.GreedyMapping import global_mapping
+from mappings.GreedyMapping import feature_mapping
 import pickle
 import torch
 import numpy as np
@@ -22,7 +22,7 @@ if torch.is_tensor(topics):
 else:
     topics_np = np.asarray(topics)
     
-mapping = global_mapping(projected_np, topics_np)
+mapping = feature_mapping(projected_np, topics_np)
 pickle.dump(mapping, open('Results/wsj_repllama_lda_mapping.pkl','wb'))
 print(type(mapping))
 print(mapping)
