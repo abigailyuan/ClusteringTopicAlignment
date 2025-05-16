@@ -49,3 +49,7 @@ class NG20:
         label_index = data.target[index]
         label_name = data.target_names[label_index]
         return text, label_index, label_name
+
+    def get_all_texts(self):
+        texts = self.train_data.data + self.test_data.data
+        return texts
