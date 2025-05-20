@@ -6,25 +6,21 @@ collections = ['wiki', '20ng', 'wsj']
 # Mapping of language model to its embedding script
 embedding_scripts = {
     'doc2vec': 'Embeddings/embed_doc2vec.py',
-    'sbert': 'Embeddings/embed_sbert.py',
-    'repllama': 'Embeddings/embed_repllama.py'
+    'sbert':   'Embeddings/embed_sbert.py',
+    'repllama':'Embeddings/embed_repllama.py'
 }
 
-# Mapping of topic model to training and mapping scripts
+# Mapping of topic model to training scripts
 topic_train_scripts = {
-    'lda': 'TopicModels/lda_train.py',
-    'bertopic': 'TopicModels/bertopic_train.py'
+    'lda':     'TopicModels/lda_train.py',
+    'bertopic':'TopicModels/bertopic_train.py'
 }
 
+# Mapping (for repllama only)
 mapping_scripts = {
-    ('lda', 'repllama'): 'Mapping/map_repllama_lda.py',
-    ('bertopic', 'repllama'): 'Mapping/map_repllama_bertopic.py'
+    ('lda', 'repllama'):     'Mapping/map_repllama_lda.py',
+    ('bertopic','repllama'): 'Mapping/map_repllama_bertopic.py'
 }
-
-
-def run_command(script_path, collection):
-    print(f"[RUNNING] {script_path} --collection {collection}")
-    subprocess.run(['python', script_path, '--collection', collection], check=True)
 
 
 def run_pipeline(lang_model, topic_model):
@@ -35,17 +31,27 @@ def run_pipeline(lang_model, topic_model):
 
     for collection in collections:
         # Step 1: Generate embeddings
-        run_command(embedding_scripts[lang_model], collection)
+        print(f"[RUNNING] {embedding_scripts[lang_model]} --collection {collection}")
+        subprocess.run(['python', embedding_scripts[lang_model], '--collection', collection], check=True)
 
         # Step 2: Train topic model
-        run_command(topic_train_scripts[topic_model], collection)
+        script = topic_train_scripts[topic_model]
+        if topic_model == 'lda':
+            print(f"[RUNNING] {script} --collection {collection}")
+            subprocess.run(['python', script, '--dataset', collection], check=True)
+        else:
+            print(f"[RUNNING] {script} --dataset {collection}")
+            subprocess.run(['python', script, '--dataset', collection], check=True)
 
-        # Step 3: Run mapping (currently supports only RepLLaMA)
+        # Step 3: Run mapping (only for repllama)
         if lang_model == 'repllama':
-            run_command(mapping_scripts[(topic_model, lang_model)], collection)
+            mapping_script = mapping_scripts[(topic_model, lang_model)]
+            print(f"[RUNNING] {mapping_script} --collection {collection}")
+            subprocess.run(['python', mapping_script, '--collection', collection], check=True)
 
     # Step 4: Visualisation
     print("\n[VISUALISING]")
+    print(f"[RUNNING] Visualisation/visualise_mapping.py --model {topic_model}")
     subprocess.run(['python', 'Visualisation/visualise_mapping.py', '--model', topic_model], check=True)
 
 
