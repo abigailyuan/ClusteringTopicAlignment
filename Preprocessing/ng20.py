@@ -51,5 +51,7 @@ class NG20:
         return text, label_index, label_name
 
     def get_all_texts(self):
+        self.load_train()
+        self.load_test()
         texts = self.train_data.data + self.test_data.data
         return texts
