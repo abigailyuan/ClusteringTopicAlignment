@@ -17,7 +17,6 @@ from gensim.models.ldamodel import LdaModel
 from gensim.models.ldamulticore import LdaMulticore
 from gensim.models.coherencemodel import CoherenceModel
 
-from Preprocessing.wsj import WSJ
 from sklearn.datasets import fetch_20newsgroups
 
 # ────────────────────────────────────────────────────────────────────────────────
