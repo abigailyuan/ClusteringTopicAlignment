@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 from gensim.models import LdaModel
 from topic_specificity import calculate_specificity_for_all_topics
-from TopicSpecificityBerTopic.topic_specificity_bertopic import calculate_specificity_bertopic
+from topic_specificity_bertopic import calculate_specificity_bertopic
 from bertopic import BERTopic
 
 
