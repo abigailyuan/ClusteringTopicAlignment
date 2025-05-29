@@ -15,7 +15,6 @@ from gensim.models.phrases import Phrases, Phraser
 from gensim.corpora import Dictionary
 from gensim.models.ldamodel import LdaModel
 from gensim.models.ldamulticore import LdaMulticore
-from gensim.models.coherencemodel import CoherenceModel
 
 from sklearn.datasets import fetch_20newsgroups
 
@@ -101,13 +100,13 @@ def load_collection(name, path=None):
     - wiki: reads all .txt files under `path`
     """
     if name == "wsj":
-        return pickle.load(open('ProcessedWSJ/wsj_raw.pkl','rb'))
+        return pickle.load(open('ProcessedWSJ/wsj_preprocessed.pkl','rb'))
 
     elif name == "20ng":
-        return pickle.load(open('Processed20NG/20ng_raw.pkl','rb'))
+        return pickle.load(open('Processed20NG/20ng_preprocessed.pkl','rb'))
 
     elif name == "wiki":
-        return pickle.load(open('ProcessedWIKI/wiki_raw.pkl','rb'))
+        return pickle.load(open('ProcessedWIKI/wiki_preprocessed.pkl','rb'))
 
     else:
         raise ValueError(f"Unknown collection '{name}'")
@@ -143,13 +142,6 @@ def train_lda(texts, num_topics=50, passes=10,
             passes=passes,
             random_state=42
         )
-    # compute c_v coherence for this model
-    cm = CoherenceModel(model=lda,
-                        texts=texts,
-                        dictionary=dictionary,
-                        coherence='c_v')
-    coherence = cm.get_coherence()
-    print(f"[Coherence c_v] {coherence:.4f}")
 
     return lda, dictionary, corpus
 
