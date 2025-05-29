@@ -1,82 +1,91 @@
 import os
-import argparse
+import sys
 import pickle
-import numpy as np
+import argparse
 import matplotlib.pyplot as plt
 
+# Ensure project root is on path for imports
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, project_root)
+
 from gensim.models import LdaModel
+from bertopic import BERTopic
 from topic_specificity import calculate_specificity_for_all_topics
 from TopicSpecificityBerTopic.topic_specificity_bertopic import calculate_specificity_bertopic
-from bertopic import BERTopic
 
 
-def plot_model(model_type):
+def plot_mapping(lang_model, topic_model):
     collections = ['wiki', '20ng', 'wsj']
     colors = ['C0', 'C1', 'C2']
 
-    plt.figure(figsize=(8, 5))
+    plt.figure(figsize=(10, 6))
 
-    for i, collection in enumerate(collections):
-        print(f"[INFO] Processing {collection} using {model_type.upper()}...")
-
-        if model_type == 'lda':
-            dictionary = pickle.load(open(f'Results/LDA/{collection}_dictionary.dict', 'rb'))
-            corpus = pickle.load(open(f'Results/LDA/{collection}_corpus.pkl', 'rb'))
-            lda = LdaModel.load(f"Results/LDA/{collection}_lda50.model")
-            specificity_scores = calculate_specificity_for_all_topics(
+    for i, coll in enumerate(collections):
+        # 1) Compute specificity
+        if topic_model == 'lda':
+            # Load LDA model & corpus
+            lda = LdaModel.load(f"Results/LDA/{coll}_lda50.model")
+            corpus = pickle.load(open(f"Results/LDA/{coll}_corpus.pkl", 'rb'))
+            scores = calculate_specificity_for_all_topics(
                 model=lda,
                 corpus=corpus,
                 mode='lda',
                 threshold_mode='gmm',
-                specificity_mode='sqrt'
+                specificity_mode='diff'
             )
-            mapping_file = f'Results/{collection}_repllama_lda_mapping.pkl'
-
-        elif model_type == 'bertopic':
-            bertopic_model = BERTopic.load(f"Results/BerTopic/{collection}_bertopic_model")
-            specificity_scores = calculate_specificity_bertopic(
-                bertopic_model,
+        else:  # bertopic
+            bt = BERTopic.load(f"Results/BERTOPIC/{coll}_bertopic_model")
+            scores = calculate_specificity_bertopic(
+                bt,
                 threshold_mode='gmm',
-                specificity_mode='sqrt'
+                specificity_mode='diff'
             )
-            mapping_file = f'Results/{collection}_repllama_bertopic_mapping.pkl'
 
-        else:
-            raise ValueError(f"Unknown model type: {model_type}")
+        # 2) Load mapping
+        map_file = f"Results/{coll}_{lang_model}_{topic_model}_mapping.pkl"
+        mappings = pickle.load(open(map_file, 'rb'))
+        mapped = {t for _, t in mappings}
 
-        mappings = pickle.load(open(mapping_file, 'rb'))
+        # 3) Sort topics by specificity
+        ts = list(enumerate(scores))
+        sorted_ts = sorted(ts, key=lambda x: x[1])
+        topics, sp = zip(*sorted_ts)
+        x = list(range(len(topics)))
+        mapped_x = [x[j] for j, t in enumerate(topics) if t in mapped]
+        mapped_y = [sp[j] for j, t in enumerate(topics) if t in mapped]
+        unmapped_x = [x[j] for j, t in enumerate(topics) if t not in mapped]
+        unmapped_y = [sp[j] for j, t in enumerate(topics) if t not in mapped]
 
-        # Mapped topic indices
-        mapped_topics = {topic_id for _, topic_id in mappings}
-        topic_scores = list(enumerate(specificity_scores))
-        sorted_topic_scores = sorted(topic_scores, key=lambda x: x[1])
-        sorted_topics, sorted_scores = zip(*sorted_topic_scores)
-        x_positions = list(range(len(sorted_topics)))
+        plt.scatter(mapped_x, mapped_y, color=colors[i], alpha=1.0,
+                    label=f'{coll}-{lang_model}-mapped')
+        plt.scatter(unmapped_x, unmapped_y, color=colors[i], alpha=0.3,
+                    label=f'{coll}-{lang_model}-unmapped')
 
-        mapped_x = [x for x, t in zip(x_positions, sorted_topics) if t in mapped_topics]
-        mapped_y = [s for t, s in zip(sorted_topics, sorted_scores) if t in mapped_topics]
-        unmapped_x = [x for x, t in zip(x_positions, sorted_topics) if t not in mapped_topics]
-        unmapped_y = [s for t, s in zip(sorted_topics, sorted_scores) if t not in mapped_topics]
-
-        plt.scatter(mapped_x, mapped_y, color=colors[i], alpha=1.0, label=f'{collection}-mapped')
-        plt.scatter(unmapped_x, unmapped_y, color=colors[i], alpha=0.3, label=f'{collection}-unmapped')
-
-    plt.xlabel('Topics')
-    plt.ylabel('Specificity')
+    plt.xlabel('Topic Index (sorted by specificity)')
+    plt.ylabel('Specificity Score')
+    plt.title(f'Specificity: {lang_model.upper()} + {topic_model.upper()}')
     plt.legend()
-    title = f'RepLlMa Embedding mapped {model_type.upper()} topics sorted by Specificity Scores'
-    plt.title(title)
     plt.tight_layout()
-    output_file = f'Results/{model_type.lower()}_repllama.pdf'
-    plt.savefig(output_file)
+
+    out_path = f"Results/{topic_model}_{lang_model}.pdf"
+    plt.savefig(out_path)
+    print(f"[SAVED] Visualization at {out_path}")
     plt.show()
-    print(f"[DONE] Figure saved as {output_file}")
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Visualise topic specificity and mappings.")
-    parser.add_argument('--model', choices=['lda', 'bertopic'], required=True,
-                        help="Specify the topic model to plot (lda or bertopic)")
-
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description="Visualise topic mapping specificity for any embedding+topic model"
+    )
+    parser.add_argument(
+        '--lang_model', required=True,
+        choices=['doc2vec', 'sbert', 'repllama'],
+        help="Embedding method"
+    )
+    parser.add_argument(
+        '--topic_model', required=True,
+        choices=['lda', 'bertopic'],
+        help="Topic model type"
+    )
     args = parser.parse_args()
-    plot_model(args.model)
+    plot_mapping(args.lang_model, args.topic_model)
