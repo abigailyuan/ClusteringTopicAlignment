@@ -3,6 +3,11 @@ import argparse
 import os
 
 collections = ['wiki', '20ng', 'wsj']
+OPTIMAL_LDA_TOPICS = {
+    'wsj':50,
+    'wiki':80,
+    '20ng':70
+    }
 
 # Step 1.5 preprocessing script
 preprocessing_script = 'Preprocessing/preprocess_step_1_5.py'
@@ -62,7 +67,7 @@ def run_pipeline(lang_model, topic_model, force_components=None):
 
         # Step 2: Topic Modeling
         if topic_model == 'lda':
-            model_flag, model_path = '--dataset', f'Results/LDA/{coll}_lda50.model'
+            model_flag, model_path = '--dataset', f'Results/LDA/{coll}_lda{OPTIMAL_LDA_TOPICS[coll]}.model'
         else:
             model_flag, model_path = '--dataset', f'Results/BERTOPIC/{coll}_bertopic_model'
 

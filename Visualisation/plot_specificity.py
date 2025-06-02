@@ -29,7 +29,7 @@ def plot_specificity(results_dict_path):
     )
     plt.xlabel("Number of Topics")
     plt.ylabel("Mean Specificity Score")
-    plt.title("Specificity vs. Number of Topics")
+    # plt.title("Specificity vs. Number of Topics")
     plt.grid(True)
     plt.legend()
 
