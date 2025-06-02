@@ -6,13 +6,15 @@ from embed_utils import (
     load_documents,
     save_embeddings,
     random_project,
-    get_processed_dir
+    get_processed_dir,
+    OPTIMAL_LDA_TOPICS
 )
 from preprocess import prepare_sbert
 
 
 def embed_sbert(collection: str, model_name: str = 'all-MiniLM-L6-v2'):
     method = 'sbert'
+    n_features = OPTIMAL_LDA_TOPICS[collection]
     processed_dir = get_processed_dir(collection)
     raw_path = os.path.join(processed_dir, f"{collection}_{method}_corpus_embeddings.pkl")
     proj_path = os.path.join(processed_dir, f"{collection}_{method}_projected_features.pkl")
@@ -29,8 +31,8 @@ def embed_sbert(collection: str, model_name: str = 'all-MiniLM-L6-v2'):
     embeddings = model.encode(docs, batch_size=32, show_progress_bar=True)
 
     save_embeddings(embeddings, collection, f"{collection}_{method}_corpus_embeddings.pkl")
-    projected = random_project(embeddings)
-    save_embeddings(projected, collection, f"{collection}_{method}_projected_features.pkl")
+    projected = random_project(embeddings=embeddings, n_features=n_features)
+    save_embeddings(projected, collection, f"{collection}_{method}_{n_features}_projected_features.pkl")
 
 
 if __name__ == '__main__':

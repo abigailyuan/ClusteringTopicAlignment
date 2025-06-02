@@ -4,6 +4,11 @@ import numpy as np
 from typing import List, Any
 from sklearn.random_projection import GaussianRandomProjection
 
+OPTIMAL_LDA_TOPICS = {
+    'wsj':50,
+    'wiki':80,
+    '20ng':70
+    }
 
 def get_processed_dir(collection: str) -> str:
     """Return the processed directory for a given collection."""

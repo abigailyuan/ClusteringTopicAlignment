@@ -7,13 +7,15 @@ from embed_utils import (
     load_documents,
     save_embeddings,
     random_project,
-    get_processed_dir
+    get_processed_dir,
+    OPTIMAL_LDA_TOPICS
 )
 from preprocess import clean_doc
 
 
 def embed_doc2vec(collection: str, vector_size: int = 300, epochs: int = 40):
     method = 'doc2vec'
+    n_features = OPTIMAL_LDA_TOPICS[collection]
     processed_dir = get_processed_dir(collection)
     raw_path = os.path.join(processed_dir, f"{collection}_{method}_corpus_embeddings.pkl")
     proj_path = os.path.join(processed_dir, f"{collection}_{method}_projected_features.pkl")
@@ -33,8 +35,8 @@ def embed_doc2vec(collection: str, vector_size: int = 300, epochs: int = 40):
     embeddings = np.vstack([model.infer_vector(doc.words) for doc in tagged])
     save_embeddings(embeddings, collection, f"{collection}_{method}_corpus_embeddings.pkl")
 
-    projected = random_project(embeddings)
-    save_embeddings(projected, collection, f"{collection}_{method}_projected_features.pkl")
+    projected = random_project(embeddings=embeddings, n_features=n_features)
+    save_embeddings(projected, collection, f"{collection}_{method}_{n_features}_projected_features.pkl")
 
 
 if __name__ == '__main__':

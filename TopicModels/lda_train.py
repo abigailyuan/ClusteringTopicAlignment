@@ -34,6 +34,13 @@ COLLECTION_EXTRAS = {
     'wiki': {'edit', 'redirect', 'page', 'wikipedia', 'category'},
 }
 
+# optimal LDA topics
+OPTIMAL_LDA_TOPICS = {
+    'wsj':50,
+    'wiki':80,
+    '20ng':70
+    }
+
 # load spaCy model for lemmatization
 try:
     nlp = spacy.load('en_core_web_sm', disable=['parser','ner'])
@@ -204,6 +211,7 @@ def main():
 
     # 3. save artifacts
     prefix = args.dataset
+    n_topics = OPTIMAL_LDA_TOPICS[prefix]
     lda.save(os.path.join(args.output_dir, f"{prefix}_lda{args.num_topics}.model"))
     dictionary.save(os.path.join(args.output_dir, f"{prefix}_dictionary.dict"))
     with open(os.path.join(args.output_dir, f"{prefix}_corpus.pkl"), "wb") as f:
@@ -211,7 +219,7 @@ def main():
 
     # 4. build & save topic–doc matrix
     td_mat = build_topic_doc_matrix(lda, corpus, args.num_topics)
-    with open(os.path.join(args.output_dir, f"{prefix}_topic_doc_matrix.pkl"), "wb") as f:
+    with open(os.path.join(args.output_dir, f"{prefix}_{n_topics}_topic_doc_matrix.pkl"), "wb") as f:
         pickle.dump(td_mat, f)
     print(f"[3] Topic–doc matrix saved; shape = {td_mat.shape}")
 
