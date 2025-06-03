@@ -15,7 +15,7 @@ from mappings.GreedyMapping import feature_mapping
 def load_array(path):
     """
     Load a pickle file and return a NumPy array.
-    Handles torch.Tensor or numpy arrays.
+    Handles torch.Tensor or NumPy arrays.
     """
     arr = pickle.load(open(path, 'rb'))
     if torch.is_tensor(arr):
@@ -28,54 +28,85 @@ def main():
         description="Map projected embeddings to topic-document matrices."
     )
     parser.add_argument(
-        '--dataset', choices=['wsj', '20ng', 'wiki'], required=True,
-        help="Dataset name."
+        '--dataset',
+        choices=['wsj', '20ng', 'wiki'],
+        required=True,
+        help="Dataset name (wsj, 20ng, or wiki)."
     )
     parser.add_argument(
-        '--lang_model', choices=['doc2vec', 'sbert', 'repllama'], required=True,
+        '--lang_model',
+        choices=['doc2vec', 'sbert', 'repllama'],
+        required=True,
         help="Embedding method used."
     )
     parser.add_argument(
-        '--topic_model', choices=['lda', 'bertopic'], required=True,
+        '--topic_model',
+        choices=['lda', 'bertopic'],
+        required=True,
         help="Topic model used."
     )
     parser.add_argument(
-        '--features', type=str, default=None,
-        help="Path to projected features pickle (overrides default)."
+        '--dim',
+        type=int,
+        required=True,
+        help=(
+            "Number of features (projection dimension).\n"
+            "Example: if you generated embeddings as `wsj_sbert_50_projected_features.pkl`,\n"
+            "then provide `--dim 50` here so the script knows which file to load."
+        )
     )
     parser.add_argument(
-        '--topics', type=str, default=None,
-        help="Path to topic-document matrix pickle (overrides default)."
+        '--features',
+        type=str,
+        default=None,
+        help="Full path to projected features pickle (overrides default naming)."
     )
     parser.add_argument(
-        '--output_dir', type=str, default='Results',
+        '--topics',
+        type=str,
+        default=None,
+        help="Full path to topic-document matrix pickle (overrides default)."
+    )
+    parser.add_argument(
+        '--output_dir',
+        type=str,
+        default='Results',
         help="Directory to save the mapping result."
     )
     args = parser.parse_args()
 
     ds = args.dataset.lower()
-    # Processed directory contains embeddings
+    n_feat = args.dim
+
+    # Processed directory (where embeddings are stored)
     proc_dir = f"Processed{ds.upper()}"
 
-    # Determine features path
+    # 1) Determine projected-features path
     if args.features:
         feats_path = args.features
     else:
-        feats_path = os.path.join(proc_dir, f"{ds}_{args.lang_model}_projected_features.pkl")
+        feats_path = os.path.join(
+            proc_dir,
+            f"{ds}_{args.lang_model}_{n_feat}_projected_features.pkl"
+        )
 
-    # Determine topics matrix path
+    # 2) Determine topic-document matrix path
     if args.topics:
         tops_path = args.topics
     else:
-        tops_path = os.path.join('Results', args.topic_model.upper(), f"{ds}_topic_doc_matrix.pkl")
+        tops_path = os.path.join(
+            'Results',
+            args.topic_model.upper(),
+            f"{ds}_topic_doc_matrix.pkl"
+        )
 
-    # Validate paths
+    # Validate existence
     if not os.path.exists(feats_path):
         sys.exit(f"[ERROR] Projected features not found: {feats_path}")
     if not os.path.exists(tops_path):
-        sys.exit(f"[ERROR] Topic-document matrix not found: {tops_path}")
+        sys.exit(f"[ERROR] Topic–document matrix not found: {tops_path}")
 
-    # Load data
+    # Load arrays
     print(f"Loading projected features from {feats_path}")
     features = load_array(feats_path)
     print(f"Loading topic–document matrix from {tops_path}")
@@ -83,9 +114,8 @@ def main():
 
     print(f"projected_features shape: {features.shape}")
     print(f"topics matrix shape:       {topics.shape}")
-    
-    # Align feature and topic dimensions
-    # Features should be (n_features, n_docs), Topics should be (n_topics, n_docs)
+
+    # If features came in shape (n_features, n_docs), transpose to (n_docs, n_features)
     if features.ndim == 2 and features.shape[0] == topics.shape[1]:
         features = features.T
         print(f"Transposed features to {features.shape}")
