@@ -9,16 +9,17 @@ from embed_utils import (
     load_documents,
     save_embeddings,
     random_project,
-    get_processed_dir,
-    OPTIMAL_LDA_TOPICS
+    get_processed_dir
 )
 from preprocess import prepare_sbert
 
 
 def embed_repllama(collection: str, dim: int = None, batch_size: int = 8):
     method = 'repllama'
-    # Use the provided dim; otherwise use OPTIMAL_LDA_TOPICS[collection]
-    n_features = dim if (dim is not None) else OPTIMAL_LDA_TOPICS[collection]
+    # Use provided dim; otherwise error
+    if dim is None:
+        raise ValueError("Please provide --dim for replication of optimal topic count.")
+    n_features = dim
 
     processed_dir = get_processed_dir(collection)
     raw_path = os.path.join(processed_dir, f"{collection}_{method}_corpus_embeddings.pkl")
@@ -50,10 +51,14 @@ def embed_repllama(collection: str, dim: int = None, batch_size: int = 8):
     embeddings = embedder.embed_corpus(docs, batch_size=batch_size)
     print(f"Embedding done in {time.time() - t0:.2f}s")
 
+    # Convert to CPU numpy if embeddings is a torch.Tensor on GPU
+    if torch.is_tensor(embeddings):
+        embeddings = embeddings.cpu().numpy()
+
     # Save raw embeddings
     save_embeddings(embeddings, collection, f"{collection}_{method}_corpus_embeddings.pkl")
 
-    # Project down to n_features
+    # Project to n_features
     projected = random_project(embeddings=embeddings, n_features=n_features)
     save_embeddings(projected, collection, f"{collection}_{method}_{n_features}_projected_features.pkl")
 
@@ -69,7 +74,8 @@ if __name__ == '__main__':
     parser.add_argument(
         '--dim',
         type=int,
-        help="Number of features for random projection. If omitted, uses OPTIMAL_LDA_TOPICS[collection]."
+        required=True,
+        help="Number of features for random projection."
     )
     parser.add_argument(
         '--batch_size',
