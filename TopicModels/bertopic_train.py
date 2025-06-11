@@ -19,15 +19,15 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, project_root)
 
 from bertopic import BERTopic
-from topic_specificity import calculate_specificity_for_all_topics
 
-# Lazy‐import for BERTopic specificity:
+# Lazy‑import for BERTopic specificity:
 def import_bertopic_specificity():
     try:
         from TopicSpecificityBerTopic.topic_specificity_bertopic import calculate_specificity_bertopic
         return calculate_specificity_bertopic
     except ImportError:
         sys.exit("[ERROR] Cannot import calculate_specificity_bertopic from TopicSpecificityBerTopic/")
+
 
 def load_preprocessed(dataset: str):
     """
@@ -44,11 +44,13 @@ def load_preprocessed(dataset: str):
         sys.exit(f"[ERROR] Expected a list of token lists in {pre_path}")
     return tokens
 
+
 def build_docs_from_tokens(token_lists):
     """
-    Given a list of token‐lists, return a list of whitespace‐joined strings (one per document).
+    Given a list of token‑lists, return a list of whitespace‑joined strings (one per document).
     """
     return [" ".join(tokens) for tokens in token_lists]
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -83,14 +85,13 @@ def main():
     prefix = args.dataset
     k = args.num_topics
 
-    # ① Load tokens, build raw‐text docs
+    # ① Load tokens, build raw‑text docs
     token_lists = load_preprocessed(prefix)
     docs = build_docs_from_tokens(token_lists)
     print(f"[1] Loaded {len(docs)} documents (reconstructed from tokens) for '{prefix}'.")
 
     # ② Train BERTopic with nr_topics = k
     print(f"[2] Training BERTopic on '{prefix}' with nr_topics={k} ...")
-    # You can pass extra params (e.g., embedding_model, create embeddings) if desired.
     model = BERTopic(nr_topics=k, calculate_probabilities=True)
     topics, probs = model.fit_transform(docs)
     print(f"[2] BERTopic training complete. Model has {len(model.get_topic_freq())} total topics.")
@@ -101,27 +102,21 @@ def main():
     print(f"[SAVED] BERTopic model at {model_path}")
 
     # ④ Build and save topic–document matrix (num_topics × num_docs)
-    #    BERTopic’s `get_document_info` can give document‐topic probabilities per doc.
     import numpy as np
     num_docs = len(docs)
-    # If `probs` is None, we need to recompute probabilities:
     if probs is None:
-        # Recompute probabilities via transform
         _, probs = model.transform(docs)
 
-    # Topics are labeled 0..(n_topics-1), but BERTopic may use -1 for outlier/noise
     valid_topics = sorted([t for t in set(topics) if t >= 0])
     n_topics_actual = len(valid_topics)
-    # Build a matrix: row = topic_id, col = doc index, cell = probability
     td_mat = np.zeros((n_topics_actual, num_docs), dtype=float)
-    for doc_idx in range(num_docs):
-        doc_topics = probs[doc_idx]  # list of (topic_id, prob) pairs
+    for doc_idx, doc_topics in enumerate(probs):
         for t_id, p in doc_topics:
-            if t_id >= 0:  # skip outliers labeled -1
-                # Map t_id to its row index: assume `valid_topics` is sorted in increasing order
+            if t_id >= 0:
                 row = valid_topics.index(t_id)
                 td_mat[row, doc_idx] = p
 
+    # Removed suffix for topic-doc matrix filename to match LDA naming
     td_path = os.path.join(args.output_dir, f"{prefix}_topic_doc_matrix.pkl")
     with open(td_path, "wb") as f:
         pickle.dump(td_mat, f)
@@ -140,7 +135,6 @@ def main():
         with open(spec_path, "wb") as f:
             pickle.dump(specificity_scores, f)
         print(f"[SAVED] Specificity scores at {spec_path}")
-
 
 if __name__ == "__main__":
     main()
