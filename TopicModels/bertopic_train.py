@@ -20,7 +20,7 @@ sys.path.insert(0, project_root)
 
 from bertopic import BERTopic
 
-# Lazy‑import for BERTopic specificity:
+# Lazy-import for BERTopic specificity:
 def import_bertopic_specificity():
     try:
         from TopicSpecificityBerTopic.topic_specificity_bertopic import calculate_specificity_bertopic
@@ -47,7 +47,7 @@ def load_preprocessed(dataset: str):
 
 def build_docs_from_tokens(token_lists):
     """
-    Given a list of token‑lists, return a list of whitespace‑joined strings (one per document).
+    Given a list of token-lists, return a list of whitespace-joined strings (one per document).
     """
     return [" ".join(tokens) for tokens in token_lists]
 
@@ -85,7 +85,7 @@ def main():
     prefix = args.dataset
     k = args.num_topics
 
-    # ① Load tokens, build raw‑text docs
+    # ① Load tokens, build raw-text docs
     token_lists = load_preprocessed(prefix)
     docs = build_docs_from_tokens(token_lists)
     print(f"[1] Loaded {len(docs)} documents (reconstructed from tokens) for '{prefix}'.")
@@ -107,16 +107,21 @@ def main():
     if probs is None:
         _, probs = model.transform(docs)
 
-    valid_topics = sorted([t for t in set(topics) if t >= 0])
-    n_topics_actual = len(valid_topics)
-    td_mat = np.zeros((n_topics_actual, num_docs), dtype=float)
-    for doc_idx, doc_topics in enumerate(probs):
-        for t_id, p in doc_topics:
-            if t_id >= 0:
-                row = valid_topics.index(t_id)
-                td_mat[row, doc_idx] = p
+    if isinstance(probs, np.ndarray):
+        # probs shape: (n_docs, n_topics)
+        td_mat = probs.T
+        n_topics_actual = td_mat.shape[0]
+    else:
+        # list-of-lists of (topic, prob)
+        valid_topics = sorted([t for t in set(topics) if t >= 0])
+        n_topics_actual = len(valid_topics)
+        td_mat = np.zeros((n_topics_actual, num_docs), dtype=float)
+        for doc_idx, doc_topics in enumerate(probs):
+            for t_id, p in doc_topics:
+                if t_id >= 0:
+                    row = valid_topics.index(t_id)
+                    td_mat[row, doc_idx] = p
 
-    # Removed suffix for topic-doc matrix filename to match LDA naming
     td_path = os.path.join(args.output_dir, f"{prefix}_topic_doc_matrix.pkl")
     with open(td_path, "wb") as f:
         pickle.dump(td_mat, f)

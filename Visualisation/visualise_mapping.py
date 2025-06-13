@@ -41,13 +41,13 @@ def plot_mapping(lang_model, topic_model, dims_list):
     plt.figure(figsize=(10, 6))
 
     for i, coll in enumerate(collections):
+        # look up number of topics for this collection
+        n_topics = dims.get(coll)
+        if n_topics is None:
+            sys.exit(f"[ERROR] No dim provided for '{coll}'.")
+
         # 1) Compute specificity
         if topic_model == 'lda':
-            # Look up exact number of topics from dims dict
-            n_topics = dims.get(coll)
-            if n_topics is None:
-                sys.exit(f"[ERROR] No dim provided for '{coll}'.")
-
             lda_path = os.path.join('Results', 'LDA', f"{coll}_lda{n_topics}.model")
             if not os.path.exists(lda_path):
                 sys.exit(f"[ERROR] Cannot find LDA model: {lda_path}")
@@ -67,12 +67,11 @@ def plot_mapping(lang_model, topic_model, dims_list):
             )
 
         else:  # bertopic
-            # Lazy‐import calculate_specificity_bertopic
             calculate_specificity_bertopic = import_bertopic_specificity()
 
-            bt_path = os.path.join('Results', 'BERTOPIC', f"{coll}_bertopic_model")
-            if not os.path.isdir(bt_path):
-                sys.exit(f"[ERROR] BERTopic model directory not found: {bt_path}")
+            bt_path = os.path.join('Results', 'BERTOPIC', f"{coll}_bertopic_{n_topics}.model")
+            if not os.path.exists(bt_path):
+                sys.exit(f"[ERROR] BERTopic model not found: {bt_path}")
             bt = BERTopic.load(bt_path)
 
             scores = calculate_specificity_bertopic(
@@ -154,7 +153,6 @@ if __name__ == '__main__':
     )
     args = parser.parse_args()
 
-    # Parse dims into [80, 70, 50], check length == 3
     dims_list = [int(x) for x in args.dims.split(',')]
     if len(dims_list) != 3:
         sys.exit("[ERROR] --dims must have exactly 3 comma-separated integers, e.g. '80,70,50'.")
