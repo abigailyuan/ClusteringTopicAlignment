@@ -9,6 +9,7 @@ import os
 import sys
 import pickle
 import argparse
+import numpy as np
 import matplotlib.pyplot as plt
 
 # Ensure project root
@@ -18,6 +19,7 @@ sys.path.insert(0, project_root)
 from gensim.models import LdaModel
 from bertopic import BERTopic
 from topic_specificity import calculate_specificity_for_all_topics
+
 
 def import_bertopic_specificity():
     try:
@@ -33,22 +35,21 @@ def main():
     parser.add_argument('--lang_model', required=True, choices=['doc2vec','sbert','repllama'])
     parser.add_argument('--topic_model', required=True, choices=['lda','bertopic'])
     parser.add_argument('--dims', type=str, required=True, help="Comma-separated list of topic counts, e.g. '20,40,60,80'")
-    parser.add_argument('--output_dir', type=str, default='Results/Visualisation', help="Where to save the plot")
     args = parser.parse_args()
 
     dims_list = [int(x) for x in args.dims.split(',')]
     if not dims_list:
         sys.exit("[ERROR] Provide at least one topic count in --dims.")
 
-    # load BERTopic specificity if needed
+    # Prepare specificity function for BERTopic if needed
     if args.topic_model == 'bertopic':
         calculate_bert_spec = import_bertopic_specificity()
 
-    os.makedirs(args.output_dir, exist_ok=True)
-
-    colors = plt.cm.viridis_r(np.linspace(0,1,len(dims_list))) if 'numpy' in sys.modules else plt.cm.viridis_r
-
+    os.makedirs('Results/Visualisation', exist_ok=True)
     plt.figure(figsize=(10,6))
+
+    # Generate a distinct color for each sweep index
+    colors = plt.cm.viridis(np.linspace(0,1,len(dims_list)))
 
     for idx, n_topics in enumerate(dims_list):
         # 1) specificity scores
@@ -77,23 +78,23 @@ def main():
             )
 
         # 2) mapping
-        map_file = os.path.join('Results', f"{args.collection}_{args.lang_model}_{args.topic_model}_{n_topics}_mapping.pkl")
-        if not os.path.exists(map_file):
-            sys.exit(f"[ERROR] Mapping file not found: {map_file}")
-        mappings = pickle.load(open(map_file,'rb'))
+        map_fname = f"{args.collection}_{args.lang_model}_{args.topic_model}_{n_topics}_mapping.pkl"
+        map_path = os.path.join('Results', map_fname)
+        if not os.path.exists(map_path):
+            sys.exit(f"[ERROR] Mapping file not found: {map_path}")
+        mappings = pickle.load(open(map_path,'rb'))
         mapped = {t for _,t in mappings}
 
         # 3) sort topics by specificity
-        ts = sorted(enumerate(scores), key=lambda x: x[1])
-        topics_sorted, scores_sorted = zip(*ts)
-
+        sorted_ts = sorted(enumerate(scores), key=lambda x: x[1])
+        topics_sorted, scores_sorted = zip(*sorted_ts)
         x = list(range(len(topics_sorted)))
         mapped_x = [x[i] for i,t in enumerate(topics_sorted) if t in mapped]
         mapped_y = [scores_sorted[i] for i,t in enumerate(topics_sorted) if t in mapped]
         unmapped_x = [x[i] for i,t in enumerate(topics_sorted) if t not in mapped]
         unmapped_y = [scores_sorted[i] for i,t in enumerate(topics_sorted) if t not in mapped]
 
-        c = colors[idx] if isinstance(colors, (list,tuple)) else colors(idx/len(dims_list))
+        c = colors[idx]
         plt.scatter(mapped_x, mapped_y, color=c, alpha=1.0, label=f'{n_topics}-mapped', marker='o', s=30)
         plt.scatter(unmapped_x, unmapped_y, color=c, alpha=0.3, label=f'{n_topics}-unmapped', marker='x', s=20)
 
@@ -103,7 +104,7 @@ def main():
     plt.legend(bbox_to_anchor=(1.05,1), loc='upper left')
     plt.tight_layout()
 
-    out_path = os.path.join(args.output_dir, f"mapping_sweep_{args.collection}_{args.topic_model}_{args.lang_model}.pdf")
+    out_path = os.path.join('Results/Visualisation', f"mapping_sweep_{args.collection}_{args.topic_model}_{args.lang_model}.pdf")
     plt.savefig(out_path)
     print(f"[SAVED] Sweep mapping visualization at {out_path}")
     plt.show()

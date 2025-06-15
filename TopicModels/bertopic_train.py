@@ -3,10 +3,10 @@
 bertopic_train.py
 
 Train a BERTopic model on a preprocessed corpus, using a specified number of topics.
-This mirrors the interface of lda_train.py, taking --dataset and --num_topics.
+This mirrors the interface of lda_train.py, taking --dataset, --num_topics, and optionally --force to skip retraining.
 
 Usage (example):
-    python bertopic_train.py --dataset wiki --num_topics 80 --output_dir Results/BERTOPIC
+    python bertopic_train.py --dataset wiki --num_topics 80 --output_dir Results/BERTOPIC [--force] [--calculate_specificity]
 """
 
 import os
@@ -54,7 +54,7 @@ def build_docs_from_tokens(token_lists):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Train BERTopic on a preprocessed corpus."
+        description="Train or load BERTopic and generate topic–doc matrix."
     )
     parser.add_argument(
         '--dataset',
@@ -75,6 +75,11 @@ def main():
         help="Directory to save the BERTopic model and matrices (default: Results/BERTOPIC)."
     )
     parser.add_argument(
+        '--force',
+        action='store_true',
+        help="If set, force retraining of the model even if it exists (matrix always regenerated)."
+    )
+    parser.add_argument(
         '--calculate_specificity',
         action='store_true',
         help="If set, compute specificity scores after training and save them."
@@ -85,44 +90,57 @@ def main():
     prefix = args.dataset
     k = args.num_topics
 
-    # ① Load tokens, build raw-text docs
-    token_lists = load_preprocessed(prefix)
-    docs = build_docs_from_tokens(token_lists)
-    print(f"[1] Loaded {len(docs)} documents (reconstructed from tokens) for '{prefix}'.")
-
-    # ② Train BERTopic with nr_topics = k
-    print(f"[2] Training BERTopic on '{prefix}' with nr_topics={k} ...")
-    model = BERTopic(nr_topics=k, calculate_probabilities=True)
-    topics, probs = model.fit_transform(docs)
-    print(f"[2] BERTopic training complete. Model has {len(model.get_topic_freq())} total topics.")
-
-    # ③ Save the model
+    # Path for BERTopic model
     model_path = os.path.join(args.output_dir, f"{prefix}_bertopic_{k}.model")
-    model.save(model_path)
-    print(f"[SAVED] BERTopic model at {model_path}")
 
-    # ④ Build and save topic–document matrix (num_topics × num_docs)
+    # Load or train model
+    if os.path.exists(model_path) and not args.force:
+        print(f"[SKIP TRAIN] Loading existing BERTopic model: {model_path}")
+        model = BERTopic.load(model_path)
+    else:
+        # ① Load tokens and build docs
+        token_lists = load_preprocessed(prefix)
+        docs = build_docs_from_tokens(token_lists)
+        print(f"[1] Loaded {len(docs)} documents for '{prefix}'.")
+
+        # ② Train BERTopic
+        print(f"[2] Training BERTopic on '{prefix}' with nr_topics={k} ...")
+        model = BERTopic(nr_topics=k, calculate_probabilities=True)
+        topics, probs = model.fit_transform(docs)
+        print(f"[INFO] BERTopic training complete. Model has {len(model.get_topic_freq())} topics.")
+
+        # ③ Save the model
+        model.save(model_path)
+        print(f"[SAVED] BERTopic model at {model_path}")
+
+    # Ensure docs and probs available for matrix
+    # If docs not in scope (skip train), reload tokens
+    try:
+        docs
+    except NameError:
+        token_lists = load_preprocessed(prefix)
+        docs = build_docs_from_tokens(token_lists)
+    
+    # Transform docs if probs missing
     import numpy as np
-    num_docs = len(docs)
-    if probs is None:
+    if 'probs' not in locals() or probs is None:
         _, probs = model.transform(docs)
 
+    # ④ Build and save topic–document matrix (nr_topics × num_docs)
+    num_docs = len(docs)
     if isinstance(probs, np.ndarray):
         # probs shape: (n_docs, n_topics)
         td_mat = probs.T
-        n_topics_actual = td_mat.shape[0]
     else:
-        # list-of-lists of (topic, prob)
-        valid_topics = sorted([t for t in set(topics) if t >= 0])
-        n_topics_actual = len(valid_topics)
-        td_mat = np.zeros((n_topics_actual, num_docs), dtype=float)
+        valid_topics = sorted([t for t in set(model.get_topics().keys()) if t >= 0])
+        td_mat = np.zeros((len(valid_topics), num_docs), dtype=float)
         for doc_idx, doc_topics in enumerate(probs):
             for t_id, p in doc_topics:
                 if t_id >= 0:
                     row = valid_topics.index(t_id)
                     td_mat[row, doc_idx] = p
 
-    td_path = os.path.join(args.output_dir, f"{prefix}_topic_doc_matrix.pkl")
+    td_path = os.path.join(args.output_dir, f"{prefix}_topic_doc_matrix_{k}.pkl")
     with open(td_path, "wb") as f:
         pickle.dump(td_mat, f)
     print(f"[SAVED] BERTopic topic–doc matrix at {td_path}, shape = {td_mat.shape}")
@@ -140,6 +158,7 @@ def main():
         with open(spec_path, "wb") as f:
             pickle.dump(specificity_scores, f)
         print(f"[SAVED] Specificity scores at {spec_path}")
+
 
 if __name__ == "__main__":
     main()
