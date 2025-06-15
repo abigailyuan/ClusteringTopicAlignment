@@ -14,7 +14,9 @@ OPTIMAL_LDA_TOPICS = {
 
 # Placeholder for future Bertopic‐specific topic counts
 OPTIMAL_BERTOPIC_TOPICS = {
-    # e.g. 'wsj': 60, 'wiki': 90, '20ng': 75
+    'wsj': 50,
+    'wiki':70,
+    '20ng':40
 }
 
 # Embedding scripts accept a “--dim <int>”
@@ -112,12 +114,16 @@ def run_pipeline(lang_model, topic_model, force_components=None):
                 ], check=True)
         else:
             tm_script = topic_train_scripts['bertopic']
-            model_path = f'Results/BERTOPIC/{coll}_bertopic_model'
-            if 'topic' not in force_components and os.path.isdir(model_path):
+            model_path = f'Results/BERTOPIC/{coll}_bertopic_{n_topics}.model'
+            if 'topic' not in force_components and os.path.exists(model_path):
                 print(f"[SKIP] BERTopic model for {coll} exists.")
             else:
-                print(f"[RUNNING] {tm_script} --dataset {coll}")
-                subprocess.run(['python', tm_script, '--dataset', coll], check=True)
+                print(f"[RUNNING] {tm_script} --dataset {coll} --num_topics {n_topics}")
+                subprocess.run([
+                    'python', tm_script,
+                    '--dataset', coll,
+                    '--num_topics', str(n_topics)
+                ], check=True)
 
         # — Step 3: Mapping (always run) —
         print(

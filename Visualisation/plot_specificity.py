@@ -5,15 +5,39 @@ import matplotlib.pyplot as plt
 import argparse
 
 
-def plot_specificity(results_dict_path):
+import pickle
+import numpy as np
+import matplotlib.pyplot as plt
+
+def plot_specificity(results_dict_path, exclude_max_score_one=False):
+    """
+    Plot topic specificity, with an option to exclude scores of exactly 1.
+
+    Parameters
+    ----------
+    results_dict_path : str
+        Path to a pickle file containing a dict {n_topics: [scores, ...], ...}.
+    exclude_max_score_one : bool, optional
+        If True, drop any score == 1 before computing min/mean/max, by default False.
+    """
     # Load results dictionary
     with open(results_dict_path, 'rb') as f:
         results = pickle.load(f)
 
     n_topics = sorted(results.keys())
-    means = [np.mean(results[n]) for n in n_topics]
-    mins = [np.min(results[n]) for n in n_topics]
-    maxs = [np.max(results[n]) for n in n_topics]
+    means, mins, maxs = [], [], []
+
+    for n in n_topics:
+        scores = np.array(results[n])
+        if exclude_max_score_one:
+            # filter out all scores equal to 1
+            filtered = scores[scores != 1]
+            # if filtering removes all values, fall back to the original array
+            scores = filtered if filtered.size > 0 else scores
+
+        means.append(scores.mean())
+        mins.append(scores.min())
+        maxs.append(scores.max())
 
     lower_error = [m - mn for m, mn in zip(means, mins)]
     upper_error = [mx - m for mx, m in zip(maxs, means)]
@@ -29,9 +53,9 @@ def plot_specificity(results_dict_path):
     )
     plt.xlabel("Number of Topics")
     plt.ylabel("Mean Specificity Score")
-    # plt.title("Specificity vs. Number of Topics")
     plt.grid(True)
     plt.legend()
+
 
 
 def plot_top10_specificity(results_dict_path):
