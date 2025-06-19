@@ -45,34 +45,86 @@ def load_mapping(mapping_path: str) -> list:
     return mapping
 
 
-def calculate_bertopic_scores(model_path: str, threshold_mode: str, specificity_mode: str) -> dict:
-    """Compute specificity scores for a BERTopic model at the given path."""
+def calculate_bertopic_scores(
+    model_path: str,
+    threshold_mode: str,
+    specificity_mode: str,
+    n_topics: int
+) -> dict:
+    """Compute specificity scores for a BERTopic model at the given path, with caching."""
     if not os.path.exists(model_path):
         sys.exit(f"[ERROR] BERTopic model not found: {model_path}")
-    model = BERTopic.load(model_path)
+
+    # Cache lookup
+    cache_dir  = os.path.join('Results', 'BERTOPIC')
+    cache_file = f"bertopic_{n_topics}_specificity_scores.pkl"
+    cache_path = os.path.join(cache_dir, cache_file)
+    if os.path.exists(cache_path):
+        with open(cache_path, 'rb') as f:
+            return pickle.load(f)
+
+    # Compute scores
+    model   = BERTopic.load(model_path)
     calc_fn = import_bertopic_specificity()
-    scores = calc_fn(model, threshold_mode=threshold_mode, specificity_mode=specificity_mode)
+    scores  = calc_fn(model,
+                      threshold_mode=threshold_mode,
+                      specificity_mode=specificity_mode)
     if isinstance(scores, dict):
-        return scores
-    arr = np.array(scores, dtype=float)
-    return {i: float(arr[i]) for i in range(arr.shape[0])}
+        out = scores
+    else:
+        arr = np.array(scores, dtype=float)
+        out = {i: float(arr[i]) for i in range(arr.shape[0])}
+
+    # Save to cache
+    os.makedirs(cache_dir, exist_ok=True)
+    with open(cache_path, 'wb') as f:
+        pickle.dump(out, f)
+
+    return out
 
 
-def calculate_lda_scores(model_path: str, corpus_path: str, threshold_mode: str, specificity_mode: str) -> dict:
-    """Compute specificity scores for an LDA model and corpus at the given paths."""
+def calculate_lda_scores(
+    model_path: str,
+    corpus_path: str,
+    threshold_mode: str,
+    specificity_mode: str,
+    n_topics: int
+) -> dict:
+    """Compute specificity scores for an LDA model and corpus at the given paths, with caching."""
     if not os.path.exists(model_path):
         sys.exit(f"[ERROR] LDA model not found: {model_path}")
-    lda = LdaModel.load(model_path)
     if not os.path.exists(corpus_path):
         sys.exit(f"[ERROR] Corpus not found: {corpus_path}")
-    corpus = pickle.load(open(corpus_path, 'rb'))
+
+    # Cache lookup
+    cache_dir  = os.path.join('Results', 'LDA')
+    cache_file = f"lda_{n_topics}_specificity_scores.pkl"
+    cache_path = os.path.join(cache_dir, cache_file)
+    if os.path.exists(cache_path):
+        with open(cache_path, 'rb') as f:
+            return pickle.load(f)
+
+    # Compute scores
+    lda     = LdaModel.load(model_path)
+    corpus  = pickle.load(open(corpus_path, 'rb'))
     calc_fn = import_lda_specificity()
-    scores = calc_fn(model=lda, corpus=corpus, mode='lda',
-                     threshold_mode=threshold_mode, specificity_mode=specificity_mode)
+    scores  = calc_fn(model=lda,
+                      corpus=corpus,
+                      mode='lda',
+                      threshold_mode=threshold_mode,
+                      specificity_mode=specificity_mode)
     if isinstance(scores, dict):
-        return scores
-    arr = np.array(scores, dtype=float)
-    return {i: float(arr[i]) for i in range(arr.shape[0])}
+        out = scores
+    else:
+        arr = np.array(scores, dtype=float)
+        out = {i: float(arr[i]) for i in range(arr.shape[0])}
+
+    # Save to cache
+    os.makedirs(cache_dir, exist_ok=True)
+    with open(cache_path, 'wb') as f:
+        pickle.dump(out, f)
+
+    return out
 
 
 def _compute_improvements_from_specs(specs: dict, mapping: list) -> tuple:
@@ -82,7 +134,7 @@ def _compute_improvements_from_specs(specs: dict, mapping: list) -> tuple:
       - average of those relative improvements
     """
     overall_avg = float(np.mean(list(specs.values())))
-    clusters = {}
+    clusters    = {}
     for feat_id, cluster_id in mapping:
         clusters.setdefault(cluster_id, []).append(feat_id)
 
@@ -92,7 +144,6 @@ def _compute_improvements_from_specs(specs: dict, mapping: list) -> tuple:
         if not valid:
             continue
         cluster_avg = float(np.mean([specs[fid] for fid in valid]))
-        # relative improvement bounded by dividing by overall average
         improvements[cluster_id] = (cluster_avg - overall_avg) / overall_avg
 
     if not improvements:
@@ -110,34 +161,38 @@ def average_mapped_improvement(
     specificity_mode: str = 'diff'
 ) -> float:
     """
-    Importable function.
-
     Parameters
     ----------
-    topic_model
-        'bertopic' or 'lda'
-    dataset
-        dataset name (e.g., 'wiki', '20ng', 'wsj')
-    n_topics
-        number of topics used in the model
-    mapping
-        list of (feature_id, topic_id) tuples
-    threshold_mode, specificity_mode
-        passed to specificity calculations
+    topic_model : 'bertopic' or 'lda'
+    dataset     : dataset name (e.g., 'wiki', '20ng', 'wsj')
+    n_topics    : number of topics used in the model
+    mapping     : list of (feature_id, topic_id) tuples
+    threshold_mode, specificity_mode : passed to specificity calculations
 
     Returns
     -------
     avg_improvement : float
-        average relative improvement over all clusters (bounded by overall avg)
+        average relative improvement over all clusters
     """
     base_dir = os.path.join('Results', topic_model.upper())
     if topic_model == 'bertopic':
         model_path = os.path.join(base_dir, f"{dataset}_bertopic_{n_topics}.model")
-        specs = calculate_bertopic_scores(model_path, threshold_mode, specificity_mode)
+        specs      = calculate_bertopic_scores(
+            model_path,
+            threshold_mode,
+            specificity_mode,
+            n_topics
+        )
     elif topic_model == 'lda':
-        model_path = os.path.join(base_dir, f"{dataset}_lda{n_topics}.model")
+        model_path  = os.path.join(base_dir, f"{dataset}_lda{n_topics}.model")
         corpus_path = os.path.join(base_dir, f"{dataset}_corpus.pkl")
-        specs = calculate_lda_scores(model_path, corpus_path, threshold_mode, specificity_mode)
+        specs       = calculate_lda_scores(
+            model_path,
+            corpus_path,
+            threshold_mode,
+            specificity_mode,
+            n_topics
+        )
     else:
         raise ValueError("topic_model must be 'bertopic' or 'lda'")
 
@@ -147,27 +202,47 @@ def average_mapped_improvement(
 
 # CLI entrypoint
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Compute avg specificity improvement for mapped topics.")
-    parser.add_argument('--topic_model', required=True, choices=['bertopic', 'lda'],
-                        help="Which topic model to evaluate")
-    parser.add_argument('--dataset', required=True,
-                        help="Dataset name (e.g., 'wiki', '20ng', 'wsj')")
-    parser.add_argument('--n_topics', type=int, required=True,
-                        help="Number of topics used in the model")
-    parser.add_argument('--mapping', required=True,
-                        help="Path to pickle of mapping object (list of (feature_id, topic_id)).")
-    parser.add_argument('--threshold_mode', default='gmm',
-                        help="Threshold mode for specificity (default: gmm)")
-    parser.add_argument('--specificity_mode', default='diff',
-                        help="Specificity mode for calculation (default: diff)")
-    parser.add_argument('--output', default=None,
-                        help="Optional path to save result (pickle with avg_improvement)")
+    parser = argparse.ArgumentParser(
+        description="Compute avg specificity improvement for mapped topics."
+    )
+    parser.add_argument(
+        '--topic_model', required=True, choices=['bertopic', 'lda'],
+        help="Which topic model to evaluate"
+    )
+    parser.add_argument(
+        '--dataset', required=True,
+        help="Dataset name (e.g., 'wiki', '20ng', 'wsj')"
+    )
+    parser.add_argument(
+        '--n_topics', type=int, required=True,
+        help="Number of topics used in the model"
+    )
+    parser.add_argument(
+        '--mapping', required=True,
+        help="Path to pickle of mapping object (list of (feature_id, topic_id))."
+    )
+    parser.add_argument(
+        '--threshold_mode', default='gmm',
+        help="Threshold mode for specificity (default: gmm)"
+    )
+    parser.add_argument(
+        '--specificity_mode', default='diff',
+        help="Specificity mode for calculation (default: diff)"
+    )
+    parser.add_argument(
+        '--output', default=None,
+        help="Optional path to save result (pickle with avg_improvement)"
+    )
     args = parser.parse_args()
 
     mapping = load_mapping(args.mapping)
     avg_imp = average_mapped_improvement(
-        args.topic_model, args.dataset, args.n_topics, mapping,
-        args.threshold_mode, args.specificity_mode
+        args.topic_model,
+        args.dataset,
+        args.n_topics,
+        mapping,
+        args.threshold_mode,
+        args.specificity_mode
     )
     print(f"Average improvement: {avg_imp:.6f}")
 
