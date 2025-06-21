@@ -6,7 +6,7 @@ import argparse
 import pickle
 import torch
 import numpy as np
-from mappings.GreedyMapping import feature_mapping
+from Mapping.GreedyMapping import feature_mapping
 
 
 def load_array(path):
