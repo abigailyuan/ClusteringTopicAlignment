@@ -59,17 +59,8 @@ def load_preprocessed(dataset: str):
     if not os.path.exists(pre_path):
         sys.exit(f"[ERROR] Preprocessed file not found: {pre_path}")
     with open(pre_path, 'rb') as f:
-        tokens = pickle.load(f)
-    if not isinstance(tokens, list) or not all(isinstance(doc, list) for doc in tokens):
-        sys.exit(f"[ERROR] Expected a list of token lists in {pre_path}")
-    return tokens
-
-
-def build_docs_from_tokens(token_lists):
-    """
-    Given a list of token‐lists, return a list of whitespace‐joined strings (one per document).
-    """
-    return [" ".join(tokens) for tokens in token_lists]
+        docs = pickle.load(f)
+    return docs
 
 
 def grid_search_bertopic(
@@ -95,18 +86,21 @@ def grid_search_bertopic(
 
     for k in range(start_topics, end_topics + 1, step):
         print(f"\n[GRID] Training BERTopic (nr_topics={k}) on '{collection}' using 2D UMAP …")
-
-        model = BERTopic(
-            nr_topics=k,
-            calculate_probabilities=True,
-            umap_model=umap_model
-        )
-        topics, probs = model.fit_transform(docs)
-
         model_filename = f"{collection}_bertopic_{k}.model"
         model_path = os.path.join(output_dir, model_filename)
-        model.save(model_path)
-        print(f"[SAVED] BERTopic model at {model_path}")
+        model = BERTopic.load(model_path)
+        if os.path.exists(model_path):
+            print(f"[SKIP] BERTopic model for {collection} exists.")
+        else:
+            model = BERTopic(
+                nr_topics=k,
+                calculate_probabilities=True,
+                umap_model=umap_model
+            )
+            topics, probs = model.fit_transform(docs)
+
+            model.save(model_path)
+            print(f"[SAVED] BERTopic model at {model_path}")
 
         print(f"[GRID] Calculating specificity for k={k} …")
         specificity_scores = calculate_specificity_bertopic(
@@ -149,8 +143,7 @@ def main():
 
     collection = args.dataset
 
-    token_lists = load_preprocessed(collection)
-    docs = build_docs_from_tokens(token_lists)
+    docs = load_preprocessed(collection)
     print(f"[1] Loaded {len(docs)} documents (from tokens) for '{collection}'.")
 
     specificity_dict = grid_search_bertopic(

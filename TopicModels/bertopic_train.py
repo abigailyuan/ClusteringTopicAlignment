@@ -32,24 +32,16 @@ def import_bertopic_specificity():
 def load_preprocessed(dataset: str):
     """
     Load a pickled list of token lists from Processed{DATASET}/{dataset}_preprocessed.pkl.
-    Returns: list of token lists.
+    Returns: list of document strings.
     """
     processed_dir = f"Processed{dataset.upper()}"
-    pre_path = os.path.join(processed_dir, f"{dataset}_preprocessed.pkl")
+    # pre_path = os.path.join(processed_dir, f"{dataset}_preprocessed.pkl")
+    pre_path = os.path.join(processed_dir, f"{dataset}_raw.pkl")
     if not os.path.exists(pre_path):
         sys.exit(f"[ERROR] Preprocessed file not found: {pre_path}")
     with open(pre_path, 'rb') as f:
-        tokens = pickle.load(f)
-    if not isinstance(tokens, list) or not all(isinstance(doc, list) for doc in tokens):
-        sys.exit(f"[ERROR] Expected a list of token lists in {pre_path}")
-    return tokens
-
-
-def build_docs_from_tokens(token_lists):
-    """
-    Given a list of token-lists, return a list of whitespace-joined strings (one per document).
-    """
-    return [" ".join(tokens) for tokens in token_lists]
+        docs = pickle.load(f)
+    return docs
 
 
 def main():
@@ -97,10 +89,14 @@ def main():
     if os.path.exists(model_path) and not args.force:
         print(f"[SKIP TRAIN] Loading existing BERTopic model: {model_path}")
         model = BERTopic.load(model_path)
+        
+        # Load docs
+        docs = load_preprocessed(prefix)
+        print(f"[1] Loaded {len(docs)} documents for '{prefix}'.")
+        
     else:
         # ① Load tokens and build docs
-        token_lists = load_preprocessed(prefix)
-        docs = build_docs_from_tokens(token_lists)
+        docs = load_preprocessed(prefix)
         print(f"[1] Loaded {len(docs)} documents for '{prefix}'.")
 
         # ② Train BERTopic

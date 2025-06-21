@@ -15,7 +15,7 @@ OPTIMAL_LDA_TOPICS = {
 # Placeholder for future Bertopic‐specific topic counts
 OPTIMAL_BERTOPIC_TOPICS = {
     'wsj': 50,
-    'wiki':70,
+    'wiki':80,
     '20ng':40
 }
 

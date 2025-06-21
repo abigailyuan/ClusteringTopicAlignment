@@ -21,13 +21,27 @@ from bertopic import BERTopic
 from topic_specificity import calculate_specificity_for_all_topics
 
 
+# ─── Ensure project root is on path ────────────────────────────────────────────
+# If this file is in /project/Visualisation/visualise_mapping.py,
+# then project_root will be /project
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, project_root)
+
+# ─── Make sure TopicSpecificityBerTopic is on sys.path ────────────────────────
+# TopicSpecificityBerTopic/ is a sibling of run_pipeline.py (i.e. one level above "Visualisation/")
+topic_spec_path = os.path.join(project_root, 'TopicSpecificityBerTopic')
+if os.path.isdir(topic_spec_path):
+    sys.path.insert(0, topic_spec_path)
+else:
+    sys.exit(f"[ERROR] Expected to find 'TopicSpecificityBerTopic' at {topic_spec_path}")
+    
+# Lazy‐import for the BERTopic‐specific specificity function
 def import_bertopic_specificity():
     try:
         from topic_specificity_bertopic import calculate_specificity_bertopic
         return calculate_specificity_bertopic
     except ImportError:
-        sys.exit("[ERROR] Cannot import calculate_specificity_bertopic")
-
+        sys.exit("[ERROR] Cannot import topic_specificity_bertopic from TopicSpecificityBerTopic/")
 
 def main():
     parser = argparse.ArgumentParser(description="Visualise mapping across topic-count sweep.")
