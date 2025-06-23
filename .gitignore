@@ -1,8 +1,10 @@
-ProcessedWSJ/*
-!ProcessedWSJ/keep_this_file.txt
+# Ignore everything in these folders
+data/results/*
+data/processed/*
 
-Preprocessing/__pycache__/
+# …except the .gitkeep files
+!data/results/.gitkeep
+!data/processed/.gitkeep
 
- .ipynb_checkpoints
 
-mappings/.ipynb_checkpoints/
+
