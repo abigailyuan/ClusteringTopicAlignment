@@ -9,7 +9,7 @@ import numpy as np
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, project_root)
 
-from mappings.GreedyMapping import feature_mapping
+from Mapping.GreedyMapping import feature_mapping
 
 def load_array(path):
     """
