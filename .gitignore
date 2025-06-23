@@ -6,3 +6,19 @@ Preprocessing/__pycache__/
  .ipynb_checkpoints
 
 mappings/.ipynb_checkpoints/
+
+# Jupyter Notebook checkpoints
+**/.ipynb_checkpoints/
+
+# Python byte-compiled / cache
+**/__pycache__/
+*.py[cod]
+
+# Hugging Face tokens
+*huggingface*_token.txt
+
+# Data/result directories
+Processed20NG/
+ProcessedWIKI/
+Results/
+
