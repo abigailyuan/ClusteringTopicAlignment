@@ -1,24 +1,11 @@
-ProcessedWSJ/*
-!ProcessedWSJ/keep_this_file.txt
+# ignore everything in these folders
+data/Results/*
+data/processed/*
 
-Preprocessing/__pycache__/
+# but keep the .gitkeep placeholders
+!data/Results/.gitkeep
+!data/processed/.gitkeep
 
- .ipynb_checkpoints
-
-mappings/.ipynb_checkpoints/
-
-# Jupyter Notebook checkpoints
+# also ignore Jupyter checkpoints and caches everywhere
 **/.ipynb_checkpoints/
-
-# Python byte-compiled / cache
 **/__pycache__/
-*.py[cod]
-
-# Hugging Face tokens
-*huggingface*_token.txt
-
-# Data/result directories
-Processed20NG/
-ProcessedWIKI/
-Results/
-
