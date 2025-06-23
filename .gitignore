@@ -3,7 +3,7 @@ data/results/*
 data/processed/*
 
 # …except the .gitkeep files
-!data/results/.gitkeep
+!data/Results/.gitkeep
 !data/processed/.gitkeep
 
 
