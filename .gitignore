@@ -1,10 +1,12 @@
-# Ignore everything in these folders
-data/results/*
+# ignore everything in these folders
+data/Results/*
 data/processed/*
 
-# …except the .gitkeep files
+# but keep the .gitkeep placeholders
 !data/Results/.gitkeep
 !data/processed/.gitkeep
 
-
+# also ignore Jupyter checkpoints and caches everywhere
+**/.ipynb_checkpoints/
+**/__pycache__/
 
